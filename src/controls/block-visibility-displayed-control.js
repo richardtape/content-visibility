@@ -64,7 +64,7 @@ export function addBlockVisibilityAttribute( settings ) {
  *
  * @return {Object} Filtered props applied to save element.
  */
-export function addBlockVisibilityProOnSave( extraProps, blockType, attributes ) {
+export function addBlockVisibilityPropOnSave( extraProps, blockType, attributes ) {
 
 	// If the current block is valid, add our prop.
 	if ( isValidBlockType( blockType.name ) ) {
@@ -73,7 +73,7 @@ export function addBlockVisibilityProOnSave( extraProps, blockType, attributes )
 
 	return extraProps;
 
-}// end addBlockVisibilityProOnSave()
+}// end addBlockVisibilityPropOnSave()
 
 addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityAttribute', addBlockVisibilityAttribute );
-addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityProOnSave', addBlockVisibilityProOnSave );
+addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityPropOnSave', addBlockVisibilityPropOnSave );

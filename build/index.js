@@ -71,6 +71,32 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_Symbol.js":
 /*!****************************************!*\
   !*** ./node_modules/lodash/_Symbol.js ***!
@@ -2048,6 +2074,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers/is-valid-blocktype */ "./src/helpers/is-valid-blocktype.js");
 /* harmony import */ var _block_visibility_displayed_control__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./block-visibility-displayed-control */ "./src/controls/block-visibility-displayed-control.js");
+/* harmony import */ var _block_visibility_user_authentication__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./block-visibility-user-authentication */ "./src/controls/block-visibility-user-authentication.js");
+
 
 
 
@@ -2065,7 +2093,7 @@ var blockVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
 
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
       title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Visibility', 'block-visibility'),
-      initialOpen: false,
+      initialOpen: true,
       className: "block-visibility-controls"
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], {
       className: "block-visibility-displayed-control"
@@ -2082,14 +2110,14 @@ Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('editor.Block
 /*!************************************************************!*\
   !*** ./src/controls/block-visibility-displayed-control.js ***!
   \************************************************************/
-/*! exports provided: BlockVisibilityDisplayedControl, addBlockVisibilityAttribute, addBlockVisibilityProOnSave */
+/*! exports provided: BlockVisibilityDisplayedControl, addBlockVisibilityAttribute, addBlockVisibilityPropOnSave */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BlockVisibilityDisplayedControl", function() { return BlockVisibilityDisplayedControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityAttribute", function() { return addBlockVisibilityAttribute; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityProOnSave", function() { return addBlockVisibilityProOnSave; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityPropOnSave", function() { return addBlockVisibilityPropOnSave; });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
@@ -2170,17 +2198,146 @@ function addBlockVisibilityAttribute(settings) {
  * @return {Object} Filtered props applied to save element.
  */
 
-function addBlockVisibilityProOnSave(extraProps, blockType, attributes) {
+function addBlockVisibilityPropOnSave(extraProps, blockType, attributes) {
   // If the current block is valid, add our prop.
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_6__["default"])(blockType.name)) {
     extraProps.blockVisibility = attributes.blockVisibility;
   }
 
   return extraProps;
-} // end addBlockVisibilityProOnSave()
+} // end addBlockVisibilityPropOnSave()
 
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["addFilter"])('blocks.registerBlockType', 'block-visibility/addBlockVisibilityAttribute', addBlockVisibilityAttribute);
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityProOnSave', addBlockVisibilityProOnSave);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityPropOnSave', addBlockVisibilityPropOnSave);
+
+/***/ }),
+
+/***/ "./src/controls/block-visibility-user-authentication.js":
+/*!**************************************************************!*\
+  !*** ./src/controls/block-visibility-user-authentication.js ***!
+  \**************************************************************/
+/*! exports provided: BlockVisibilityUserAuthenticationControl, addBlockVisibilityRulesAttribute, addBlockVisibilityRulesPropOnSave, addUserAuthenticationControl */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BlockVisibilityUserAuthenticationControl", function() { return BlockVisibilityUserAuthenticationControl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityRulesAttribute", function() { return addBlockVisibilityRulesAttribute; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityRulesPropOnSave", function() { return addBlockVisibilityRulesPropOnSave; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addUserAuthenticationControl", function() { return addUserAuthenticationControl; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/assign */ "./node_modules/lodash/assign.js");
+/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_assign__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/is-valid-blocktype */ "./src/helpers/is-valid-blocktype.js");
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
+
+
+
+
+
+
+var BlockVisibilityUserAuthenticationControl = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withState"])({
+  option: 'logged-out'
+})(function (_ref) {
+  var option = _ref.option,
+      setState = _ref.setState,
+      props = _ref.props;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RadioControl"], {
+    label: "",
+    help: "",
+    selected: props.attributes.blockVisibilityRules.userAuthenticated || option,
+    options: [{
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Logged In', 'block-visibility'),
+      value: 'logged-in'
+    }, {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Logged Out', 'block-visibility'),
+      value: 'logged-out'
+    }],
+    onChange: function onChange(option) {
+      setState({
+        option: option
+      });
+
+      var newBVRules = _objectSpread({}, props.attributes.blockVisibilityRules);
+
+      newBVRules.userAuthenticated = option;
+      props.setAttributes({
+        blockVisibilityRules: newBVRules
+      });
+    }
+  });
+});
+/**
+ * Filters registered block settings, extending attributes with our custom data.
+ *
+ * @param {Object} settings Original block settings.
+ *
+ * @return {Object} Filtered block settings.
+ */
+
+function addBlockVisibilityRulesAttribute(settings) {
+  // If this is a valid block
+  if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__["default"])(settings.name)) {
+    // Use Lodash's assign to gracefully handle if attributes are undefined
+    settings.attributes = lodash_assign__WEBPACK_IMPORTED_MODULE_6___default()(settings.attributes, {
+      blockVisibilityRules: {
+        type: 'object',
+        default: {
+          userAuthenticated: 'logged-out'
+        }
+      }
+    });
+  }
+
+  return settings;
+} // end addBlockVisibilityRulesAttribute()
+
+/**
+ * Override props assigned to save component to inject our custom data.
+ * This is only done if the component is a valid block type.
+ *
+ * @param {Object} extraProps Additional props applied to save element.
+ * @param {Object} blockType  Block type.
+ * @param {Object} attributes Current block attributes.
+ *
+ * @return {Object} Filtered props applied to save element.
+ */
+
+function addBlockVisibilityRulesPropOnSave(extraProps, blockType, attributes) {
+  // If the current block is valid, add our prop.
+  if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__["default"])(blockType.name)) {
+    extraProps.blockVisibilityRules = attributes.blockVisibilityRules;
+  }
+
+  return extraProps;
+} // end addBlockVisibilityRulesPropOnSave()
+
+var addUserAuthenticationControl = function addUserAuthenticationControl(panelRow, sentProps) {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, panelRow, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(BlockVisibilityUserAuthenticationControl, {
+    props: sentProps
+  }));
+};
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesAttribute', addBlockVisibilityRulesAttribute);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesPropOnSave', addBlockVisibilityRulesPropOnSave);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blockVisibility.panelRow', 'block-visibility/addUserAuthenticationControl', addUserAuthenticationControl);
 
 /***/ }),
 

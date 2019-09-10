@@ -1,5 +1,5 @@
-import { PanelBody, PanelRow, RadioControl } from '@wordpress/components';
-import { createHigherOrderComponent, withState } from '@wordpress/compose';
+import { PanelBody, PanelRow } from '@wordpress/components';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
 import { addFilter, applyFilters } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/blockEditor';
@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
 
 import isValidBlockType from '../helpers/is-valid-blocktype';
 import { BlockVisibilityDisplayedControl } from './block-visibility-displayed-control';
+import { BlockVisibilityUserAuthenticationControl, addBlockVisibilityRulesAttribute, addBlockVisibilityRulesPropOnSave, addUserAuthenticationControl } from './block-visibility-user-authentication';
 
 export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit ) => {
 
@@ -22,7 +23,7 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
                 <InspectorControls>
                     <PanelBody
                         title={ __( 'Visibility', 'block-visibility' ) }
-                        initialOpen={ false }
+                        initialOpen={ true }
                         className="block-visibility-controls"
                     >
                         <PanelRow className="block-visibility-displayed-control">
@@ -30,6 +31,7 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
                         </PanelRow>
                         <PanelRow>
                             { applyFilters( 'blockVisibility.panelRow', '', props ) }
+                            {/* <BlockVisibilityUserAuthenticationControl props={ props } /> */}
                         </PanelRow>
                     </PanelBody>
                 </InspectorControls>
