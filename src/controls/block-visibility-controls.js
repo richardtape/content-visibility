@@ -22,16 +22,15 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
                 <BlockEdit { ...props } />
                 <InspectorControls>
                     <PanelBody
-                        title={ __( 'Visibility', 'block-visibility' ) }
+                        title={ __( 'Block Visibility', 'block-visibility' ) }
                         initialOpen={ true }
                         className="block-visibility-controls"
                     >
                         <PanelRow className="block-visibility-displayed-control">
                             <BlockVisibilityDisplayedControl props={ props } />
                         </PanelRow>
-                        <PanelRow>
+                        <PanelRow className="block-visibility-extra-controls">
                             { applyFilters( 'blockVisibility.panelRow', '', props ) }
-                            {/* <BlockVisibilityUserAuthenticationControl props={ props } /> */}
                         </PanelRow>
                     </PanelBody>
                 </InspectorControls>

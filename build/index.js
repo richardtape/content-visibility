@@ -2092,14 +2092,16 @@ var blockVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
     }
 
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Visibility', 'block-visibility'),
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Block Visibility', 'block-visibility'),
       initialOpen: true,
       className: "block-visibility-controls"
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], {
       className: "block-visibility-displayed-control"
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_block_visibility_displayed_control__WEBPACK_IMPORTED_MODULE_7__["BlockVisibilityDisplayedControl"], {
       props: props
-    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["applyFilters"])('blockVisibility.panelRow', '', props)))));
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], {
+      className: "block-visibility-extra-controls"
+    }, Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["applyFilters"])('blockVisibility.panelRow', '', props)))));
   };
 }, 'blockVisibilityControls');
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('editor.BlockEdit', 'block-visibility/block-visibility-controls', blockVisibilityControls);
@@ -2145,7 +2147,7 @@ var BlockVisibilityDisplayedControl = Object(_wordpress_compose__WEBPACK_IMPORTE
       setState = _ref.setState,
       props = _ref.props;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RadioControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("When the rules set below are true, this block will be: ", 'block-visibility'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("When the rules below are true, this block will be: ", 'block-visibility'),
     help: "",
     selected: props.attributes.blockVisibility || option,
     options: [{
@@ -2260,18 +2262,24 @@ var BlockVisibilityUserAuthenticationControl = Object(_wordpress_compose__WEBPAC
   var option = _ref.option,
       setState = _ref.setState,
       props = _ref.props;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RadioControl"], {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('User Authentication', 'block-visibility'),
+    initialOpen: false,
+    className: "block-visibility-user-authenticated-controls"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RadioControl"], {
     label: "",
     help: "",
+    className: "block-visibility-user-authenticated-control",
     selected: props.attributes.blockVisibilityRules.userAuthenticated || option,
     options: [{
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Logged In', 'block-visibility'),
-      value: 'logged-in'
-    }, {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Logged Out', 'block-visibility'),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Signed Out', 'block-visibility'),
       value: 'logged-out'
+    }, {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Signed In', 'block-visibility'),
+      value: 'logged-in'
     }],
     onChange: function onChange(option) {
+      // Set the state and props.
       setState({
         option: option
       });
@@ -2281,9 +2289,12 @@ var BlockVisibilityUserAuthenticationControl = Object(_wordpress_compose__WEBPAC
       newBVRules.userAuthenticated = option;
       props.setAttributes({
         blockVisibilityRules: newBVRules
-      });
+      }); // Fire an action so we can see what's happened in other controls. This can be useful,
+      // for example when setting rules for roles - pointless if a user isn't signed in.
+
+      Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["doAction"])('blockVisibility.onChange.userAuthenticated', 'block-visibility/onChange', option, props);
     }
-  });
+  })));
 });
 /**
  * Filters registered block settings, extending attributes with our custom data.

@@ -11,7 +11,7 @@ export const BlockVisibilityDisplayedControl = withState( {
     option: 'shown',
 } )( ( { option, setState, props } ) => (
     <RadioControl
-        label={ __( "When the rules set below are true, this block will be: ", 'block-visibility' ) }
+        label={ __( "When the rules below are true, this block will be: ", 'block-visibility' ) }
         help=""
         selected={ props.attributes.blockVisibility || option }
         options={ [
