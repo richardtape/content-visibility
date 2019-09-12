@@ -1,8 +1,8 @@
-import { RadioControl, PanelBody, PanelRow } from '@wordpress/components';
+import { RadioControl, PanelBody, PanelRow, Fill } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { addFilter, doAction } from '@wordpress/hooks';
-import { Fragment } from '@wordpress/element';
+import { registerPlugin } from '@wordpress/plugins';
 
 import assign from 'lodash/assign';
 
@@ -98,17 +98,29 @@ export function addBlockVisibilityRulesPropOnSave( extraProps, blockType, attrib
 
 }// end addBlockVisibilityRulesPropOnSave()
 
-export const addUserAuthenticationControl = function( panelRow, sentProps ) {
+addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesAttribute', addBlockVisibilityRulesAttribute );
+addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesPropOnSave', addBlockVisibilityRulesPropOnSave );
 
+/**
+ * Render the <BlockVisibilityUserAuthenticationControl> component by adding
+ * it to the block-visibility-extra-controls Fill.
+ *
+ * @return {Object} A Fill component wrapping the BlockVisibilityUserAuthenticationControl component.
+ */
+function BlockVisibilityUserAuthenitcationFill() {
     return (
-        <Fragment>
-            { panelRow }
-            <BlockVisibilityUserAuthenticationControl props={ sentProps } />
-        </Fragment>
+        <Fill name="block-visibility-extra-controls">
+            {
+                ( fillProps ) => {
+                    return (
+                        <BlockVisibilityUserAuthenticationControl props={ fillProps } />
+                    )
+                }
+            }
+        </Fill>
     );
 
 }
 
-addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesAttribute', addBlockVisibilityRulesAttribute );
-addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesPropOnSave', addBlockVisibilityRulesPropOnSave );
-addFilter( 'blockVisibility.panelRow', 'block-visibility/addUserAuthenticationControl', addUserAuthenticationControl );
+// Add our component to the Slot provided by BlockVisibilityControls
+registerPlugin( 'block-visibility-user-authentication-fill', { render: BlockVisibilityUserAuthenitcationFill } );

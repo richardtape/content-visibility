@@ -1,13 +1,12 @@
-import { PanelBody, PanelRow } from '@wordpress/components';
+import { PanelBody, PanelRow, Slot } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
-import { addFilter, applyFilters } from '@wordpress/hooks';
+import { addFilter } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/blockEditor';
 import { __ } from '@wordpress/i18n';
 
 import isValidBlockType from '../helpers/is-valid-blocktype';
 import { BlockVisibilityDisplayedControl } from './block-visibility-displayed-control';
-import { BlockVisibilityUserAuthenticationControl, addBlockVisibilityRulesAttribute, addBlockVisibilityRulesPropOnSave, addUserAuthenticationControl } from './block-visibility-user-authentication';
 
 export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit ) => {
 
@@ -21,17 +20,11 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
             <Fragment>
                 <BlockEdit { ...props } />
                 <InspectorControls>
-                    <PanelBody
-                        title={ __( 'Block Visibility', 'block-visibility' ) }
-                        initialOpen={ true }
-                        className="block-visibility-controls"
-                    >
+                    <PanelBody title={ __( 'Block Visibility', 'block-visibility' ) } className="block-visibility-controls">
                         <PanelRow className="block-visibility-displayed-control">
                             <BlockVisibilityDisplayedControl props={ props } />
                         </PanelRow>
-                        <PanelRow className="block-visibility-extra-controls">
-                            { applyFilters( 'blockVisibility.panelRow', '', props ) }
-                        </PanelRow>
+                        <Slot name="block-visibility-extra-controls" fillProps={ props } />
                     </PanelBody>
                 </InspectorControls>
             </Fragment>
