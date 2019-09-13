@@ -8,7 +8,7 @@ import assign from 'lodash/assign';
 import isValidBlockType from '../helpers/is-valid-blocktype';
 
 export const BlockVisibilityDisplayedControl = withState( {
-    option: 'shown',
+    option: '',
 } )( ( { option, setState, props } ) => (
     <RadioControl
         label={ __( "When the rules below are true, this block will be: ", 'block-visibility' ) }

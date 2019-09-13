@@ -3,38 +3,67 @@
 }
 
 /*
-    Make the Show/Hidden rdio buttons sit next to each other
+    Make the Show/Hidden rdio buttons sit next to each other...
 */
 
-.block-visibility-controls .block-visibility-displayed-control .components-base-control__label{
+.block-visibility-controls .components-base-control__label{
     max-width: none;
 }
 
-.block-visibility-controls .block-visibility-displayed-control .components-radio-control__option {
+.block-visibility-controls .components-radio-control__option {
     width: 50%;
     margin: 0.5em 0 0;
     display: inline-block;
 }
 
 /*
-
+    ...But not for User Roles
 */
-.block-visibility-controls .block-visibility-user-authenticated-control {
-    display: block;
-    clear: both;
+.block-visibility-controls .block-visibility-user-role-control .components-radio-control__option {
     width: 100%;
 }
 
+/*
+    Make the shown/not shown control stand out a little
+*/
+.block-visibility-displayed-control {
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-top: 0;
+    background: #fcfcfc;
+    border: 1px solid #e2e4e7;
+}
 
-.block-visibility-controls.is-opened .block-visibility-user-authenticated-controls {
+.block-visibility-displayed-control .components-base-control__field .components-radio-control__option:last-of-type {
+    text-align: right;
+}
+
+/*
+    Styling for the  rule panels
+*/
+.block-visibility-controls.is-opened .block-visibility-control-panel {
     margin-left: 0;
     margin-right: 0;
     border: 1px solid #e2e4e7;
-    margin-bottom: 20px;
+    margin-bottom: 1em;
     background: #fcfcfc;
 }
 
-.block-visibility-controls.is-opened .block-visibility-user-authenticated-controls.is-opened .components-panel__body-toggle {
+.block-visibility-controls.is-opened .block-visibility-control-panel.is-opened .components-panel__body-toggle {
     border-bottom: 1px solid #e2e4e7;
     margin-bottom: 7px;
+}
+
+/*
+    When the rules are disabled (default) we lower opacity of controls
+*/
+.block-visibility-controls-container.hide-controls {
+    opacity: 0.2;
+}
+
+/*
+    When rules are disabled show overlay
+*/
+.block-visibility-controls-container.hide-controls .block-visibility-controls-disabled-overlay {
+    color: red;
 }
