@@ -34,6 +34,14 @@
     border: 1px solid #e2e4e7;
 }
 
+.block-visibility-displayed-control .components-base-control.components-radio-control {
+    margin-bottom: 0 !important;
+}
+
+.block-visibility-displayed-control .components-base-control.components-radio-control .components-base-control__field {
+    margin-bottom: 0;
+}
+
 .block-visibility-displayed-control .components-base-control__field .components-radio-control__option:last-of-type {
     text-align: right;
 }
@@ -51,7 +59,6 @@
 
 .block-visibility-controls.is-opened .block-visibility-control-panel.is-opened .components-panel__body-toggle {
     border-bottom: 1px solid #e2e4e7;
-    margin-bottom: 7px;
 }
 
 /*

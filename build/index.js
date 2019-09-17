@@ -2133,7 +2133,7 @@ function addBlockVisibilityRulesAttribute(settings) {
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_9__["default"])(settings.name)) {
     // Run the rules through a filter so we're able to add rules externally.
     var defaultRules = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["applyFilters"])('blockVisibility.defaultBlockVisibilityRules', {
-      blockVisibilityRules: false,
+      blockVisibilityRulesEnabled: false,
       userAuthenticated: ''
     }); // Use Lodash's assign to gracefully handle if attributes are undefined
 

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Main loader file for Block Visibility.
  *
@@ -13,49 +12,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_assets' );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\\plugins_loaded__bv_loader' );
 
 /**
- * Enqueue script and style assets used in the editor.
+ * Load the required bits and pieces for Block Visibility.
  *
- * @since 1.0.0
+ * @return void
  */
-function enqueue_editor_assets() { // phpcs:ignore
+function plugins_loaded__bv_loader() {
 
-	if ( ! is_admin() ) {
+	if ( is_admin() ) {
+
+		require_once plugin_dir_path( __FILE__ ) . 'editor/class-editor.php';
+
+		$bv_editor = new \RichardTape\BlockVisibility\Editor();
+		$bv_editor->init();
+
 		return;
 	}
 
-	$screens = array(
-		'post',
-		'page',
-	);
+	require_once plugin_dir_path( __FILE__ ) . 'public/class-public-rules.php';
 
-	if ( ! in_array( get_current_screen()->id, array_values( $screens ), true ) ) {
-		return;
-	}
+	$bv_public = new \RichardTape\BlockVisibility\Public_Rules();
+	$bv_public->init();
 
-	wp_register_script(
-		'block-visibility',
-		plugins_url( '/build/index.js', dirname( __FILE__ ) ),
-		array(
-			'wp-blocks',
-			'wp-i18n',
-			'wp-element',
-			'wp-editor',
-			'wp-plugins',
-			'wp-edit-post',
-		),
-		filemtime( plugin_dir_path( __DIR__ ) . 'build/index.js' ),
-		true
-	);
-
-	$block_visibility_args = array( 'template' => esc_js( 'some_value' ) );
-
-	wp_localize_script( 'block-visibility', 'BlockVisibility', $block_visibility_args );
-
-	wp_enqueue_script( 'block-visibility' );
-
-	wp_enqueue_style( 'block-visibility-panel', plugins_url( 'build/editor.css', dirname( __FILE__ ) ) );
-
-}//end enqueue_editor_assets()
+}//end plugins_loaded__bv_loader()
