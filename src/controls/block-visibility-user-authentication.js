@@ -1,50 +1,28 @@
-import { RadioControl, PanelBody, PanelRow, Fill } from '@wordpress/components';
+import { Fill, Disabled } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import { doAction } from '@wordpress/hooks';
+
 import { registerPlugin } from '@wordpress/plugins';
+import { BlockVisibilityUserAuthenticationPanelBodyControl } from './user-authentication/user-authentication-panel-body-control';
+
 
 export const BlockVisibilityUserAuthenticationControl = withState( {
     option: '',
-} )( ( { option, setState, props } ) => (
+} )( ( { option, setState, props } ) => {
 
-    <PanelBody
-        title={ __( 'User Authentication', 'block-visibility' ) }
-        initialOpen={ false }
-        className="block-visibility-control-panel block-visibility-user-authenticated-controls"
-    >
-        <PanelRow>
-            <RadioControl
-                label=''
-                help=''
-                className="block-visibility-user-authenticated-control"
-                selected={ props.attributes.blockVisibilityRules.userAuthenticated || option }
-                options={ [
-                    { label: __( 'Signed Out', 'block-visibility' ), value: 'logged-out' },
-                    { label: __( 'Signed In', 'block-visibility' ), value: 'logged-in' },
-                ] }
-                onChange={ ( option ) => {
+    let rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
 
-                    // Set the state and props.
-                    setState( { option } );
+    if ( ! rulesEnabled ) {
+        return (
+            <Disabled><BlockVisibilityUserAuthenticationPanelBodyControl props={ props } /></Disabled>
+        );
+    }
 
-                    let newBVRules = { ...props.attributes.blockVisibilityRules };
-                    newBVRules.userAuthenticated = option;
+    return (
+        <BlockVisibilityUserAuthenticationPanelBodyControl props={ props } />
+    );
 
-                    props.setAttributes( {
-                        blockVisibilityRules: newBVRules,
-                    } );
-
-                    // Fire an action so we can see what's happened in other controls. This can be useful,
-                    // for example when setting rules for roles - pointless if a user isn't signed in.
-                    doAction( 'blockVisibility.onChange.userAuthenticated', 'block-visibility/onChange', option, props );
-
-                } }
-            />
-        </PanelRow>
-    </PanelBody>
-
-) );
+} );
 
 /**
  * Render the <BlockVisibilityUserAuthenticationControl> component by adding
@@ -68,4 +46,4 @@ function BlockVisibilityUserAuthenitcationFill() {
 }
 
 // Add our component to the Slot provided by BlockVisibilityControls
-registerPlugin( 'block-visibility-user-authentication-fill', { render: BlockVisibilityUserAuthenitcationFill } );
+registerPlugin( 'block-visibility-01-user-authentication-fill', { render: BlockVisibilityUserAuthenitcationFill } );

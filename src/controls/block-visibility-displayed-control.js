@@ -1,34 +1,32 @@
-import { RadioControl } from '@wordpress/components';
+import { Disabled } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
 
 import assign from 'lodash/assign';
 
+import { BlockVisibilityShownHiddenControl } from './shown-or-hidden/block-visibility-shown-hidden-control';
 import isValidBlockType from '../helpers/is-valid-blocktype';
 
 export const BlockVisibilityDisplayedControl = withState( {
     option: '',
-} )( ( { option, setState, props } ) => (
-    <RadioControl
-        label={ __( "When the rules below are true, this block will be: ", 'block-visibility' ) }
-        help=""
-        selected={ props.attributes.blockVisibility || option }
-        options={ [
-            { label: __( 'Shown', 'block-visibility' ), value: 'shown' },
-            { label: __( 'Hidden', 'block-visibility' ), value: 'hidden' },
-        ] }
-        onChange={ ( option ) => {
+} )( ( { option, setState, props } ) => {
 
-            setState( { option } );
+    let rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
 
-            props.setAttributes( {
-                blockVisibility: option,
-            } );
+    if ( ! rulesEnabled ) {
+        return (
+            <Disabled>
+                <BlockVisibilityShownHiddenControl props={ props } />
+            </Disabled>
+        );
+    }
 
-        } }
-    />
-) );
+    return (
+        <BlockVisibilityShownHiddenControl props={ props } />
+    );
+
+} );
 
 /**
  * Filters registered block settings, extending attributes with our custom data.

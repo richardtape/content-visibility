@@ -33,7 +33,7 @@ class Editor {
 	 */
 	public function add_hooks() {
 
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ), 1 );
 
 	}//end add_hooks()
 

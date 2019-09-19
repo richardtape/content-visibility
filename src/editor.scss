@@ -67,10 +67,3 @@
 .block-visibility-controls-container.hide-controls {
     opacity: 0.2;
 }
-
-/*
-    When rules are disabled show overlay
-*/
-.block-visibility-controls-container.hide-controls .block-visibility-controls-disabled-overlay {
-    color: red;
-}

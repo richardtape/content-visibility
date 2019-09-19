@@ -34,8 +34,6 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
                         </PanelRow>
 
                         <div className={ showControls  + " block-visibility-controls-container" }>
-                            <div className="block-visibility-controls-disabled-overlay">
-                            </div>
                             <PanelRow className="block-visibility-displayed-control">
                                 <BlockVisibilityDisplayedControl props={ props } />
                             </PanelRow>
