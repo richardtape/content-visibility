@@ -66,7 +66,7 @@ export function addBlockVisibilityRulesAttribute( settings ) {
         // Run the rules through a filter so we're able to add rules externally.
         let defaultRules = applyFilters( 'blockVisibility.defaultBlockVisibilityRules', {
             blockVisibilityRulesEnabled: false,
-            userAuthenticated: '',
+            userAuthenticated: ''
         } );
 
 		// Use Lodash's assign to gracefully handle if attributes are undefined

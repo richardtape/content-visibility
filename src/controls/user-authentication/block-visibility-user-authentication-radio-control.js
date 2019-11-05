@@ -7,8 +7,6 @@ export const BlockVisibilityUserAuthenticationRadioControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
-    let rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
-
     return (
 
         <RadioControl

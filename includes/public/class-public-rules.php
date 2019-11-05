@@ -246,6 +246,10 @@ class Public_Rules {
 		$block_rules = $rules;
 		unset( $block_rules['blockVisibilityRulesEnabled'] );
 
+		if ( ! isset ( $block['attrs']['blockVisibility'] ) ) {
+			return false;
+		}
+
 		// shown or hidden.
 		$block_visibility = $block['attrs']['blockVisibility'];
 

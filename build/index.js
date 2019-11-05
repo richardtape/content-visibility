@@ -2546,7 +2546,6 @@ var BlockVisibilityUserAuthenticationRadioControl = Object(_wordpress_compose__W
   var option = _ref.option,
       setState = _ref.setState,
       props = _ref.props;
-  var rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RadioControl"], {
     label: "",
     help: "",
