@@ -2317,8 +2317,7 @@ var BlockVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_MO
       setState = _ref.setState,
       props = _ref.props;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToggleControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Enable Rules?", 'block-visibility'),
-    help: props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Rules Are Enabled.', 'block-visibility') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Rules Currently Disabled.', 'block-visibility'),
+    label: props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Rules Enabled', 'block-visibility') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Rules Disabled', 'block-visibility'),
     checked: props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled || rulesEnabled,
     onChange: function onChange(rulesEnabled) {
       return setState(function (state) {
@@ -2420,8 +2419,9 @@ var BlockVisibilityUserAuthenticationControl = Object(_wordpress_compose__WEBPAC
       setState = _ref.setState,
       props = _ref.props;
   var rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
+  var blockVisibility = props.attributes.hasOwnProperty('blockVisibility');
 
-  if (!rulesEnabled) {
+  if (!rulesEnabled || !blockVisibility) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Disabled"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_user_authentication_user_authentication_panel_body_control__WEBPACK_IMPORTED_MODULE_5__["BlockVisibilityUserAuthenticationPanelBodyControl"], {
       props: props
     }));

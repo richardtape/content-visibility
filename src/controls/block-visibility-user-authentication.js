@@ -10,9 +10,10 @@ export const BlockVisibilityUserAuthenticationControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
-    let rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
+    let rulesEnabled    = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
+    let blockVisibility = props.attributes.hasOwnProperty( 'blockVisibility' );
 
-    if ( ! rulesEnabled ) {
+    if ( ! rulesEnabled || ! blockVisibility ) {
         return (
             <Disabled><BlockVisibilityUserAuthenticationPanelBodyControl props={ props } /></Disabled>
         );

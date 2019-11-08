@@ -11,8 +11,7 @@ export const BlockVisibilityRulesEnabled = withState( {
     rulesEnabled: false,
 } )( ( { rulesEnabled, setState, props } ) => (
     <ToggleControl
-        label={ __( "Enable Rules?", 'block-visibility' ) }
-        help={ props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? __( 'Rules Are Enabled.', 'block-visibility' ) : __( 'Rules Currently Disabled.', 'block-visibility' ) }
+        label={ props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? __( 'Rules Enabled', 'block-visibility' ) : __( 'Rules Disabled', 'block-visibility' ) }
         checked={ props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled || rulesEnabled }
         onChange={ ( rulesEnabled ) => setState( ( state ) => {
 

@@ -67,3 +67,27 @@
 .block-visibility-controls-container.hide-controls {
     opacity: 0.2;
 }
+
+/*
+    Tidy up margins for user auth
+*/
+
+.block-visibility-user-authenticated-controls .components-panel__row .block-visibility-user-authenticated-control {
+    margin-bottom: 0;
+}
+
+/*
+    User roles have a massive margin, reduce that
+*/
+
+.block-visibility-user-role-controls .components-panel__row ul {
+    margin-bottom: 0;
+}
+
+.block-visibility-user-role-controls .components-panel__row ul .components-base-control {
+    margin-bottom: 5px;
+}
+
+.block-visibility-user-role-controls .components-panel__row ul .components-base-control:last-of-type {
+    margin-bottom: 0;
+}
