@@ -2483,7 +2483,11 @@ var BlockVisibilityShownHiddenControl = Object(_wordpress_compose__WEBPACK_IMPOR
   var option = _ref.option,
       setState = _ref.setState,
       props = _ref.props;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RadioControl"], {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Shown or Hidden', 'block-visibility-user-role'),
+    initialOpen: true,
+    className: "block-visibility-control-panel block-visibility-user-role-controls"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RadioControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("When the rules below are true, this block will be: ", 'block-visibility'),
     help: "",
     selected: props.attributes.blockVisibility || option,
@@ -2502,7 +2506,7 @@ var BlockVisibilityShownHiddenControl = Object(_wordpress_compose__WEBPACK_IMPOR
         blockVisibility: option
       });
     }
-  });
+  })));
 });
 
 /***/ }),

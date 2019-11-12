@@ -8,6 +8,7 @@
 
 .block-visibility-controls .components-base-control__label{
     max-width: none;
+    margin-top: 1em;
 }
 
 .block-visibility-controls .components-radio-control__option {
@@ -26,13 +27,6 @@
 /*
     Make the shown/not shown control stand out a little
 */
-.block-visibility-displayed-control {
-    padding: 1em;
-    margin-bottom: 1em;
-    margin-top: 0;
-    background: #fcfcfc;
-    border: 1px solid #e2e4e7;
-}
 
 .block-visibility-displayed-control .components-base-control.components-radio-control {
     margin-bottom: 0 !important;
@@ -50,11 +44,10 @@
     Styling for the  rule panels
 */
 .block-visibility-controls.is-opened .block-visibility-control-panel {
-    margin-left: 0;
-    margin-right: 0;
     border: 1px solid #e2e4e7;
     margin-bottom: 1em;
     background: #fcfcfc;
+    width: 100%;
 }
 
 .block-visibility-controls.is-opened .block-visibility-control-panel.is-opened .components-panel__body-toggle {
