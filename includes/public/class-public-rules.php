@@ -246,7 +246,7 @@ class Public_Rules {
 		$block_rules = $rules;
 		unset( $block_rules['blockVisibilityRulesEnabled'] );
 
-		if ( ! isset ( $block['attrs']['blockVisibility'] ) ) {
+		if ( ! isset( $block['attrs']['blockVisibility'] ) ) {
 			return false;
 		}
 
@@ -329,6 +329,9 @@ class Public_Rules {
 	 * then the block MAY not be removed (other rules may apply). If we return false then the
 	 * block WILL be removed.
 	 *
+	 * Returning TRUE will mean the block will be kept.
+	 * Returning FALSE will mean the block will be removed.
+	 *
 	 * @param string $rule_value What the rule is set to: 'logged-in' or 'logged-out'.
 	 * @param string $block_visibility Whether the block should be shown or hidden if the rule is true.
 	 * @param array  $block The full block.
@@ -336,14 +339,14 @@ class Public_Rules {
 	 */
 	public function rule_logic_user_authenticated( $rule_value, $block_visibility, $block ) {
 
-		$authenticated_user = is_user_logged_in();
+		// Do we have someone signed in?
+		$authenticated_user = ( is_user_logged_in() ) ? 'logged-in' : 'logged-out';
 
 		switch ( $block_visibility ) {
 			case 'shown':
-				return $authenticated_user;
-
+				return (bool) ( $authenticated_user === $rule_value );
 			case 'hidden':
-				return ! $authenticated_user;
+				return (bool) ( $authenticated_user !== $rule_value );
 		}
 
 	}//end rule_logic_user_authenticated()
