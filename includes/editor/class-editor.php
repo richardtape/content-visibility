@@ -53,13 +53,15 @@ class Editor {
 			'page',
 		);
 
+		$screens = apply_filters( 'block_visibility_enqueue_editor_assets_screens', $screens );
+
 		if ( ! in_array( get_current_screen()->id, array_values( $screens ), true ) ) {
 			return;
 		}
 
 		wp_register_script(
 			'block-visibility',
-			plugins_url( '/build/index.js', dirname( dirname ( __FILE__ ) ) ),
+			plugins_url( '/build/index.js', dirname( dirname( __FILE__ ) ) ),
 			array(
 				'wp-blocks',
 				'wp-i18n',
@@ -67,6 +69,7 @@ class Editor {
 				'wp-editor',
 				'wp-plugins',
 				'wp-edit-post',
+				'wp-dom-ready',
 			),
 			filemtime( plugin_dir_path( dirname( __DIR__ ) ) . 'build/index.js' ),
 			true

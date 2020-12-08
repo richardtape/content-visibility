@@ -339,6 +339,11 @@ class Public_Rules {
 	 */
 	public function rule_logic_user_authenticated( $rule_value, $block_visibility, $block ) {
 
+		// If user authenticated rules aren't set for this block, keep this block to let others decide.
+		if ( empty( $rule_value ) ) {
+			return true;
+		}
+
 		// Do we have someone signed in?
 		$authenticated_user = ( is_user_logged_in() ) ? 'logged-in' : 'logged-out';
 

@@ -84,3 +84,15 @@
 .block-visibility-user-role-controls .components-panel__row ul .components-base-control:last-of-type {
     margin-bottom: 0;
 }
+
+/*
+    When a block has rules enabled, we style it to show it has rules.
+*/
+.wp-block.block-visibility-rules-enabled:after {
+    display: block;
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>');
+    height: 24px;
+    width: 24px;
+    margin-left: 100%;
+    opacity: 0.25;
+}

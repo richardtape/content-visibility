@@ -1,5 +1,5 @@
 import { ToggleControl } from '@wordpress/components';
-import { withState } from '@wordpress/compose';
+import { withState, createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter, doAction } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
@@ -74,11 +74,25 @@ export function addBlockVisibilityRulesEnabledPropOnSave( extraProps, blockType,
 	// If the current block is valid, add our prop.
 	if ( isValidBlockType( blockType.name ) ) {
 		extraProps.blockVisibilityRulesEnabled = attributes.blockVisibilityRulesEnabled;
-	}
+    }
 
 	return extraProps;
 
 }// end addBlockVisibilityRulesEnabledPropOnSave()
 
+const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
+    return ( props ) => {
+
+        if ( props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ) {
+            return <BlockListBlock {...props} className={ "block-visibility-rules-enabled" } />
+        }
+
+        return <BlockListBlock {...props} />
+
+    };
+}, 'withCustomClassName' );
+
 addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute );
 addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave );
+
+addFilter( 'editor.BlockListBlock', 'my-plugin/with-client-id-class-name', withCustomClassName );

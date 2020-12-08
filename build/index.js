@@ -97,6 +97,35 @@ module.exports = _defineProperty;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/extends.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_Symbol.js":
 /*!****************************************!*\
   !*** ./node_modules/lodash/_Symbol.js ***!
@@ -2100,7 +2129,8 @@ var blockVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
     var showControls = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? 'show-controls' : 'hide-controls';
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
       title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Block Visibility', 'block-visibility'),
-      className: "block-visibility-controls"
+      className: "block-visibility-controls",
+      initialOpen: false
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], {
       className: "block-visibility-rules-enabled"
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_block_visibility_rules_enabled__WEBPACK_IMPORTED_MODULE_7__["BlockVisibilityRulesEnabled"], {
@@ -2282,27 +2312,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BlockVisibilityRulesEnabled", function() { return BlockVisibilityRulesEnabled; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityRulesEnabledAttribute", function() { return addBlockVisibilityRulesEnabledAttribute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBlockVisibilityRulesEnabledPropOnSave", function() { return addBlockVisibilityRulesEnabledPropOnSave; });
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/assign */ "./node_modules/lodash/assign.js");
-/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_assign__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/is-valid-blocktype */ "./src/helpers/is-valid-blocktype.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/assign */ "./node_modules/lodash/assign.js");
+/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_assign__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/is-valid-blocktype */ "./src/helpers/is-valid-blocktype.js");
+
 
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -2310,14 +2343,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var BlockVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withState"])({
+var BlockVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["withState"])({
   rulesEnabled: false
 })(function (_ref) {
   var rulesEnabled = _ref.rulesEnabled,
       setState = _ref.setState,
       props = _ref.props;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToggleControl"], {
-    label: props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Rules Enabled', 'block-visibility') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Rules Disabled', 'block-visibility'),
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
+    label: props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Rules Enabled', 'block-visibility') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Rules Disabled', 'block-visibility'),
     checked: props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled || rulesEnabled,
     onChange: function onChange(rulesEnabled) {
       return setState(function (state) {
@@ -2329,7 +2362,7 @@ var BlockVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_MO
         }); // Fire an action so we can see what's happened in other controls. This can be useful,
         // for example when setting rules for roles - pointless if a user isn't signed in.
 
-        Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["doAction"])('blockVisibility.onChange.blockVisibilityRulesEnabled', 'block-visibility/onChange', rulesEnabled, props); // Sets the state
+        Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["doAction"])('blockVisibility.onChange.blockVisibilityRulesEnabled', 'block-visibility/onChange', rulesEnabled, props); // Sets the state
 
         return {
           rulesEnabled: !state.rulesEnabled
@@ -2348,9 +2381,9 @@ var BlockVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_MO
 
 function addBlockVisibilityRulesEnabledAttribute(settings) {
   // If this is a valid block
-  if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__["default"])(settings.name)) {
+  if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_8__["default"])(settings.name)) {
     // Use Lodash's assign to gracefully handle if attributes are undefined
-    settings.attributes = lodash_assign__WEBPACK_IMPORTED_MODULE_6___default()(settings.attributes, {
+    settings.attributes = lodash_assign__WEBPACK_IMPORTED_MODULE_7___default()(settings.attributes, {
       blockVisibilityRulesEnabled: {
         type: 'boolean'
       }
@@ -2373,15 +2406,27 @@ function addBlockVisibilityRulesEnabledAttribute(settings) {
 
 function addBlockVisibilityRulesEnabledPropOnSave(extraProps, blockType, attributes) {
   // If the current block is valid, add our prop.
-  if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__["default"])(blockType.name)) {
+  if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_8__["default"])(blockType.name)) {
     extraProps.blockVisibilityRulesEnabled = attributes.blockVisibilityRulesEnabled;
   }
 
   return extraProps;
 } // end addBlockVisibilityRulesEnabledPropOnSave()
 
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["addFilter"])('blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute);
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave);
+var withCustomClassName = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["createHigherOrderComponent"])(function (BlockListBlock) {
+  return function (props) {
+    if (props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
+        className: "block-visibility-rules-enabled"
+      }));
+    }
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, props);
+  };
+}, 'withCustomClassName');
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('editor.BlockListBlock', 'my-plugin/with-client-id-class-name', withCustomClassName);
 
 /***/ }),
 
