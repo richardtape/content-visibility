@@ -2684,8 +2684,8 @@ __webpack_require__.r(__webpack_exports__);
  * @param {string} name The name of the block.
  */
 function isValidBlockType(name) {
-  var validBlockTypes = ['core/paragraph', 'core/image', 'core/heading'];
-  return validBlockTypes.includes(name);
+  var invalidBlockTypes = ['something/unsupported'];
+  return !invalidBlockTypes.includes(name);
 } // end isValidBlockType()
 
 

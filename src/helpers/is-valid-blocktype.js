@@ -5,13 +5,11 @@
  */
 function isValidBlockType( name ) {
 
-    const validBlockTypes = [
-        'core/paragraph',
-        'core/image',
-        'core/heading',
+    const invalidBlockTypes = [
+        'something/unsupported',
     ];
 
-    return validBlockTypes.includes( name );
+    return ! invalidBlockTypes.includes( name );
 
 }// end isValidBlockType()
 
