@@ -32,6 +32,20 @@
 }
 
 /*
+    User Auth controls, with the help text, look weird due to flex.
+*/
+.block-visibility-control-panel.block-visibility-user-authenticated-controls .components-panel__row{
+    display: block;
+}
+
+.block-visibility-user-authenticated-control {
+    width: 100%;
+    display: block;
+    float: none;
+    clear: both;
+}
+
+/*
     Make the shown/not shown control stand out a little
 */
 
@@ -103,4 +117,17 @@
     margin-left: 105%;
     margin-top: 1%;
     opacity: 0.25;
+}
+
+/*
+    Help text generic styling
+*/
+.block-visibility-controls-container .block-visibility-help-text{
+    margin: 1rem 0 0;
+    font-size: 12px;
+    font-style: normal;
+    color: rgb(117, 117, 117);
+    clear: both;
+    float: none;
+    width: 100%;
 }

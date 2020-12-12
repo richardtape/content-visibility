@@ -2664,7 +2664,9 @@ var BlockVisibilityUserAuthenticationPanelBodyControl = Object(_wordpress_compos
     className: "block-visibility-control-panel block-visibility-user-authenticated-controls"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_block_visibility_user_authentication_radio_control__WEBPACK_IMPORTED_MODULE_4__["BlockVisibilityUserAuthenticationRadioControl"], {
     props: props
-  })));
+  }), props.attributes.blockVisibility && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+    class: "user-auth-help-intro block-visibility-help-text"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Select whether this block will be ' + props.attributes.blockVisibility + ' if a user is signed in to this site. If neither is selected, this block will be ' + props.attributes.blockVisibility + ' regardless of whether a user is signed in or not.', 'block-visibility-user-role'))));
 });
 
 /***/ }),
