@@ -59,27 +59,13 @@ class Public_Rules {
 	 */
 	public function set_rule_types_and_callbacks() {
 
-		$default_rule_types_and_callbacks = array();
+		add_filter( 'block_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
 
-		$this->set_user_authenticated_callback();
-
-		$rule_types_and_callbacks = apply_filters( 'block_visibility_rule_types_and_callbacks', $default_rule_types_and_callbacks );
+		$rule_types_and_callbacks = apply_filters( 'block_visibility_rule_types_and_callbacks', array() );
 
 		$this->rule_types_and_callbacks = $rule_types_and_callbacks;
 
 	}//end set_rule_types_and_callbacks()
-
-
-	/**
-	 * Add our user authenticated callback function to the list of functions to check for rules.
-	 *
-	 * @return void
-	 */
-	public function set_user_authenticated_callback() {
-
-		add_filter( 'block_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
-
-	}//end set_user_authenticated_callback()
 
 	/**
 	 * Callback which adds our user auth function to the list of rules.
@@ -128,6 +114,10 @@ class Public_Rules {
 		if ( is_admin() ) {
 			return $content;
 		}
+
+		// if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+		// 	return $content;
+		// }
 
 		// No blocks? Then we don't need to do anything.
 		if ( ! has_blocks( $content ) ) {
@@ -396,7 +386,7 @@ class Public_Rules {
 		}
 
 		// Remove this reusable block by returning a non-null value.
-		return 1;
+		return false;
 
 	}//end handle_removing_reusable_blocks()
 
