@@ -25,6 +25,17 @@ class Public_Rules {
 	 */
 	public $rule_types_and_callbacks = array();
 
+	/**
+	 * We have to handle reusable blocks separately. If we detect we need to remove a
+	 * reusable block in remove_blocks_from_content() then the ref attribute for that
+	 * block is added to $reusable_blocks_to_remove. We then hook into the pre_render_block
+	 * filter in handle_removing_reusable_blocks() to remove the reusable blocks based on
+	 * the ref IDs stored in this property.
+	 *
+	 * @var array
+	 */
+	public $reusable_blocks_to_remove = array();
+
 
 	/**
 	 * Initialize ourselves.
@@ -48,9 +59,9 @@ class Public_Rules {
 	 */
 	public function set_rule_types_and_callbacks() {
 
-		$default_rule_types_and_callbacks = array(
-			'userAuthenticated' => array( $this, 'rule_logic_user_authenticated' ),
-		);
+		$default_rule_types_and_callbacks = array();
+
+		$this->set_user_authenticated_callback();
 
 		$rule_types_and_callbacks = apply_filters( 'block_visibility_rule_types_and_callbacks', $default_rule_types_and_callbacks );
 
@@ -58,6 +69,34 @@ class Public_Rules {
 
 	}//end set_rule_types_and_callbacks()
 
+
+	/**
+	 * Add our user authenticated callback function to the list of functions to check for rules.
+	 *
+	 * @return void
+	 */
+	public function set_user_authenticated_callback() {
+
+		add_filter( 'block_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
+
+	}//end set_user_authenticated_callback()
+
+	/**
+	 * Callback which adds our user auth function to the list of rules.
+	 *
+	 * @param array $rule_types_and_callbacks Existing rules and callbacks.
+	 *
+	 * @return array modified rule types and callbacks with ours added.
+	 */
+	public function add_user_authenticated_callback( $rule_types_and_callbacks ) {
+
+		require_once plugin_dir_path( __FILE__ ) . 'user-authentication/rule-logic-user-authenticated.php';
+
+		$rule_types_and_callbacks['userAuthenticated'] = 'RichardTape\BlockVisibility\rule_logic_user_authenticated';
+
+		return $rule_types_and_callbacks;
+
+	}//end add_user_authenticated_callback()
 
 	/**
 	 * Register hooks
@@ -68,6 +107,9 @@ class Public_Rules {
 
 		// Determine if we have BV Rules.
 		add_filter( 'the_content', array( $this, 'the_content__determine_blocks' ), 7, 1 );
+
+		// Handle Reusable block removal.
+		add_filter( 'pre_render_block', array( $this, 'handle_removing_reusable_blocks' ), 5, 2 );
 
 	}//end add_hooks()
 
@@ -306,6 +348,16 @@ class Public_Rules {
 		}
 
 		foreach ( $blocks_to_remove as $id => $block_to_remove ) {
+
+			// If this is a reusable block, we have to handle it slightly differently.
+			if ( isset( $block_to_remove['attrs']['ref'] ) ) {
+
+				$reusable_blocks_to_remove   = $this->reusable_blocks_to_remove;
+				$reusable_blocks_to_remove[] = $block_to_remove['attrs']['ref'];
+
+				$this->reusable_blocks_to_remove = $reusable_blocks_to_remove;
+			}
+
 			$html_to_remove = $block_to_remove['innerHTML'];
 			$content        = str_replace( trim( $html_to_remove ), '', $content );
 		}
@@ -314,46 +366,38 @@ class Public_Rules {
 
 	}//end remove_blocks_from_content()
 
-
 	/**
-	 * Callback function for when we have some userAuthenticated rules set.
+	 * Remove the reusable blocks set in $this->reusable_blocks_to_remove.
 	 *
-	 * If block_visibility is set to 'shown' for this block:
-	 *     if $rule_value is 'logged-in' then a user needs to be logged in to see this block
-	 *     if $rule_value is 'logged-out' then a user must NOT be logged in to see this block
-	 * If block_visibility is set to 'hidden':
-	 *     if $rule_value is 'logged-in' then a logged-in user will NOT see this block
-	 *     if $rule_value is 'logged-out' then a logged out user will NOT see this block.
+	 * @param string|null $null         The pre-rendered content. Default null.
+	 * @param array       $parsed_block The block being rendered.
 	 *
-	 * The return value determines whether the block is 'kept' or not. So if we return true
-	 * then the block MAY not be removed (other rules may apply). If we return false then the
-	 * block WILL be removed.
-	 *
-	 * Returning TRUE will mean the block will be kept.
-	 * Returning FALSE will mean the block will be removed.
-	 *
-	 * @param string $rule_value What the rule is set to: 'logged-in' or 'logged-out'.
-	 * @param string $block_visibility Whether the block should be shown or hidden if the rule is true.
-	 * @param array  $block The full block.
-	 * @return bool  false if the block is to be removed. true if the block is to be potentially kept.
+	 * @return mixed null if block is not to be removed. Not null otherwise.
 	 */
-	public function rule_logic_user_authenticated( $rule_value, $block_visibility, $block ) {
+	public function handle_removing_reusable_blocks( $null, $parsed_block ) {
 
-		// If user authenticated rules aren't set for this block, keep this block to let others decide.
-		if ( empty( $rule_value ) ) {
-			return true;
+		if ( empty( $this->reusable_blocks_to_remove ) ) {
+			return $null;
 		}
 
-		// Do we have someone signed in?
-		$authenticated_user = ( is_user_logged_in() ) ? 'logged-in' : 'logged-out';
-
-		switch ( $block_visibility ) {
-			case 'shown':
-				return (bool) ( $authenticated_user === $rule_value );
-			case 'hidden':
-				return (bool) ( $authenticated_user !== $rule_value );
+		// Only do this for 'core/block' which is what reusable blocks come in as.
+		if ( 'core/block' !== $parsed_block['blockName'] ) {
+			return $null;
 		}
 
-	}//end rule_logic_user_authenticated()
+		// Ensure there's a ref.
+		if ( ! isset( $parsed_block['attrs']['ref'] ) ) {
+			return $null;
+		}
+
+		// If THIS reusable block isn't one to remove, bail.
+		if ( ! in_array( absint( $parsed_block['attrs']['ref'] ), array_values( $this->reusable_blocks_to_remove ), true ) ) {
+			return $null;
+		}
+
+		// Remove this reusable block by returning a non-null value.
+		return 1;
+
+	}//end handle_removing_reusable_blocks()
 
 }//end class
