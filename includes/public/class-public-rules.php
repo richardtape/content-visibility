@@ -59,8 +59,10 @@ class Public_Rules {
 	 */
 	public function set_rule_types_and_callbacks() {
 
+		// Register the user authentication callback. This is how add-ons will do it.
 		add_filter( 'block_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
 
+		// This collects all of our registered rules and callbacks.
 		$rule_types_and_callbacks = apply_filters( 'block_visibility_rule_types_and_callbacks', array() );
 
 		$this->rule_types_and_callbacks = $rule_types_and_callbacks;
@@ -337,19 +339,24 @@ class Public_Rules {
 			return $content;
 		}
 
+		do_action( 'block_visibility_pre_remove_blocks_from_content', $blocks_to_remove, $content, $blocks );
+
 		foreach ( $blocks_to_remove as $id => $block_to_remove ) {
 
 			// If this is a reusable block, we have to handle it slightly differently.
+			// We add the reusable block to a class property and then handle them in a filter.
 			if ( isset( $block_to_remove['attrs']['ref'] ) ) {
 
 				$reusable_blocks_to_remove   = $this->reusable_blocks_to_remove;
 				$reusable_blocks_to_remove[] = $block_to_remove['attrs']['ref'];
 
 				$this->reusable_blocks_to_remove = $reusable_blocks_to_remove;
+
 			}
 
 			$html_to_remove = $block_to_remove['innerHTML'];
-			$content        = str_replace( trim( $html_to_remove ), '', $content );
+			$content        = str_replace( trim( $html_to_remove ), apply_filters( 'block_visibility_content_replace', '', $html_to_remove, $block_to_remove ), $content );
+
 		}
 
 		return $content;

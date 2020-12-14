@@ -1,9 +1,8 @@
 <?php
-
 /**
  * Ruleset callback function for User Authentication.
  *
- * @package BlockVisibilityDateAndTime
+ * @package BlockVisibility
  */
 
 namespace RichardTape\BlockVisibility;
@@ -33,9 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $rule_value What the rule is set to: 'logged-in' or 'logged-out'.
  * @param string $block_visibility Whether the block should be shown or hidden if the rule is true.
  * @param array  $block The full block.
+ *
  * @return bool  false if the block is to be removed. true if the block is to be potentially kept.
  */
-function rule_logic_user_authenticated( $rule_value, $block_visibility, $block ) {	
+function rule_logic_user_authenticated( $rule_value, $block_visibility, $block ) {
 
 	// If user authenticated rules aren't set for this block, keep this block to let others decide.
 	if ( empty( $rule_value ) ) {
