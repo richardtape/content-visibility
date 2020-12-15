@@ -1,11 +1,11 @@
 <?php
 /**
- * Loader for the Block Visibility Editor components.
+ * Loader for the Content Visibility Editor components.
  *
- * @package BlockVisbility
+ * @package ContentVisibility
  */
 
-namespace RichardTape\BlockVisibility;
+namespace RichardTape\ContentVisibility;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Main class for the editor components for Block Visibility.
+ * Main class for the editor components for Content Visibility.
  */
 class Editor {
 

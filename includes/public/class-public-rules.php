@@ -1,11 +1,11 @@
 <?php
 /**
- * Loader for the Block Visibility Public-facing components.
+ * Loader for the Content Visibility Public-facing components.
  *
- * @package BlockVisbility
+ * @package ContentVisibility
  */
 
-namespace RichardTape\BlockVisibility;
+namespace RichardTape\ContentVisibility;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Main class for the public-facing components for Block Visibility.
+ * Main class for the public-facing components for Content Visibility.
  */
 class Public_Rules {
 
@@ -80,7 +80,7 @@ class Public_Rules {
 
 		require_once plugin_dir_path( __FILE__ ) . 'user-authentication/rule-logic-user-authenticated.php';
 
-		$rule_types_and_callbacks['userAuthenticated'] = 'RichardTape\BlockVisibility\rule_logic_user_authenticated';
+		$rule_types_and_callbacks['userAuthenticated'] = 'RichardTape\ContentVisibility\rule_logic_user_authenticated';
 
 		return $rule_types_and_callbacks;
 
@@ -154,7 +154,7 @@ class Public_Rules {
 	 * string and see if we have the string 'blockVisibilityRules' in it.
 	 *
 	 * If the post is empty, or doesn't contain blockVisibilityRules then this
-	 * post has no blocks containing Block Visibility Rules.
+	 * post has no blocks containing Content Visibility Rules.
 	 *
 	 * @param string $content The current post's content.
 	 * @return bool True if the post contains any blocks with BV rules. False otherwise.

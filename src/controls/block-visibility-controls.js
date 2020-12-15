@@ -27,7 +27,7 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
             <Fragment>
                 <BlockEdit { ...props } />
                 <InspectorControls>
-                    <PanelBody title={ __( 'Block Visibility', 'block-visibility' ) } className="block-visibility-controls" initialOpen={ false }>
+                    <PanelBody title={ __( 'Visibility', 'block-visibility' ) } className="block-visibility-controls" initialOpen={ false }>
 
                         <PanelRow className="block-visibility-rules-enabled">
                             <BlockVisibilityRulesEnabled props={ props } />

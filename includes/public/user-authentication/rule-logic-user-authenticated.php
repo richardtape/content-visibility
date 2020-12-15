@@ -2,10 +2,10 @@
 /**
  * Ruleset callback function for User Authentication.
  *
- * @package BlockVisibility
+ * @package ContentVisibility
  */
 
-namespace RichardTape\BlockVisibility;
+namespace RichardTape\ContentVisibility;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

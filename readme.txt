@@ -1,6 +1,17 @@
-# Content Visibility
+=== Content Vsibility ===
+Contributors: iamfriendly
+Donate link: https://girlswhocode.com/
+Tags: block, content, visibility
+Requires at least: 5.0
+Tested up to: 5.6
+Stable tag: 0.1
+Requires PHP: 7.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Decide when, where, and to whom to show each block on every page of your WordPress site.
+Decide when, where, and to whom your blocks are visible.
+
+== Description ==
 
 Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for **role-based** visibility and **time-based** visibility.
 
@@ -28,16 +39,19 @@ Use Reusable Blocks? No problem, Content Visibility handles those too.
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
  - [ ] Geolocation: Show this block only to users whose connection is in France
  - [ ] Specific Users: Only show a block when a specific user is signed in
- - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/block-visibility/issues/new)
+ - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/content-visibility/issues/new)
 
-## Who made this?
+== Frequently Asked Questions ==
 
-My name's [Rich Tape](https://richardtape.com/). Hi!
+= Got a question? =
 
-## What's with the references to "Block Visibility" in the code?
+Let me know: https://github.com/richardtape/content-visibility/issues/new
 
-As you can see I've had this repo online for quite some time. I've had the idea [written down for much longer](https://richardtape.com/2018/11/09/scheduled-blocks/) and a [precursor to this plugin online](https://github.com/richardtape/scheduled-blocks/commit/2294fd91a3107c6fa34220901c994739961d95b0) since 2018. But, well, I'm slow. And because I'm slow, Nick Diego and Outermst Design beat me to the punch on the plugins repo. [Nick's plugin](https://wordpress.org/plugins/block-visibility/) is excellent and I'd highly recommend you check that out. I'm also encouraged to see that we've made several decisions that are very similar which means we're probably on to something.
+== Changelog ==
 
-I've changed the name of this plugin to Content Visibility, not just because I wanted to avoid a clash and subsequent confusion for our users, but also because I think it better reflects what this set of plugins does. They allow you to control the visibility of your content.
+= 0.1 =
+* First public release.
 
-If you're seeing references to 'block visibility', it's likely I haven't migrated something over to the new name yet, I've missed something when renaming stuff, or maybe you're looking at the history of this repo (in which case please do not judge past me's code, it was likely even more terrible than code I wrote more recently).
+== Upgrade Notice ==
+
+None yet.

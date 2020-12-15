@@ -1,7 +1,7 @@
 {
-  "name": "block-visibility",
+  "name": "content-visibility",
   "version": "0.1.0",
-  "description": "Decide when, where, and to whom your blocks are visible.",
+  "description": "Decide when, where, and to whom your content blocks are visible.",
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
