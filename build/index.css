@@ -6,140 +6,119 @@
 * feel native to WordPress. However, there are some tweaks needed as we're using components
 * in ways that WordPress doesn't use yet - and hence doesn't provide styling affordances for.
 */
-
 /*
     Ensure our slots for add-ons are block.
 */
 .block-visibility-controls .block-visibility-extra-controls {
-    display: block;
-}
+  display: block; }
 
 /*
     Give the Rules Enabled toggle a little more breathing room.
 */
 .block-visibility-controls .block-visibility-rules-enabled .components-toggle-control {
-    margin: 1rem 0;
-}
+  margin: 1rem 0; }
 
 /*
     Make the Show/Hidden radio buttons sit next to each other...
 */
-
-.block-visibility-controls .components-base-control__label{
-    max-width: none;
-    margin-top: 1em;
-}
+.block-visibility-controls .components-base-control__label {
+  max-width: none;
+  margin-top: 1em; }
 
 .block-visibility-controls .components-radio-control__option {
-    width: 50%;
-    margin: 0.5em 0 0;
-    display: inline-block;
-}
+  width: 50%;
+  margin: 0.5em 0 0;
+  display: inline-block; }
 
 /*
     ...But not for User Roles
 */
 .block-visibility-controls .block-visibility-user-role-control .components-radio-control__option {
-    width: 100%;
-}
+  width: 100%; }
 
 /*
     User Auth controls, with the help text, look weird due to flex.
 */
-.block-visibility-control-panel.block-visibility-user-authenticated-controls .components-panel__row{
-    display: block;
-}
+.block-visibility-control-panel.block-visibility-user-authenticated-controls .components-panel__row {
+  display: block; }
 
 .block-visibility-user-authenticated-control {
-    width: 100%;
-    display: block;
-    float: none;
-    clear: both;
-}
+  width: 100%;
+  display: block;
+  float: none;
+  clear: both; }
 
 /*
     Make the shown/not shown control stand out a little
 */
-
 .block-visibility-displayed-control .components-base-control.components-radio-control {
-    margin-bottom: 0 !important;
-}
+  margin-bottom: 0 !important; }
 
 .block-visibility-displayed-control .components-base-control.components-radio-control .components-base-control__field {
-    margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .block-visibility-displayed-control .components-base-control__field .components-radio-control__option:last-of-type {
-    text-align: right;
-}
+  text-align: right; }
 
 /*
     Styling for the rule panels
 */
 .block-visibility-controls.is-opened .block-visibility-control-panel {
-    border: 1px solid #e2e4e7;
-    margin-bottom: 1em;
-    background: #fcfcfc;
-    width: 100%;
-}
+  border: 1px solid #e2e4e7;
+  margin-bottom: 1em;
+  background: #fcfcfc;
+  width: 100%; }
 
 .block-visibility-controls.is-opened .block-visibility-control-panel.is-opened .components-panel__body-toggle {
-    border-bottom: 1px solid #e2e4e7;
-}
+  border-bottom: 1px solid #e2e4e7; }
 
 /*
     When the rules are disabled (default) we lower opacity of controls
 */
 .block-visibility-controls-container.hide-controls {
-    opacity: 0.2;
-}
+  opacity: 0.2; }
 
 /*
     Tidy up margins for user auth
 */
-
 .block-visibility-user-authenticated-controls .components-panel__row .block-visibility-user-authenticated-control {
-    margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 /*
     User roles have a massive margin, reduce that
 */
-
 .block-visibility-user-role-controls .components-panel__row ul {
-    margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .block-visibility-user-role-controls .components-panel__row ul .components-base-control {
-    margin-bottom: 5px;
-}
+  margin-bottom: 5px; }
 
 .block-visibility-user-role-controls .components-panel__row ul .components-base-control:last-of-type {
-    margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 /*
     When a block has rules enabled, we style it to show it has rules.
 */
 .wp-block.block-visibility-rules-enabled:after {
-    display: block;
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>');
-    height: 24px;
-    width: 24px;
-    margin-left: 105%;
-    margin-top: 1%;
-    opacity: 0.25;
-}
+  display: block;
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>');
+  height: 24px;
+  width: 24px;
+  margin-left: 105%;
+  margin-top: 1%;
+  opacity: 0.25; }
 
 /*
     Help text generic styling. This is to make it look like a WordPress hint.
 */
-.block-visibility-controls-container .block-visibility-help-text{
-    margin: 1rem 0 0;
-    font-size: 12px;
-    font-style: normal;
-    color: rgb(117, 117, 117);
-    clear: both;
-    float: none;
-    width: 100%;
-}
+.block-visibility-controls-container .block-visibility-help-text {
+  margin: 1rem 0 0;
+  font-size: 12px;
+  font-style: normal;
+  color: #757575;
+  clear: both;
+  float: none;
+  width: 100%; }
+
+
+/*# sourceMappingURL=index.css.map*/

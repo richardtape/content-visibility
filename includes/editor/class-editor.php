@@ -33,7 +33,17 @@ class Editor {
 	 */
 	public function add_hooks() {
 
+		// Add our controls to the content block editor.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ), 1 );
+
+		// Handle the Gutenberg widgets screen.
+		if ( ! function_exists( 'gutenberg_use_widgets_block_editor' ) ) {
+			return;
+		}
+
+		if ( gutenberg_use_widgets_block_editor() ) {
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_editor_assets' ) );
+		}
 
 	}//end add_hooks()
 
@@ -51,6 +61,7 @@ class Editor {
 		$screens = array(
 			'post',
 			'page',
+			'appearance_page_gutenberg-widgets',
 		);
 
 		$screens = apply_filters( 'block_visibility_enqueue_editor_assets_screens', $screens );
@@ -75,13 +86,13 @@ class Editor {
 			true
 		);
 
-		$block_visibility_args = array( 'template' => esc_js( 'some_value' ) );
+		$block_visibility_args = array( 'screen' => esc_js( get_current_screen()->id ) );
 
 		wp_localize_script( 'block-visibility', 'BlockVisibility', $block_visibility_args );
 
 		wp_enqueue_script( 'block-visibility' );
 
-		wp_enqueue_style( 'block-visibility-panel', plugins_url( 'build/editor.css', dirname( dirname( __FILE__ ) ) ) );
+		wp_enqueue_style( 'block-visibility-panel', plugins_url( 'build/index.css', dirname( dirname( __FILE__ ) ) ) );
 
 	}//end enqueue_editor_assets()
 
