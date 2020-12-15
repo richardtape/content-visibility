@@ -37,7 +37,7 @@ My name's [Rich Tape](https://richardtape.com/). Hi!
 
 ## What's with the references to "Block Visibility" in the code?
 
-As you can see I've had this repo online for quite some time. I've had the idea [written down for much longer](https://richardtape.com/2018/11/09/scheduled-blocks/) and a [precursor to this plugin online](https://github.com/richardtape/scheduled-blocks/commit/2294fd91a3107c6fa34220901c994739961d95b0) since 2018. But, well, I'm slow. And because I'm slow, Nick Diego and Outermst Design beat me to the punch on the plugins repo. [Nick's plugin](https://wordpress.org/plugins/block-visibility/) is excellent and I'd highly recommend you check that out. I'm also encouraged to see that we've made several decisions that are very similar which means we're probably on to something.
+As you can see I've had this repo online for quite some time. I've had the idea [written down for much longer](https://richardtape.com/2018/11/09/scheduled-blocks/) and a [precursor to this plugin online](https://github.com/richardtape/scheduled-blocks/commit/2294fd91a3107c6fa34220901c994739961d95b0) since 2018. But, well, I'm slow. And because I'm slow, Nick Diego and Outermost Design beat me to the punch on the plugins repo. [Nick's plugin](https://wordpress.org/plugins/block-visibility/) is excellent and I'd highly recommend you check that out. I'm also encouraged to see that we've made several decisions that are very similar which means we're probably on to something.
 
 I've changed the name of this plugin to Content Visibility, not just because I wanted to avoid a clash and subsequent confusion for our users, but also because I think it better reflects what this set of plugins does. They allow you to control the visibility of your content.
 
