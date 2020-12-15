@@ -22,6 +22,7 @@ Use Reusable Blocks? No problem, Content Visibility handles those too.
 
 ## Coming Soon
 
+ - [ ] A way to set replacement content when a block is hidden
  - [ ] Make content visibility controls available on public Custom Post Types by default
  - [ ] Ensure this works with the new 'widgets' screen (controls appear but functionality is currently blocked by [this gutenberg bug](https://github.com/WordPress/gutenberg/issues/27173))
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
