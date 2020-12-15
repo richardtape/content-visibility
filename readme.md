@@ -18,7 +18,7 @@ Use Reusable Blocks? No problem, Content Visibility handles those too.
 
 ## Show me the goodies!
 
-![Screenshot showing content visibility controls including the icon which allows content authors to see which of their blocks have content visibility rules in place](https://richardtape.com/wp-content/uploads/2020/12/block-visibility.png)
+![Screenshot showing content visibility controls including the icon which allows content authors to see which of their blocks have content visibility rules in place](https://richardtape.com/wp-content/uploads/2020/12/content-visibility-1.png)
 
 ## Coming Soon
 
