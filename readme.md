@@ -2,7 +2,7 @@
 
 Decide when, where, and to whom to show each block on every page of your WordPress site.
 
-Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for **role-based** visibility and **time-based** visibility.
+Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for [role-based visibility](https://github.com/richardtape/content-visibility-user-role) and [time-based visibility](https://github.com/richardtape/content-visibility-date-and-time).
 
 ## Individual Block Controls
 
