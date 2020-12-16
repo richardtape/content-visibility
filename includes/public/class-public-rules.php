@@ -26,18 +26,6 @@ class Public_Rules {
 	public $rule_types_and_callbacks = array();
 
 	/**
-	 * We have to handle reusable blocks separately. If we detect we need to remove a
-	 * reusable block in remove_blocks_from_content() then the ref attribute for that
-	 * block is added to $reusable_blocks_to_remove. We then hook into the pre_render_block
-	 * filter in handle_removing_reusable_blocks() to remove the reusable blocks based on
-	 * the ref IDs stored in this property.
-	 *
-	 * @var array
-	 */
-	public $reusable_blocks_to_remove = array();
-
-
-	/**
 	 * Initialize ourselves.
 	 *
 	 * @return void
@@ -93,137 +81,11 @@ class Public_Rules {
 	 */
 	public function add_hooks() {
 
-		// Determine if we have BV Rules.
-		add_filter( 'the_content', array( $this, 'the_content__determine_blocks' ), 7, 1 );
+		add_filter( 'pre_render_block', array( $this, 'pre_render_block__test_and_remove_block' ), 5, 2 );
 
-		// Handle Reusable block removal.
-		add_filter( 'pre_render_block', array( $this, 'handle_removing_reusable_blocks' ), 5, 2 );
+		add_filter( 'render_block', array( $this, 'render_block__test_and_remove_block' ), 5, 2 );
 
 	}//end add_hooks()
-
-
-	/**
-	 * Parses dynamic blocks out of `post_content` and re-renders them.
-	 * Removes any block that shouldn't be shown now. Runs on the_content
-	 * filter at priority 7 because Gutenberg runs `do_blocks()` at priority 9.
-	 *
-	 * @param string $content The current post's content.
-	 * @return string         Updated post content.
-	 */
-	public function the_content__determine_blocks( $content ) {
-
-		// We don't want to change anything in the admin.
-		if ( is_admin() ) {
-			return $content;
-		}
-
-		// if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-		// 	return $content;
-		// }
-
-		// No blocks? Then we don't need to do anything.
-		if ( ! has_blocks( $content ) ) {
-			return $content;
-		}
-
-		// Check this post has some bv rules.
-		if ( ! $this->post_contains_blocks_with_rules( $content ) ) {
-			return $content;
-		}
-
-		// Extract blocks from the content to determine if we have any blocks with BV rules.
-		$blocks = $this->extract_blocks_from_content( $content );
-
-		// Couldn't find any blocks? Bail.
-		if ( ! is_array( $blocks ) || empty( $blocks ) ) {
-			return $content;
-		}
-
-		$blocks_to_remove = $this->determine_blocks_to_remove( $blocks );
-
-		$content = $this->remove_blocks_from_content( $blocks_to_remove, $content, $blocks );
-
-		return $content;
-
-	}//end the_content__determine_blocks()
-
-
-	/**
-	 * Determine if the post contains any blocks with rules. This is
-	 * an opening gambit for rule checking. We look at the whole post_content
-	 * string and see if we have the string 'blockVisibilityRules' in it.
-	 *
-	 * If the post is empty, or doesn't contain blockVisibilityRules then this
-	 * post has no blocks containing Content Visibility Rules.
-	 *
-	 * @param string $content The current post's content.
-	 * @return bool True if the post contains any blocks with BV rules. False otherwise.
-	 */
-	public function post_contains_blocks_with_rules( $content ) {
-
-		// Bail early if we're not passed anything.
-		if ( empty( $content ) ) {
-			return false;
-		}
-
-		// The strings to look for.
-		$bv_rule_strings = array(
-			'"blockVisibilityRules":',
-		);
-		foreach ( $bv_rule_strings as $id => $bv_rule_string ) {
-			// Bail immediately if we find a match.
-			if ( strpos( $content, $bv_rule_string ) !== false ) {
-				return true;
-			}
-		}
-		// If we get here, then we didn't find a match.
-		return false;
-
-	}//end post_contains_blocks_with_rules()
-
-
-	/**
-	 * Parse out Gutenberg blocks from the passed content.
-	 *
-	 * @param string $content The current post's content.
-	 * @return array The blocks in this post.
-	 */
-	public function extract_blocks_from_content( $content ) {
-
-		if ( empty( $content ) ) {
-			return array();
-		}
-
-		$blocks = parse_blocks( $content );
-
-		return $blocks;
-
-	}//end extract_blocks_from_content()
-
-	/**
-	 * Undocumented function
-	 *
-	 * @param array $blocks The blocks in the current post.
-	 * @return array The blocks we need to remove based on the rules.
-	 */
-	public function determine_blocks_to_remove( $blocks ) {
-
-		if ( ! is_array( $blocks ) || empty( $blocks ) ) {
-			return array();
-		}
-
-		$blocks_to_remove = array();
-
-		foreach ( $blocks as $block_id => $block ) {
-
-			if ( $this->this_block_should_be_removed( $block ) ) {
-				$blocks_to_remove[ $block_id ] = $block;
-			}
-		}
-
-		return $blocks_to_remove;
-
-	}//end determine_blocks_to_remove()
 
 
 	/**
@@ -320,81 +182,71 @@ class Public_Rules {
 
 	}//end this_block_should_be_removed()
 
-
 	/**
-	 * Remove the passed $blocks_to_remove from the $content.
-	 *
-	 * @param array  $blocks_to_remove The blocks to remove.
-	 * @param string $content The current post content.
-	 * @param array  $blocks All the blocks in this post.
-	 * @return string The modified content with the necessary blocks removed.
-	 */
-	public function remove_blocks_from_content( $blocks_to_remove, $content, $blocks ) {
-
-		if ( ! is_array( $blocks_to_remove ) || empty( $blocks_to_remove ) ) {
-			return $content;
-		}
-
-		if ( empty( $content ) ) {
-			return $content;
-		}
-
-		do_action( 'block_visibility_pre_remove_blocks_from_content', $blocks_to_remove, $content, $blocks );
-
-		foreach ( $blocks_to_remove as $id => $block_to_remove ) {
-
-			// If this is a reusable block, we have to handle it slightly differently.
-			// We add the reusable block to a class property and then handle them in a filter.
-			if ( isset( $block_to_remove['attrs']['ref'] ) ) {
-
-				$reusable_blocks_to_remove   = $this->reusable_blocks_to_remove;
-				$reusable_blocks_to_remove[] = $block_to_remove['attrs']['ref'];
-
-				$this->reusable_blocks_to_remove = $reusable_blocks_to_remove;
-
-			}
-
-			$html_to_remove = $block_to_remove['innerHTML'];
-			$content        = str_replace( trim( $html_to_remove ), apply_filters( 'block_visibility_content_replace', '', $html_to_remove, $block_to_remove ), $content );
-
-		}
-
-		return $content;
-
-	}//end remove_blocks_from_content()
-
-	/**
-	 * Remove the reusable blocks set in $this->reusable_blocks_to_remove.
+	 * We hook in before blocks are rendered to deal with top-level blocks. i.e. non-nested blocks.
+	 * This is the most efficient method to remove blocks if we need to.
 	 *
 	 * @param string|null $null         The pre-rendered content. Default null.
 	 * @param array       $parsed_block The block being rendered.
 	 *
 	 * @return mixed null if block is not to be removed. Not null otherwise.
 	 */
-	public function handle_removing_reusable_blocks( $null, $parsed_block ) {
+	public function pre_render_block__test_and_remove_block( $null, $parsed_block ) {
 
-		if ( empty( $this->reusable_blocks_to_remove ) ) {
+		// We don't want to change anything in the admin.
+		if ( is_admin() ) {
 			return $null;
 		}
 
-		// Only do this for 'core/block' which is what reusable blocks come in as.
-		if ( 'core/block' !== $parsed_block['blockName'] ) {
+		// Or a REST request.
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 			return $null;
 		}
 
-		// Ensure there's a ref.
-		if ( ! isset( $parsed_block['attrs']['ref'] ) ) {
+		if ( ! isset( $parsed_block['blockName'] ) || empty( $parsed_block['blockName'] ) ) {
 			return $null;
 		}
 
-		// If THIS reusable block isn't one to remove, bail.
-		if ( ! in_array( absint( $parsed_block['attrs']['ref'] ), array_values( $this->reusable_blocks_to_remove ), true ) ) {
+		$remove = $this->this_block_should_be_removed( $parsed_block );
+
+		if ( ! $remove ) {
 			return $null;
 		}
 
-		// Remove this reusable block by returning a non-null value.
 		return false;
 
-	}//end handle_removing_reusable_blocks()
+	}//end pre_render_block__test_and_remove_block()
+
+
+	/**
+	 * In addition to pre_render_block__test_and_remove_block() we also hook in on
+	 * render_block which allows us to handle nested blocks.
+	 *
+	 * @param string $block_content The current block's content.
+	 * @param array  $block The block being rendered.
+	 *
+	 * @return string Either an empty string if this block is being removed, or the original block content if it is staying.
+	 */
+	public function render_block__test_and_remove_block( $block_content, $block ) {
+
+		// We don't want to change anything in the admin.
+		if ( is_admin() ) {
+			return $block_content;
+		}
+
+		// Or a REST request.
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			return $block_content;
+		}
+
+		$remove = $this->this_block_should_be_removed( $block );
+
+		if ( $remove ) {
+			return '';
+		}
+
+		return $block_content;
+
+	}//end render_block__test_and_remove_block()
 
 }//end class

@@ -20,7 +20,10 @@ export const blockVisibilityControls = createHigherOrderComponent( ( BlockEdit )
             return <BlockEdit { ...props } />;
         }
 
-        //  Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
+        // Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
+        // Normally this would be props.attributes.blockVisibilityRules for anything registered in core, or in JS. However, as it's
+        // possible to register attributes in PHP _alone_ we need to look at props.block.attributes.blockVisibilityRules -- both
+        // get updated when a block is updated.
         let showControls = ( props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ) ? 'show-controls' : 'hide-controls';
 
         return (
@@ -60,6 +63,8 @@ addFilter( 'editor.BlockEdit', 'block-visibility/block-visibility-controls', blo
  */
 export function addBlockVisibilityRulesAttribute( settings ) {
 
+    // console.log( settings.name );
+
 	// If this is a valid block
 	if ( isValidBlockType( settings.name ) ) {
 
@@ -76,7 +81,7 @@ export function addBlockVisibilityRulesAttribute( settings ) {
                 default: defaultRules
 			},
 		} );
-	}
+    }
 
 	return settings;
 
@@ -97,7 +102,7 @@ export function addBlockVisibilityRulesPropOnSave( extraProps, blockType, attrib
 	// If the current block is valid, add our prop.
 	if ( isValidBlockType( blockType.name ) ) {
 		extraProps.blockVisibilityRules = attributes.blockVisibilityRules;
-	}
+    }
 
 	return extraProps;
 

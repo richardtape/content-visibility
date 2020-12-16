@@ -81,6 +81,7 @@ export function addBlockVisibilityRulesEnabledPropOnSave( extraProps, blockType,
 }// end addBlockVisibilityRulesEnabledPropOnSave()
 
 const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
+    
     return ( props ) => {
 
         if ( props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ) {
@@ -92,7 +93,7 @@ const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
     };
 }, 'withCustomClassName' );
 
-addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute );
-addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave );
+addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute, 999 );
+addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave, 999 );
 
-addFilter( 'editor.BlockListBlock', 'my-plugin/with-client-id-class-name', withCustomClassName );
+addFilter( 'editor.BlockListBlock', 'content-visibility/add-class-name-for-blocks-with-rules', withCustomClassName, 999 );

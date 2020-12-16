@@ -2222,7 +2222,10 @@ var blockVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
   return function (props) {
     if (!Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_9__["default"])(props.name) || !props.isSelected) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props);
-    } //  Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
+    } // Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
+    // Normally this would be props.attributes.blockVisibilityRules for anything registered in core, or in JS. However, as it's
+    // possible to register attributes in PHP _alone_ we need to look at props.block.attributes.blockVisibilityRules -- both
+    // get updated when a block is updated.
 
 
     var showControls = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? 'show-controls' : 'hide-controls';
@@ -2256,6 +2259,7 @@ Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('editor.Block
  */
 
 function addBlockVisibilityRulesAttribute(settings) {
+  // console.log( settings.name );
   // If this is a valid block
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_9__["default"])(settings.name)) {
     // Run the rules through a filter so we're able to add rules externally.
@@ -2523,9 +2527,9 @@ var withCustomClassName = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, props);
   };
 }, 'withCustomClassName');
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute);
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave);
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('editor.BlockListBlock', 'my-plugin/with-client-id-class-name', withCustomClassName);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute, 999);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave, 999);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('editor.BlockListBlock', 'content-visibility/add-class-name-for-blocks-with-rules', withCustomClassName, 999);
 
 /***/ }),
 
