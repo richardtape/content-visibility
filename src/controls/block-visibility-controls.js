@@ -63,8 +63,6 @@ addFilter( 'editor.BlockEdit', 'block-visibility/block-visibility-controls', blo
  */
 export function addBlockVisibilityRulesAttribute( settings ) {
 
-    // console.log( settings.name );
-
 	// If this is a valid block
 	if ( isValidBlockType( settings.name ) ) {
 

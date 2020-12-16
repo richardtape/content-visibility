@@ -83,6 +83,10 @@ class Editor {
 			return;
 		}
 
+		// Custom action so add-ons can hook in here regardless of when this core plugin does it's bits and pieces and
+		// know for sure that they are loading in the right place and don't need to look at screen names etc.
+		do_action( 'content_visibility_enqueue_editor_assets' );
+
 		wp_register_script(
 			'block-visibility',
 			plugins_url( '/build/index.js', dirname( dirname( __FILE__ ) ) ),

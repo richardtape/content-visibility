@@ -2259,7 +2259,6 @@ Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('editor.Block
  */
 
 function addBlockVisibilityRulesAttribute(settings) {
-  // console.log( settings.name );
   // If this is a valid block
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_9__["default"])(settings.name)) {
     // Run the rules through a filter so we're able to add rules externally.
@@ -2515,6 +2514,14 @@ function addBlockVisibilityRulesEnabledPropOnSave(extraProps, blockType, attribu
 
   return extraProps;
 } // end addBlockVisibilityRulesEnabledPropOnSave()
+
+/**
+ * Add a custom class name to each block that has content visibility rules enabled.
+ *
+ * @param {Object} BlockListBlock The current block
+ *
+ * @return {Object} The block with a custom class name added if the block has rules enabled. The unmodified block otherwise.
+ */
 
 var withCustomClassName = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["createHigherOrderComponent"])(function (BlockListBlock) {
   return function (props) {

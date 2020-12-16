@@ -80,8 +80,15 @@ export function addBlockVisibilityRulesEnabledPropOnSave( extraProps, blockType,
 
 }// end addBlockVisibilityRulesEnabledPropOnSave()
 
+/**
+ * Add a custom class name to each block that has content visibility rules enabled.
+ *
+ * @param {Object} BlockListBlock The current block
+ *
+ * @return {Object} The block with a custom class name added if the block has rules enabled. The unmodified block otherwise.
+ */
 const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
-    
+
     return ( props ) => {
 
         if ( props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ) {
