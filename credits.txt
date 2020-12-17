@@ -1,0 +1,11 @@
+Thanks to Helen Hou-Sandi and the 10-up folks for the github -> wordpress.org deploy action. Freaking cool. https://github.com/10up/action-wordpress-plugin-deploy
+
+Thanks to Helen - again - and all of the women and those who identify as non-binary who lead the 5.6 release of WordPress. Not least because it includes some APIs which allow me to improve this plugin over time.
+
+Thanks to Mika E and the other plugin repo review team folks for everything you do there.
+
+Thank you to Timothy Jacobs who has jumped into many a rabbit hole with me over the past 24 months, helping me find the relevant filters and actions, and APIs before they had fleshed-out documentation.
+Also, thank you to Darren Ethier for his excellent blog posts series including one on data within the block editor.
+And finally for the direct coding thank yous, to Chris van Patten for digging into an issue which was stopping things working as expected for all blocks.
+
+Thanks to Flynn O'Connor, Jeremy Felt, and Stephen Locker for listening to me bang on about this for about 2 years and providing encouragement and motivation to get it finished.

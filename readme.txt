@@ -13,7 +13,7 @@ Decide when, where, and to whom your blocks are visible.
 
 == Description ==
 
-Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for **role-based** visibility and **time-based** visibility.
+Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for [**role-based**](https://github.com/richardtape/content-visibility-user-role) visibility and [**time-based**](https://github.com/richardtape/content-visibility-date-and-time) visibility.
 
 ## Individual Block Controls
 
@@ -27,9 +27,9 @@ An icon next to each block with active rules allows your content authors to see 
 
 Use Reusable Blocks? No problem, Content Visibility handles those too.
 
-## Show me the goodies!
+## Columns and Nested Blocks
 
-![Screenshot showing content visibility controls including the icon which allows content authors to see which of their blocks have content visibility rules in place](https://richardtape.com/wp-content/uploads/2020/12/block-visibility.png)
+Do you use columns and put other blocks in them? Content Visibility allows you to control both the 'nested' blocks (such as a paragraph block in a column block) or the 'parent' block themselves (perhaps hide an entire column for users who aren't signed in?). Other examples of nested blocks are the Group Block or if you use an accordion or tabs block; all work!
 
 ## Coming Soon
 
@@ -41,6 +41,10 @@ Use Reusable Blocks? No problem, Content Visibility handles those too.
  - [ ] Specific Users: Only show a block when a specific user is signed in
  - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/content-visibility/issues/new)
 
+## Development
+
+Development is mostly done on [github](https://github.com/richardtape/content-visibility) and releases are made there and here to the WordPress plugins directory.
+
 == Frequently Asked Questions ==
 
 = Got a question? =
@@ -49,7 +53,7 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 
 == Changelog ==
 
-= 0.1 =
+= 0.1.0 =
 * First public release.
 
 == Upgrade Notice ==

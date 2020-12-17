@@ -20,6 +20,11 @@ Use Reusable Blocks? No problem, Content Visibility handles those too.
 
 ![Screenshot showing content visibility controls including the icon which allows content authors to see which of their blocks have content visibility rules in place](https://richardtape.com/wp-content/uploads/2020/12/content-visibility-1.png)
 
+## Columns and Nested Blocks
+
+Do you use columns and put other blocks in them? Content Visibility allows you to control both the 'nested' blocks (such as a paragraph block in a column block) or the 'parent' block themselves (perhaps hide a column for users who aren't signed in). Other examples of nested blocks are the Group Block or if you use an accordion or tabs block; all work!
+
+
 ## Coming Soon
 
  - [ ] A way to set replacement content when a block is hidden

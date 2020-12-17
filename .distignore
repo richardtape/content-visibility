@@ -1,0 +1,13 @@
+# Directories
+/.git
+/.github
+/.wordpress-org
+/node_modules
+/src
+
+# Files
+package.json
+package-lock.json
+.distignore
+.gitignore
+readme.md
