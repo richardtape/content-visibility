@@ -77,7 +77,7 @@ class Editor {
 			'appearance_page_gutenberg-widgets',
 		);
 
-		$screens = apply_filters( 'block_visibility_enqueue_editor_assets_screens', $screens );
+		$screens = apply_filters( 'content_visibility_enqueue_editor_assets_screens', $screens );
 
 		if ( ! in_array( get_current_screen()->id, array_values( $screens ), true ) ) {
 			return;
@@ -88,7 +88,7 @@ class Editor {
 		do_action( 'content_visibility_enqueue_editor_assets' );
 
 		wp_register_script(
-			'block-visibility',
+			'content-visibility',
 			plugins_url( '/build/index.js', dirname( dirname( __FILE__ ) ) ),
 			array(
 				'wp-blocks',
@@ -103,13 +103,13 @@ class Editor {
 			false
 		);
 
-		$block_visibility_args = array( 'screen' => esc_js( get_current_screen()->id ) );
+		$content_visibility_args = array( 'screen' => esc_js( get_current_screen()->id ) );
 
-		wp_localize_script( 'block-visibility', 'BlockVisibility', $block_visibility_args );
+		wp_localize_script( 'content-visibility', 'ContentVisibility', $content_visibility_args );
 
-		wp_enqueue_script( 'block-visibility' );
+		wp_enqueue_script( 'content-visibility' );
 
-		wp_enqueue_style( 'block-visibility-panel', plugins_url( 'build/index.css', dirname( dirname( __FILE__ ) ) ) );
+		wp_enqueue_style( 'content-visibility-panel', plugins_url( 'build/index.css', dirname( dirname( __FILE__ ) ) ) );
 
 	}//end enqueue_editor_assets()
 

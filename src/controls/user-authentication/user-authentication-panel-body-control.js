@@ -2,24 +2,24 @@ import { PanelBody, PanelRow } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
-import { BlockVisibilityUserAuthenticationRadioControl } from './block-visibility-user-authentication-radio-control';
+import { ContentVisibilityUserAuthenticationRadioControl } from './content-visibility-user-authentication-radio-control';
 
-export const BlockVisibilityUserAuthenticationPanelBodyControl = withState( {
+export const ContentVisibilityUserAuthenticationPanelBodyControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
     return (
         <PanelBody
-            title={ __( 'User Authentication', 'block-visibility' ) }
+            title={ __( 'User Authentication', 'content-visibility' ) }
             initialOpen={ false }
-            className="block-visibility-control-panel block-visibility-user-authenticated-controls"
+            className="content-visibility-control-panel content-visibility-user-authenticated-controls"
         >
             <PanelRow>
-                <BlockVisibilityUserAuthenticationRadioControl props={ props } />
+                <ContentVisibilityUserAuthenticationRadioControl props={ props } />
 
-                { props.attributes.blockVisibility && (
-                    <p className="user-auth-help-intro block-visibility-help-text">
-                        { __( 'Select whether this block will be ' + props.attributes.blockVisibility + ' if a user is signed in to this site. If neither is selected, this block will be ' + props.attributes.blockVisibility + ' regardless of whether a user is signed in or not.', 'block-visibility-user-role' ) }
+                { props.attributes.contentVisibility && (
+                    <p className="user-auth-help-intro content-visibility-help-text">
+                        { __( 'Select whether this block will be ' + props.attributes.contentVisibility + ' if a user is signed in to this site. If neither is selected, this block will be ' + props.attributes.contentVisibility + ' regardless of whether a user is signed in or not.', 'content-visibility-user-role' ) }
                     </p>
                 ) }
 

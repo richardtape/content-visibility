@@ -3,7 +3,7 @@ import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { doAction } from '@wordpress/hooks';
 
-export const BlockVisibilityUserAuthenticationRadioControl = withState( {
+export const ContentVisibilityUserAuthenticationRadioControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
@@ -12,27 +12,27 @@ export const BlockVisibilityUserAuthenticationRadioControl = withState( {
         <RadioControl
             label=''
             help=''
-            className="block-visibility-user-authenticated-control"
-            selected={ props.attributes.blockVisibilityRules.userAuthenticated || option }
+            className="content-visibility-user-authenticated-control"
+            selected={ props.attributes.contentVisibilityRules.userAuthenticated || option }
             options={ [
-                { label: __( 'Signed Out', 'block-visibility' ), value: 'logged-out' },
-                { label: __( 'Signed In', 'block-visibility' ), value: 'logged-in' },
+                { label: __( 'Signed Out', 'content-visibility' ), value: 'logged-out' },
+                { label: __( 'Signed In', 'content-visibility' ), value: 'logged-in' },
             ] }
             onChange={ ( option ) => {
 
                 // Set the state and props.
                 setState( { option } );
 
-                let newBVRules = { ...props.attributes.blockVisibilityRules };
+                let newBVRules = { ...props.attributes.contentVisibilityRules };
                 newBVRules.userAuthenticated = option;
 
                 props.setAttributes( {
-                    blockVisibilityRules: newBVRules,
+                    contentVisibilityRules: newBVRules,
                 } );
 
                 // Fire an action so we can see what's happened in other controls. This can be useful,
                 // for example when setting rules for roles - pointless if a user isn't signed in.
-                doAction( 'blockVisibility.onChange.userAuthenticated', 'block-visibility/onChange', option, props );
+                doAction( 'contentVisibility.onChange.userAuthenticated', 'content-visibility/onChange', option, props );
 
             } }
         />

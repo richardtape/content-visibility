@@ -7,24 +7,24 @@ import assign from 'lodash/assign';
 
 import isValidBlockType from '../helpers/is-valid-blocktype';
 
-export const BlockVisibilityRulesEnabled = withState( {
+export const ContentVisibilityRulesEnabled = withState( {
     rulesEnabled: false,
 } )( ( { rulesEnabled, setState, props } ) => (
     <ToggleControl
-        label={ props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ? __( 'Rules Enabled', 'block-visibility' ) : __( 'Rules Disabled', 'block-visibility' ) }
-        checked={ props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled || rulesEnabled }
+        label={ props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled ? __( 'Rules Enabled', 'content-visibility' ) : __( 'Rules Disabled', 'content-visibility' ) }
+        checked={ props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled || rulesEnabled }
         onChange={ ( rulesEnabled ) => setState( ( state ) => {
 
-            let newBVRules = { ...props.attributes.blockVisibilityRules };
-            newBVRules.blockVisibilityRulesEnabled = rulesEnabled;
+            let newBVRules = { ...props.attributes.contentVisibilityRules };
+            newBVRules.contentVisibilityRulesEnabled = rulesEnabled;
 
             props.setAttributes( {
-                blockVisibilityRules: newBVRules,
+                contentVisibilityRules: newBVRules,
             } );
 
             // Fire an action so we can see what's happened in other controls. This can be useful,
             // for example when setting rules for roles - pointless if a user isn't signed in.
-            doAction( 'blockVisibility.onChange.blockVisibilityRulesEnabled', 'block-visibility/onChange', rulesEnabled, props );
+            doAction( 'contentVisibility.onChange.contentVisibilityRulesEnabled', 'content-visibility/onChange', rulesEnabled, props );
 
             // Sets the state
             return (
@@ -42,14 +42,14 @@ export const BlockVisibilityRulesEnabled = withState( {
  *
  * @return {Object} Filtered block settings.
  */
-export function addBlockVisibilityRulesEnabledAttribute( settings ) {
+export function addContentVisibilityRulesEnabledAttribute( settings ) {
 
 	// If this is a valid block
 	if ( isValidBlockType( settings.name ) ) {
 
 		// Use Lodash's assign to gracefully handle if attributes are undefined
 		settings.attributes = assign( settings.attributes, {
-			blockVisibilityRulesEnabled: {
+			contentVisibilityRulesEnabled: {
 				type: 'boolean',
 			},
 		} );
@@ -57,7 +57,7 @@ export function addBlockVisibilityRulesEnabledAttribute( settings ) {
 
 	return settings;
 
-}// end addBlockVisibilityRulesEnabledAttribute()
+}// end addContentVisibilityRulesEnabledAttribute()
 
 /**
  * Override props assigned to save component to inject our custom data.
@@ -69,16 +69,16 @@ export function addBlockVisibilityRulesEnabledAttribute( settings ) {
  *
  * @return {Object} Filtered props applied to save element.
  */
-export function addBlockVisibilityRulesEnabledPropOnSave( extraProps, blockType, attributes ) {
+export function addContentVisibilityRulesEnabledPropOnSave( extraProps, blockType, attributes ) {
 
 	// If the current block is valid, add our prop.
 	if ( isValidBlockType( blockType.name ) ) {
-		extraProps.blockVisibilityRulesEnabled = attributes.blockVisibilityRulesEnabled;
+		extraProps.contentVisibilityRulesEnabled = attributes.contentVisibilityRulesEnabled;
     }
 
 	return extraProps;
 
-}// end addBlockVisibilityRulesEnabledPropOnSave()
+}// end addContentVisibilityRulesEnabledPropOnSave()
 
 /**
  * Add a custom class name to each block that has content visibility rules enabled.
@@ -91,8 +91,8 @@ const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
 
     return ( props ) => {
 
-        if ( props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled ) {
-            return <BlockListBlock {...props} className={ "block-visibility-rules-enabled" } />
+        if ( props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled ) {
+            return <BlockListBlock {...props} className={ "content-visibility-rules-enabled" } />
         }
 
         return <BlockListBlock {...props} />
@@ -100,7 +100,7 @@ const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
     };
 }, 'withCustomClassName' );
 
-addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityRulesEnabledAttribute', addBlockVisibilityRulesEnabledAttribute, 999 );
-addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityRulesEnabledPropOnSave', addBlockVisibilityRulesEnabledPropOnSave, 999 );
+addFilter( 'blocks.registerBlockType', 'content-visibility/addContentVisibilityRulesEnabledAttribute', addContentVisibilityRulesEnabledAttribute, 999 );
+addFilter( 'blocks.getSaveContent.extraProps', 'content-visibility/addContentVisibilityRulesEnabledPropOnSave', addContentVisibilityRulesEnabledPropOnSave, 999 );
 
 addFilter( 'editor.BlockListBlock', 'content-visibility/add-class-name-for-blocks-with-rules', withCustomClassName, 999 );

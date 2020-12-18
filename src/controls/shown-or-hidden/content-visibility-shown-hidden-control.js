@@ -2,31 +2,31 @@ import { RadioControl, PanelBody, PanelRow } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
-export const BlockVisibilityShownHiddenControl = withState( {
+export const ContentVisibilityShownHiddenControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
     return (
         <PanelBody
-            title={ __( 'Shown or Hidden', 'block-visibility-user-role' ) }
+            title={ __( 'Shown or Hidden', 'content-visibility-user-role' ) }
             initialOpen={ true }
-            className="block-visibility-control-panel block-visibility-user-role-controls"
+            className="content-visibility-control-panel content-visibility-user-role-controls"
         >
             <PanelRow>
                 <RadioControl
-                    label={ __( "When the rules below are true, this block will be: ", 'block-visibility' ) }
+                    label={ __( "When the rules below are true, this block will be: ", 'content-visibility' ) }
                     help=""
-                    selected={ props.attributes.blockVisibility || option }
+                    selected={ props.attributes.contentVisibility || option }
                     options={ [
-                        { label: __( 'Shown', 'block-visibility' ), value: 'shown' },
-                        { label: __( 'Hidden', 'block-visibility' ), value: 'hidden' },
+                        { label: __( 'Shown', 'content-visibility' ), value: 'shown' },
+                        { label: __( 'Hidden', 'content-visibility' ), value: 'hidden' },
                     ] }
                     onChange={ ( option ) => {
 
                         setState( { option } );
 
                         props.setAttributes( {
-                            blockVisibility: option,
+                            contentVisibility: option,
                         } );
 
                     } }

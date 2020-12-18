@@ -1,6 +1,6 @@
 import './editor.scss';
 import './style.scss';
 
-import blockVisibilityControls from './controls/block-visibility-controls.js';
-import BlockVisibilityUserAuthenticationControl from './controls/block-visibility-user-authentication';
-import BlockVisibilitySpecialPageControls from './controls/special-page/block-visibility-special-page-controls';
+import contentVisibilityControls from './controls/content-visibility-controls.js';
+import ContentVisibilityUserAuthenticationControl from './controls/content-visibility-user-authentication';
+import ContentVisibilitySpecialPageControls from './controls/special-page/content-visibility-special-page-controls';

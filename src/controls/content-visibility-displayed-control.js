@@ -5,25 +5,25 @@ import { addFilter } from '@wordpress/hooks';
 
 import assign from 'lodash/assign';
 
-import { BlockVisibilityShownHiddenControl } from './shown-or-hidden/block-visibility-shown-hidden-control';
+import { ContentVisibilityShownHiddenControl } from './shown-or-hidden/content-visibility-shown-hidden-control';
 import isValidBlockType from '../helpers/is-valid-blocktype';
 
-export const BlockVisibilityDisplayedControl = withState( {
+export const ContentVisibilityDisplayedControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
-    let rulesEnabled = props.attributes.blockVisibilityRules.blockVisibilityRulesEnabled;
+    let rulesEnabled = props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled;
 
     if ( ! rulesEnabled ) {
         return (
             <Disabled>
-                <BlockVisibilityShownHiddenControl props={ props } />
+                <ContentVisibilityShownHiddenControl props={ props } />
             </Disabled>
         );
     }
 
     return (
-        <BlockVisibilityShownHiddenControl props={ props } />
+        <ContentVisibilityShownHiddenControl props={ props } />
     );
 
 } );
@@ -35,14 +35,14 @@ export const BlockVisibilityDisplayedControl = withState( {
  *
  * @return {Object} Filtered block settings.
  */
-export function addBlockVisibilityAttribute( settings ) {
+export function addContentVisibilityAttribute( settings ) {
 
 	// If this is a valid block
 	if ( isValidBlockType( settings.name ) ) {
 
 		// Use Lodash's assign to gracefully handle if attributes are undefined
 		settings.attributes = assign( settings.attributes, {
-			blockVisibility: {
+			contentVisibility: {
 				type: 'string',
 			},
 		} );
@@ -50,7 +50,7 @@ export function addBlockVisibilityAttribute( settings ) {
 
 	return settings;
 
-}// end addBlockVisibilityAttribute()
+}// end addContentVisibilityAttribute()
 
 /**
  * Override props assigned to save component to inject our custom data.
@@ -66,12 +66,12 @@ export function addBlockVisibilityPropOnSave( extraProps, blockType, attributes 
 
 	// If the current block is valid, add our prop.
 	if ( isValidBlockType( blockType.name ) ) {
-		extraProps.blockVisibility = attributes.blockVisibility;
+		extraProps.contentVisibility = attributes.contentVisibility;
 	}
 
 	return extraProps;
 
 }// end addBlockVisibilityPropOnSave()
 
-addFilter( 'blocks.registerBlockType', 'block-visibility/addBlockVisibilityAttribute', addBlockVisibilityAttribute );
-addFilter( 'blocks.getSaveContent.extraProps', 'block-visibility/addBlockVisibilityPropOnSave', addBlockVisibilityPropOnSave );
+addFilter( 'blocks.registerBlockType', 'content-visibility/addContentVisibilityAttribute', addContentVisibilityAttribute );
+addFilter( 'blocks.getSaveContent.extraProps', 'content-visibility/addBlockVisibilityPropOnSave', addBlockVisibilityPropOnSave );

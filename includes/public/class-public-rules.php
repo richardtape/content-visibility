@@ -48,10 +48,10 @@ class Public_Rules {
 	public function set_rule_types_and_callbacks() {
 
 		// Register the user authentication callback. This is how add-ons will do it.
-		add_filter( 'block_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
+		add_filter( 'content_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
 
 		// This collects all of our registered rules and callbacks.
-		$rule_types_and_callbacks = apply_filters( 'block_visibility_rule_types_and_callbacks', array() );
+		$rule_types_and_callbacks = apply_filters( 'content_visibility_rule_types_and_callbacks', array() );
 
 		$this->rule_types_and_callbacks = $rule_types_and_callbacks;
 
@@ -104,50 +104,50 @@ class Public_Rules {
 		}
 
 		// Ensure we have rules.
-		if ( ! is_array( $block['attrs'] ) || empty( $block['attrs'] ) || ! isset( $block['attrs']['blockVisibilityRules'] ) ) {
+		if ( ! is_array( $block['attrs'] ) || empty( $block['attrs'] ) || ! isset( $block['attrs']['contentVisibilityRules'] ) ) {
 			return false;
 		}
 
-		if ( ! is_array( $block['attrs']['blockVisibilityRules'] ) || empty( $block['attrs']['blockVisibilityRules'] ) ) {
+		if ( ! is_array( $block['attrs']['contentVisibilityRules'] ) || empty( $block['attrs']['contentVisibilityRules'] ) ) {
 			return false;
 		}
 
 		// Ensure we have rules enabled.
-		if ( ! isset( $block['attrs']['blockVisibilityRules']['blockVisibilityRulesEnabled'] ) ) {
+		if ( ! isset( $block['attrs']['contentVisibilityRules']['contentVisibilityRulesEnabled'] ) ) {
 			return false;
 		}
 
-		if ( 1 !== absint( $block['attrs']['blockVisibilityRules']['blockVisibilityRulesEnabled'] ) ) {
+		if ( 1 !== absint( $block['attrs']['contentVisibilityRules']['contentVisibilityRulesEnabled'] ) ) {
 			return false;
 		}
 
 		// Ensure we have a shown or hidden.
-		if ( ! isset( $block['attrs']['blockVisibilityRules'] ) || empty( $block['attrs']['blockVisibilityRules'] ) ) {
+		if ( ! isset( $block['attrs']['contentVisibilityRules'] ) || empty( $block['attrs']['contentVisibilityRules'] ) ) {
 			return false;
 		}
 
 		// OK this block has rules and the rules are enabled.
 		// Allow add-ons to set a block to be removed. Short circuit.
-		$remove = apply_filters( 'block_visibility_block_should_be_removed', null, $block );
+		$remove = apply_filters( 'content_visibility_block_should_be_removed', null, $block );
 		if ( null !== $remove && is_bool( $remove ) ) {
 			return $remove;
 		}
 
 		// We now run this block through the rules for this plugin.
-		$rules = $block['attrs']['blockVisibilityRules'];
+		$rules = $block['attrs']['contentVisibilityRules'];
 
-		// Create a copy of the rules, remove the 'blockVisibilityRulesEnabled' (as we already know
+		// Create a copy of the rules, remove the 'contentVisibilityRulesEnabled' (as we already know
 		// they are enabled) and then loop over each rule that is set calling the callback for that
 		// rule.
 		$block_rules = $rules;
-		unset( $block_rules['blockVisibilityRulesEnabled'] );
+		unset( $block_rules['contentVisibilityRulesEnabled'] );
 
-		if ( ! isset( $block['attrs']['blockVisibility'] ) ) {
+		if ( ! isset( $block['attrs']['contentVisibility'] ) ) {
 			return false;
 		}
 
 		// shown or hidden.
-		$block_visibility = $block['attrs']['blockVisibility'];
+		$block_visibility = $block['attrs']['contentVisibility'];
 
 		if ( empty( $block_rules ) ) {
 			return false;
