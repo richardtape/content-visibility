@@ -53,8 +53,11 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 
 == Changelog ==
 
+= 0.1.1 =
+* First public release. Check out the Date and Time Add-on and Role Add-on too!
+
 = 0.1.0 =
-* First public release.
+* Was meant to be the first public release, but caught a few things (most notably that I had been beaten to the punch on the name of the plugin)
 
 == Upgrade Notice ==
 
