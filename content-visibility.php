@@ -11,7 +11,7 @@
  * Plugin Name: Content Visibility
  * Plugin URI:  https://richardtape.com/content-visibility/
  * Description: Decide when, where, and to whom your blocks are visible.
- * Version:     0.1.1
+ * Version:     0.1.2
  * Author:      Rich Tape
  * Author URI:  https://richardtape.com/
  * Text Domain: content-visibility

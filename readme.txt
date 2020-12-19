@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: block, content, visibility
 Requires at least: 5.0
 Tested up to: 5.6
-Stable tag: 0.1
+Stable tag: 0.1.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,11 @@ Development is mostly done on [github](https://github.com/richardtape/content-vi
 Let me know: https://github.com/richardtape/content-visibility/issues/new
 
 == Changelog ==
+
+= 0.1.2 =
+* Turns out 0.1.1 wasn't the first public release because I didn't have the deploy script set up. Brilliant work, Rich.
+* Added a 'content_visibility_replace_block_content' filter to allow add-ons to filter what a 'removed' block is replaced with.
+* Added a 'content_visibility_replace_nested_block_content' filter to allow add-ons to filter what a 'removed' nested block is replaced with.
 
 = 0.1.1 =
 * First public release. Check out the Date and Time Add-on and Role Add-on too!

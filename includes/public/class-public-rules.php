@@ -213,7 +213,19 @@ class Public_Rules {
 			return $null;
 		}
 
-		return false;
+		/**
+		 * Filter what a block being 'removed' is replaced with.
+		 *
+		 * By default, to 'remove' a block, we replace what it would normally output with false. This short-
+		 * circuits the block renderer. However as long as that value is non-null, it will output that.
+		 * This filter allows external sources to adjust that; perhaps adding a message of some sort.
+		 *
+		 * @since 0.1.2
+		 *
+		 * @param bool  $show_block Should this block be shown. False by default. If non-null, will replace block.
+		 * @param array $parsed_block The parsed block with all its properties.
+		 */
+		return apply_filters( 'content_visibility_replace_block_content', false, $parsed_block );
 
 	}//end pre_render_block__test_and_remove_block()
 
@@ -242,7 +254,19 @@ class Public_Rules {
 		$remove = $this->this_block_should_be_removed( $block );
 
 		if ( $remove ) {
-			return '';
+			/**
+			 * Filter what a nested block being 'removed' is replaced with.
+			 *
+			 * By default, to 'remove' a block, we replace what it would normally output with an empty string.
+			 * This filter allows external sources to adjust that; perhaps adding a message of some sort.
+			 *
+			 * @since 0.1.2
+			 *
+			 * @param string $content What the content of the block will be replaced by.
+			 * @param string $block_content The original content for the block.
+			 * @param array  $block The full block with all its properties.
+			 */
+			return apply_filters( 'content_visibility_replace_nested_block_content', '', $block_content, $block );
 		}
 
 		return $block_content;
