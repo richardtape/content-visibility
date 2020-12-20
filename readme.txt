@@ -1,4 +1,4 @@
-=== Content Vsibility ===
+=== Content Visibility ===
 Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
 Tags: block, content, visibility
