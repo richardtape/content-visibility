@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: block, content, visibility
 Requires at least: 5.0
 Tested up to: 5.6
-Stable tag: 0.1.2
+Stable tag: 0.1.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.1.4 =
+* Icon used to show blocks which have content visibility rules changes depending on whether a block is shown or hidden.
 
 = 0.1.3 =
 * Added extra docs for available hooks

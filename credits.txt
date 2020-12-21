@@ -10,4 +10,9 @@ And finally for the direct coding thank yous, to Chris van Patten for digging in
 
 Thanks to Flynn O'Connor, Jeremy Felt, and Stephen Locker for listening to me bang on about this for about 2 years and providing encouragement and motivation to get it finished.
 
-Chameleon icon made by Freepik from www.flaticon.com. BG Colour: rgb(83, 81, 102) or #535166
+Image credits and info
+----------------------
+
+Chameleon icon made by Freepik from www.flaticon.com.
+Eye and Eye off icon from feathericons: https://feathericons.com/
+BG Colour: rgb(83, 81, 102) or #535166

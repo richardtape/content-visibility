@@ -2525,13 +2525,14 @@ function addContentVisibilityRulesEnabledPropOnSave(extraProps, blockType, attri
 
 var withCustomClassName = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["createHigherOrderComponent"])(function (BlockListBlock) {
   return function (props) {
-    if (props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled) {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
-        className: "content-visibility-rules-enabled"
-      }));
+    if (!props.attributes.contentVisibility) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, props);
     }
 
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, props);
+    var iconClassName = 'content-visibility-rules-enabled-' + props.attributes.contentVisibility;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
+      className: iconClassName
+    }));
   };
 }, 'withCustomClassName');
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('blocks.registerBlockType', 'content-visibility/addContentVisibilityRulesEnabledAttribute', addContentVisibilityRulesEnabledAttribute, 999);

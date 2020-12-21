@@ -91,11 +91,13 @@ const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
 
     return ( props ) => {
 
-        if ( props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled ) {
-            return <BlockListBlock {...props} className={ "content-visibility-rules-enabled" } />
+        if ( ! props.attributes.contentVisibility ) {
+            return <BlockListBlock {...props} />;
         }
 
-        return <BlockListBlock {...props} />
+        let iconClassName = 'content-visibility-rules-enabled-' + props.attributes.contentVisibility;
+
+        return <BlockListBlock {...props} className={ iconClassName } />
 
     };
 }, 'withCustomClassName' );
