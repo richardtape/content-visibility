@@ -28,6 +28,7 @@ class Public_Rules {
 	/**
 	 * Initialize ourselves.
 	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function init() {
@@ -43,6 +44,7 @@ class Public_Rules {
 	 * Set the rule types and their associated callbacks. Run through a filter
 	 * so external plugins can register a rule type and a callback.
 	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function set_rule_types_and_callbacks() {
@@ -77,6 +79,7 @@ class Public_Rules {
 	/**
 	 * Register hooks
 	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function add_hooks() {
@@ -94,6 +97,8 @@ class Public_Rules {
 	 * page load/context/user etc.
 	 *
 	 * @param array $block The block to test to see if it should be removed.
+	 *
+	 * @since 0.1.0
 	 * @return bool True if this block should be removed. False otherwise.
 	 */
 	public function this_block_should_be_removed( $block ) {
@@ -189,6 +194,7 @@ class Public_Rules {
 	 * @param string|null $null         The pre-rendered content. Default null.
 	 * @param array       $parsed_block The block being rendered.
 	 *
+	 * @since 0.1.0
 	 * @return mixed null if block is not to be removed. Not null otherwise.
 	 */
 	public function pre_render_block__test_and_remove_block( $null, $parsed_block ) {
@@ -237,6 +243,7 @@ class Public_Rules {
 	 * @param string $block_content The current block's content.
 	 * @param array  $block The block being rendered.
 	 *
+	 * @since 0.1.0
 	 * @return string Either an empty string if this block is being removed, or the original block content if it is staying.
 	 */
 	public function render_block__test_and_remove_block( $block_content, $block ) {
@@ -266,7 +273,7 @@ class Public_Rules {
 			 * @param string $block_content The original content for the block.
 			 * @param array  $block The full block with all its properties.
 			 */
-			return apply_filters( 'content_visibility_replace_nested_block_content', '', $block_content, $block );
+			return wp_kses_post( apply_filters( 'content_visibility_replace_nested_block_content', '', $block_content, $block ) );
 		}
 
 		return $block_content;

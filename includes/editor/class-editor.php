@@ -29,6 +29,7 @@ class Editor {
 	/**
 	 * Register hooks
 	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function add_hooks() {
@@ -45,7 +46,7 @@ class Editor {
 		// Thanks so much to Chris van Patten for helping dig through this with me.
 		// add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ), 1 ); //.
 
-		// See note above as to why we're on init here.
+		// See note above as to why we're on current_screen here.
 		add_action( 'current_screen', array( $this, 'enqueue_editor_assets' ), 1 );
 
 		// Handle the Gutenberg widgets screen.
@@ -83,8 +84,14 @@ class Editor {
 			return;
 		}
 
-		// Custom action so add-ons can hook in here regardless of when this core plugin does it's bits and pieces and
-		// know for sure that they are loading in the right place and don't need to look at screen names etc.
+		/**
+		 * Fires just before the content visibility scripts areregistered and enqueued.
+		 *
+		 * Add-ons can hook in here regardless of when this core plugin does it's bits and pieces and
+		 * know for sure that they are loading in the right place and don't need to look at screen names etc.
+		 *
+		 * @since 0.1.0
+		 */
 		do_action( 'content_visibility_enqueue_editor_assets' );
 
 		wp_register_script(

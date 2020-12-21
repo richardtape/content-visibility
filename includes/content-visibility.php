@@ -1,6 +1,6 @@
 <?php
 /**
- * Main loader file for Content.
+ * Main loader file for Content Visibility.
  *
  * @package ContentVisibility
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\plugins_loaded__bv_loader' );
 
 /**
- * Load the required bits and pieces for Content.
+ * Load the required bits and pieces for Content Visibility.
  *
  * @return void
  */

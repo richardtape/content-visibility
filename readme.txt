@@ -51,7 +51,16 @@ Development is mostly done on [github](https://github.com/richardtape/content-vi
 
 Let me know: https://github.com/richardtape/content-visibility/issues/new
 
+== Screenshots ==
+1. Showing the content visibility controls in the content editor sidebar
+
 == Changelog ==
+
+= 0.1.3 =
+* Added extra docs for available hooks
+* Tidied up code comments
+* Added finalized (...for now?) banner and icon
+* Added screenshot
 
 = 0.1.2 =
 * Turns out 0.1.1 wasn't the first public release because I didn't have the deploy script set up. Brilliant work, Rich.
