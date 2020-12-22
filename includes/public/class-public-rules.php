@@ -52,7 +52,18 @@ class Public_Rules {
 		// Register the user authentication callback. This is how add-ons will do it.
 		add_filter( 'content_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
 
-		// This collects all of our registered rules and callbacks.
+		/**
+		 * Filter all of our registered rules and callbacks..
+		 *
+		 * This is where add-ons (and this core plugin above) register the rule callbacks which determine whether a
+		 * block should be shown or not. It is an associative array where the key is the name of the rule and the value
+		 * is the full path to the callback function which will be called when a block is being checked to see if it
+		 * should be removed from display or not.
+		 *
+		 * @since 0.1.0
+		 *
+		 * @param array $rule_types_and_callbacks An associative array [ruleName] => 'function name including namespace'
+		 */
 		$rule_types_and_callbacks = apply_filters( 'content_visibility_rule_types_and_callbacks', array() );
 
 		$this->rule_types_and_callbacks = $rule_types_and_callbacks;

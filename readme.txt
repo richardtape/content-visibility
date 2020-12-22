@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: block, content, visibility
 Requires at least: 5.0
 Tested up to: 5.6
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -33,7 +33,7 @@ Do you use columns and put other blocks in them? Content Visibility allows you t
 
 ## Coming Soon
 
- - [ ] Make content visibility controls available on public Custom Post Types by default
+ - [ ] A way to set replacement content when a block is hidden
  - [ ] Ensure this works with the new 'widgets' screen (controls appear but functionality is currently blocked by [this gutenberg bug](https://github.com/WordPress/gutenberg/issues/27173))
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
@@ -55,6 +55,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.1.5 =
+* Content Visibility controls now appear on public custom post types.
 
 = 0.1.4 =
 * Icon used to show blocks which have content visibility rules changes depending on whether a block is shown or hidden.

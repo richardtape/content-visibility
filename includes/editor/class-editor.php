@@ -72,12 +72,27 @@ class Editor {
 			return;
 		}
 
+		// Start with these as default; posts, pages, and the gutenberg widget screen.
 		$screens = array(
 			'post',
 			'page',
 			'appearance_page_gutenberg-widgets',
 		);
 
+		$other_post_types = $this->get_non_builtin_post_types_that_use_block_editor();
+
+		$screens = array_merge( $screens, $other_post_types );
+
+		/**
+		 * Filter the screens where content visibility controls will appear.
+		 *
+		 * By default this is posts, pages, the gutenberg widgets replacement screen and all public custom
+		 * post types. This filter allows removing/adding post type screens.
+		 *
+		 * @since 0.1.0
+		 *
+		 * @param array $screens An array of screens where the content visibility assets will be shown.
+		 */
 		$screens = apply_filters( 'content_visibility_enqueue_editor_assets_screens', $screens );
 
 		if ( ! in_array( get_current_screen()->id, array_values( $screens ), true ) ) {
@@ -119,5 +134,41 @@ class Editor {
 		wp_enqueue_style( 'content-visibility-panel', plugins_url( 'build/index.css', dirname( dirname( __FILE__ ) ) ) );
 
 	}//end enqueue_editor_assets()
+
+	/**
+	 * Fetch public, non-built-in post types that are using the block editor.
+	 *
+	 * @since 0.1.0
+	 * @return array array containining a list of public, non-built-in post types that are registered for the block editor.
+	 */
+	public function get_non_builtin_post_types_that_use_block_editor() {
+
+		// Now add registered public (non-built-in) post types that have 'show_in_rest' set to true.
+		$other_post_types = get_post_types(
+			array(
+				'public'       => true,
+				'_builtin'     => false,
+				'show_in_rest' => true,
+			),
+			'names',
+			'and'
+		);
+
+		// The above will be an array.
+		$other_post_types = array_keys( $other_post_types );
+
+		// Now we need to check if the block editor is enabled on these post types. This requires
+		// 'supports' to include editor.
+		if ( ! is_array( $other_post_types ) || empty( $other_post_types ) ) {
+			return array();
+		}
+
+		// Thing to note here: it is not trivial to fetch post types that are 100% going to be used by the
+		// block editor. This array contains a list of post types that can use the block editor. But because
+		// it's not 100% sure (we'd need to check for 'supports' => 'editor') we should still check that the
+		// block editor is active on the edit screen.
+		return $other_post_types;
+
+	}//end get_non_builtin_post_types_that_use_block_editor()
 
 }//end class
