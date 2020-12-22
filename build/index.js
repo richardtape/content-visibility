@@ -2525,7 +2525,7 @@ function addContentVisibilityRulesEnabledPropOnSave(extraProps, blockType, attri
 
 var withCustomClassName = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["createHigherOrderComponent"])(function (BlockListBlock) {
   return function (props) {
-    if (!props.attributes.contentVisibility) {
+    if (!props.attributes.contentVisibility || !props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, props);
     }
 

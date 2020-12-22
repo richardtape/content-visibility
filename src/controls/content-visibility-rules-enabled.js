@@ -91,7 +91,7 @@ const withCustomClassName = createHigherOrderComponent( ( BlockListBlock ) => {
 
     return ( props ) => {
 
-        if ( ! props.attributes.contentVisibility ) {
+        if ( ! props.attributes.contentVisibility || ! props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled ) {
             return <BlockListBlock {...props} />;
         }
 

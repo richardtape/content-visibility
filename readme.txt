@@ -47,6 +47,10 @@ Development is mostly done on [github](https://github.com/richardtape/content-vi
 
 == Frequently Asked Questions ==
 
+= What's with the logo? =
+
+It's a chameleon. A cool little creature which can change the way it appears - to make itself more or less visible. Seemed appropriate!
+
 = Got a question? =
 
 Let me know: https://github.com/richardtape/content-visibility/issues/new
