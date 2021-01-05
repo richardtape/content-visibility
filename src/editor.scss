@@ -159,3 +159,75 @@
     float: none;
     width: 100%;
 }
+
+/*
+    Multi-select component
+    ----------------------    
+*/
+.content-visibility-multi-select {
+    width: 100%;
+    margin: 1rem 0 0 0;
+}
+
+/*
+    Remove horizontal scrolling, artifact of weird padding on main component.
+*/
+.content-visibility-multi-select .panel-content {
+    overflow-x: hidden;
+}
+
+/*
+    Ensure each of the items fill the dropdown and have space to make more readable.
+*/
+.content-visibility-multi-select-item {
+    width: 100%;
+}
+
+.content-visibility-multi-select .select-panel label {
+    max-width: none;
+    margin-right: 0;
+    padding: 0.7rem 0.7rem 0;
+}
+
+/*
+    Don't need background colour change on hover, not WordPress-y.
+*/
+.content-visibility-multi-select .select-panel label:hover,
+.content-visibility-multi-select .select-panel label:focus,
+.content-visibility-multi-select .select-panel label.selected {
+    background: transparent;
+}
+
+/*
+    Give ourselves some breathing room with the main list items. Leaves the 'select all' standing alone at the top.
+*/
+.content-visibility-multi-select .select-panel ul {
+    padding: 0.7rem 0;
+}
+
+.content-visibility-multi-select input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/*
+    Make each item a bit more uniform, ensures horiz alignment with icons.
+*/
+.item-renderer.content-visibility-multi-select-item > span {
+    height: 20px;
+    display: inline-block;
+}
+
+/*
+    Give the search input some breathing room.
+*/
+.content-visibility-multi-select .select-panel > div {
+    margin-top: 0.25rem;
+    padding: 0 0.25rem;
+}
+
+/*
+    Make the icons a little less harsh
+*/
+.content-visibility-multi-select .content-visibility-multi-select-item .dashicon {
+    opacity: 0.5;
+}
