@@ -52,6 +52,9 @@ class Public_Rules {
 		// Register the user authentication callback. This is how add-ons will do it.
 		add_filter( 'content_visibility_rule_types_and_callbacks', array( $this, 'add_user_authenticated_callback' ), 5, 1 );
 
+		// Register our special pages callback. This is for the widgets screen, but should also apply to full site editing.
+		add_filter( 'content_visibility_rule_types_and_callbacks', array( $this, 'add_special_pages_callback' ), 5, 1 );
+
 		/**
 		 * Filter all of our registered rules and callbacks..
 		 *
@@ -86,6 +89,24 @@ class Public_Rules {
 		return $rule_types_and_callbacks;
 
 	}//end add_user_authenticated_callback()
+
+
+	/**
+	 * Callback which adds our special pages function to the list of rules.
+	 *
+	 * @param array $rule_types_and_callbacks Existing rules and callbacks.
+	 *
+	 * @return array modified rule types and callbacks with ours added.
+	 */
+	public function add_special_pages_callback( $rule_types_and_callbacks ) {
+
+		require_once plugin_dir_path( __FILE__ ) . 'special-page/rule-logic-special-page.php';
+
+		$rule_types_and_callbacks['specialPage'] = 'RichardTape\ContentVisibility\rule_logic_special_page';
+
+		return $rule_types_and_callbacks;
+
+	}//end add_special_pages_callback()
 
 	/**
 	 * Register hooks

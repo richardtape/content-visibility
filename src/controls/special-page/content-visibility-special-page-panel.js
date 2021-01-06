@@ -1,30 +1,39 @@
-import { PanelBody, PanelRow, Icon } from '@wordpress/components';
+import { PanelBody, PanelRow, Icon, Button, Popover } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
+import getSpecialPages from '../../helpers/get-special-pages';
 
 import { ContentVisibilityMultiSelect } from '../multiselect/content-visibility-multiselect';
 
-const CloseIcon = () => (
-    <Icon
-        icon={ () => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-        ) }
-    />
-);
+/**
+ * A list of special pages, their associated title and icon are passed in from PHP as ContentVisibility.specialPages
+ * We manipulate this associative PHP array (which in turn becomes a JS object) into something usable for our dropdown.
+ */
+const specialPages = getSpecialPages();
 
-const fruits = [
-    { label: "Search Results", value: "search", icon: <Icon size="12" icon="search" /> },
-    { label: "404 Not Found", value: "404", icon: <Icon size="12" icon="no" /> },
-    { label: "Date Archive", value: "date", icon: <Icon size="12" icon="calendar-alt" /> },
-    { label: "Category Archive", value: "category", icon: <Icon size="12" icon="category" /> },
-    { label: "Tag Archive", value: "tag", icon: <Icon size="12" icon="tag" /> },
-    { label: "Front Page", value: "front-page", icon: <Icon size="12" icon="slides" /> },
-    { label: "Home", value: "home", icon: <Icon size="12" icon="admin-home" /> },
-    { label: "Blog Home", value: "blog", icon: <Icon size="12" icon="welcome-write-blog" /> },
-    { label: "Any Post", value: "post", icon: <Icon size="12" icon="admin-post" /> },
-    { label: "Any Page", value: "page", icon: <Icon size="12" icon="admin-page" /> },
-];
+const SpecialPageHelpInstructions = withState( {
+    isVisible: false,
+} )( ( { isVisible, setState } ) => {
+    const toggleVisible = () => {
+        setState( ( state ) => ( { isVisible: ! state.isVisible } ) );
+    };
+    return (
+        <Button isSecondary isSmall isTertiary icon="editor-help" iconSize="12" onClick={ toggleVisible } className="content-visibility-special-page-help-instructions-toggle">
+            { __( 'What are Special Pages?',  'content-visibility-special-page' ) }
+            { isVisible && (
+                <Popover position="middle left" className="content-visibility-special-page-help-instructions-popover">
+                    <h1>What are special pages?</h1>
+                    <p>By default, WordPress websites contain more than just the posts and pages you create here in the dashboard. Content Visibility allows you to display your blocks on any of the following types of pages that your theme can make available to your visitors.</p>
+
+                    { specialPages.map( specialPage => (
+                        <p><span>{ specialPage.label }</span>: { specialPage.notes }</p>
+                    ) ) }
+                </Popover>
+            ) }
+        </Button>
+    );
+} );
 
 export const ContentVisibilitySpecialPagePanelBodyControl = withState( {
     option: [],
@@ -60,12 +69,13 @@ export const ContentVisibilitySpecialPagePanelBodyControl = withState( {
             className="content-visibility-control-panel block-visibility-special-page-controls"
         >
             <PanelRow>
-                <ContentVisibilityMultiSelect data={ fruits } labelledBy="Select Page Type" props={ props } onChange={ onChange } />
+                <ContentVisibilityMultiSelect data={ specialPages } labelledBy="Select Page Type" props={ props } onChange={ onChange } />
             </PanelRow>
 
             { props.attributes.contentVisibility && (
                 <p className="special-page-help-intro content-visibility-help-text">
-                    { __( 'Select which types of pages this block will be ' + props.attributes.contentVisibility + '. Special pages include a search results page, a date or category archive, or the 404 not found page amongst others.', 'content-visibility-special-page' ) }
+                    { __( 'Select which types of pages upon which this block will be ' + props.attributes.contentVisibility + '. Special pages include a search results page, a date or category archive, or the 404 not found page amongst others.', 'content-visibility-special-page' ) }
+                    { <SpecialPageHelpInstructions /> }
                 </p>
             ) }
 

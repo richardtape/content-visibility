@@ -3673,7 +3673,7 @@ var ContentVisibilityMultiSelect = Object(_wordpress_compose__WEBPACK_IMPORTED_M
         checked: checked,
         tabIndex: -1,
         disabled: disabled
-      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, option.label, " ", option.icon || ""));
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, option.icon || "", " ", option.label));
     } // isOpen={ true }
 
   }));
@@ -3832,7 +3832,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _multiselect_content_visibility_multiselect__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../multiselect/content-visibility-multiselect */ "./src/controls/multiselect/content-visibility-multiselect.js");
+/* harmony import */ var _helpers_get_special_pages__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/get-special-pages */ "./src/helpers/get-special-pages.js");
+/* harmony import */ var _multiselect_content_visibility_multiselect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../multiselect/content-visibility-multiselect */ "./src/controls/multiselect/content-visibility-multiselect.js");
 
 
 
@@ -3846,116 +3847,47 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var CloseIcon = function CloseIcon() {
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    icon: function icon() {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "20",
-        height: "20",
-        viewBox: "0 0 24 24",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-width": "1",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        class: "feather feather-x-circle"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("circle", {
-        cx: "12",
-        cy: "12",
-        r: "10"
-      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("line", {
-        x1: "15",
-        y1: "9",
-        x2: "9",
-        y2: "15"
-      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("line", {
-        x1: "9",
-        y1: "9",
-        x2: "15",
-        y2: "15"
-      }));
-    }
-  });
-};
+/**
+ * A list of special pages, their associated title and icon are passed in from PHP as ContentVisibility.specialPages
+ * We manipulate this associative PHP array (which in turn becomes a JS object) into something usable for our dropdown.
+ */
 
-var fruits = [{
-  label: "Search Results",
-  value: "search",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "search"
-  })
-}, {
-  label: "404 Not Found",
-  value: "404",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "no"
-  })
-}, {
-  label: "Date Archive",
-  value: "date",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "calendar-alt"
-  })
-}, {
-  label: "Category Archive",
-  value: "category",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "category"
-  })
-}, {
-  label: "Tag Archive",
-  value: "tag",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "tag"
-  })
-}, {
-  label: "Front Page",
-  value: "front-page",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "slides"
-  })
-}, {
-  label: "Home",
-  value: "home",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "admin-home"
-  })
-}, {
-  label: "Blog Home",
-  value: "blog",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "welcome-write-blog"
-  })
-}, {
-  label: "Any Post",
-  value: "post",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "admin-post"
-  })
-}, {
-  label: "Any Page",
-  value: "page",
-  icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    size: "12",
-    icon: "admin-page"
-  })
-}];
+var specialPages = Object(_helpers_get_special_pages__WEBPACK_IMPORTED_MODULE_6__["default"])();
+var SpecialPageHelpInstructions = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withState"])({
+  isVisible: false
+})(function (_ref) {
+  var isVisible = _ref.isVisible,
+      setState = _ref.setState;
+
+  var toggleVisible = function toggleVisible() {
+    setState(function (state) {
+      return {
+        isVisible: !state.isVisible
+      };
+    });
+  };
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    isSecondary: true,
+    isSmall: true,
+    isTertiary: true,
+    icon: "editor-help",
+    iconSize: "12",
+    onClick: toggleVisible,
+    className: "content-visibility-special-page-help-instructions-toggle"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('What are Special Pages?', 'content-visibility-special-page'), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Popover"], {
+    position: "middle left",
+    className: "content-visibility-special-page-help-instructions-popover"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h1", null, "What are special pages?"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "By default, WordPress websites contain more than just the posts and pages you create here in the dashboard. Content Visibility allows you to display your blocks on any of the following types of pages that your theme can make available to your visitors."), specialPages.map(function (specialPage) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, specialPage.label), ": ", specialPage.notes);
+  })));
+});
 var ContentVisibilitySpecialPagePanelBodyControl = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withState"])({
   option: []
-})(function (_ref) {
-  var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+})(function (_ref2) {
+  var option = _ref2.option,
+      setState = _ref2.setState,
+      props = _ref2.props;
 
   /**
    * onChange callback for the ContentVisibilityMultiSelect component. This handles setting the props and state for
@@ -3981,14 +3913,14 @@ var ContentVisibilitySpecialPagePanelBodyControl = Object(_wordpress_compose__WE
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Special Page', 'content-visibility'),
     initialOpen: false,
     className: "content-visibility-control-panel block-visibility-special-page-controls"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_multiselect_content_visibility_multiselect__WEBPACK_IMPORTED_MODULE_6__["ContentVisibilityMultiSelect"], {
-    data: fruits,
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_multiselect_content_visibility_multiselect__WEBPACK_IMPORTED_MODULE_7__["ContentVisibilityMultiSelect"], {
+    data: specialPages,
     labelledBy: "Select Page Type",
     props: props,
     onChange: onChange
   })), props.attributes.contentVisibility && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: "special-page-help-intro content-visibility-help-text"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Select which types of pages this block will be ' + props.attributes.contentVisibility + '. Special pages include a search results page, a date or category archive, or the 404 not found page amongst others.', 'content-visibility-special-page')));
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Select which types of pages upon which this block will be ' + props.attributes.contentVisibility + '. Special pages include a search results page, a date or category archive, or the 404 not found page amongst others.', 'content-visibility-special-page'), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(SpecialPageHelpInstructions, null)));
 }); // Register our visibility rule in the main rules object.
 
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["addFilter"])('contentVisibility.defaultContentVisibilityRules', 'content-visibility-special-page/block-visibility-rules', registerSpecialPageVisibilityRule);
@@ -4125,6 +4057,50 @@ var ContentVisibilityUserAuthenticationPanelBodyControl = Object(_wordpress_comp
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/helpers/get-special-pages.js":
+/*!******************************************!*\
+  !*** ./src/helpers/get-special-pages.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * A list of special pages, their associated title and icon are passed in from PHP as ContentVisibility.specialPages
+ * We manipulate this associative PHP array (which in turn becomes a JS object) into something usable for our dropdown.
+ *
+ */
+
+function getSpecialPages() {
+  var specialPages = [];
+
+  for (var specialPage in ContentVisibility.specialPages) {
+    specialPages.push({
+      label: ContentVisibility.specialPages[specialPage].label,
+      value: ContentVisibility.specialPages[specialPage].keyValue,
+      notes: ContentVisibility.specialPages[specialPage].notes,
+      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
+        size: "12",
+        icon: ContentVisibility.specialPages[specialPage].icon
+      })
+    });
+  }
+
+  return specialPages;
+} // end getSpecialPages()
+
+
+/* harmony default export */ __webpack_exports__["default"] = (getSpecialPages);
 
 /***/ }),
 

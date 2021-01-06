@@ -131,6 +131,8 @@ class Editor {
 			$content_visibility_args['local'] = true;
 		}
 
+		$content_visibility_args['specialPages'] = \RichardTape\ContentVisibility\get_special_pages();
+
 		wp_localize_script( 'content-visibility', 'ContentVisibility', $content_visibility_args );
 
 		wp_enqueue_script( 'content-visibility' );
@@ -174,59 +176,5 @@ class Editor {
 		return $other_post_types;
 
 	}//end get_non_builtin_post_types_that_use_block_editor()
-
-
-	/**
-	 * An array of special pages; things like the 404, a search results page, a date archive etc. with their
-	 * associated callback function which determines if the current page is of this type.
-	 *
-	 * @since 0.1.6
-	 * @return array associative array containining a list of special pages. Keys are a slug for the special page. Values
-	 *               are an array containing a title, and a callback function to determine if the current page is this
-	 *               type of special page.
-	 */
-	public function get_special_pages() {
-
-		/**
-		 * What to do for notes on front-page vs is_home
-		 * do we do a generic 'single' or do we be more specific?
-		 *
-		 * See: https://developer.wordpress.org/themes/basics/conditional-tags/
-		*/
-
-		return array(
-			'404'            => array(
-				'title'    => __( '404 Page Not Found', 'content-visibility' ),
-				'notes'    => __( 'The error page when someone goes to a URL that does not exist on your site.', 'content-visibility' ),
-				'callback' => 'is_404',
-			),
-			'search-results' => array(
-				'title'    => __( 'Search Results', 'content-visibility' ),
-				'notes'    => __( 'The page shown when someone searches something on your site.', 'content-visibility' ),
-				'callback' => 'is_search',
-			),
-			'archive-date'   => array(
-				'title'    => __( 'Date Archive', 'content-visibility' ),
-				'notes'    => __( 'When someone looks at a time, day, week, month, or year listing of the posts on your site.', 'content-visibility' ),
-				'callback' => 'is_date',
-			),
-			'front-page'     => array(
-				'title'    => __( 'Front Page', 'content-visibility' ),
-				'notes'    => __( 'When the front page of your site is being displayed, regardless of whether that is your blog (WordPress default) or a static page.', 'content-visibility' ),
-				'callback' => 'is_front_page',
-			),
-			'home'           => array(
-				'title'    => __( 'Blog Home Page', 'content-visibility' ),
-				'notes'    => __( 'When the blog home page is being displayed. By default this is the home page in WordPress, but if you have your home page set to be a static page (settings > reading) then this will only be when your blog page is being shown.', 'content-visibility' ),
-				'callback' => 'is_home',
-			),
-			'page'           => array(
-				'title'    => __( 'Any Page', 'content-visibility' ),
-				'notes'    => __( 'Any content that is a Page (not a post or custom post type)', 'content-visibility' ),
-				'callback' => 'is_page',
-			),
-		);
-
-	}//end get_special_pages()
 
 }//end class

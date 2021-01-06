@@ -196,5 +196,24 @@
 .content-visibility-multi-select .content-visibility-multi-select-item .dashicon {
   opacity: 0.5; }
 
+/*
+    Special Page Help Toggle
+*/
+.content-visibility-help-text .content-visibility-special-page-help-instructions-toggle.is-small {
+  font-size: 12px;
+  margin-top: 1rem; }
+
+.content-visibility-special-page-help-instructions-popover .components-popover__content {
+  padding: 1rem;
+  width: 23rem;
+  height: 30rem !important; }
+
+/*
+    Special Page Help Popover
+*/
+.content-visibility-special-page-help-instructions-popover span {
+  color: black;
+  font-weight: 600; }
+
 
 /*# sourceMappingURL=index.css.map*/

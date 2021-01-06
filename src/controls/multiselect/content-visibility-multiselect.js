@@ -50,7 +50,7 @@ export const ContentVisibilityMultiSelect = withState( {
                     return (
                         <div className={`item-renderer content-visibility-multi-select-item ${disabled && "disabled"}`}>
                             <input type="checkbox" onChange={ onClick } checked={ checked } tabIndex={ -1 } disabled={ disabled } />
-                            <span>{option.label} {option.icon || ""}</span>
+                            <span>{option.icon || ""} {option.label}</span>
                         </div>
                     );
                 } }
