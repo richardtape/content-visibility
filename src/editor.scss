@@ -150,7 +150,7 @@
 /*
     Help text generic styling. This is to make it look like a WordPress hint.
 */
-.content-visibility-controls-container .content-visibility-help-text{
+.content-visibility-controls-container .content-visibility-help-text {
     margin: 1rem 0 0;
     font-size: 12px;
     font-style: normal;
@@ -233,6 +233,35 @@
 }
 
 /*
+    Popover content toggle buttons. Make sure they can handle long values as someone may
+    select multiple options. Give max-width to ensure the button's icon is inline.
+    min-width ensures the initial button's value doesn't wrap (i.e. when it's short)
+*/
+.components-button.is-secondary.content-visibility-special-page-inserter-toggle {
+    white-space: break-spaces;
+    max-width: 85%;
+    min-width: 190px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/*
+    If someone has selected special pages, then we make it less like a link.
+*/
+.components-button.is-secondary.content-visibility-special-page-inserter-toggle.has-items {
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+/*
+    The 'Set Selected' button
+*/
+.components-button.content-visibility-submit-special-pages {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/*
     Special Page Help Toggle
 */
 
@@ -247,6 +276,29 @@
     height: 30rem !important;
 }
 
+.content-visibility-control-panel .special-page-help-instructions-button {
+    text-align: right;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.content-visibility-control-panel .special-page-help-instructions-button .content-visibility-special-page-help-instructions-toggle {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 3px;
+}
+
+.content-visibility-control-panel .special-page-help-instructions-button .dashicon {
+    position: relative;
+    top: 3px;
+    color: #007cba;
+}
+
+.content-visibility-submit-special-pages-button-container {
+    text-align: right;
+    margin-top: 0;
+}
+
 /*
     Special Page Help Popover
 */
@@ -254,4 +306,31 @@
 .content-visibility-special-page-help-instructions-popover span {
     color: black;
     font-weight: 600;
+}
+
+/* Special Page Close Button */
+.content-visibility-close-popover {
+    position: absolute;
+    top: -2rem;
+    right: -1rem;
+}
+
+/*
+    Special Page Panel
+*/
+
+/* Make sure each inserter is its own row */
+.components-panel__row.content-visibility-page-inserter-panel-row {
+    flex-direction: column;
+}
+
+.content-visibility-special-page-inserter {
+    margin-top: 1rem;
+}
+
+/* Align the icon for each inserter a little neater */
+.content-visibility-special-page-inserter .dashicon {
+    position: relative;
+    top: 4px;
+    opacity: 0.6;
 }

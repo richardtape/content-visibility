@@ -57,7 +57,7 @@ function get_special_pages() {
 
 	return array(
 		'404'        => array(
-			'label'    => __( '404 Page Not Found', 'content-visibility' ),
+			'label'    => __( '404 Error', 'content-visibility' ),
 			'notes'    => __( 'The error page when someone goes to a URL that does not exist on your site.', 'content-visibility' ),
 			'callback' => array( 'is_404' ),
 			'icon'     => 'no',
@@ -122,3 +122,90 @@ function get_special_pages() {
 	);
 
 }//end get_special_pages()
+
+/**
+ * An array of pages with their associated callback function which determines if the current page is of this type.
+ *
+ * @since 0.1.7
+ * @return array associative array containining a list of pages. Keys are the ID for the page. Values
+ *               are an array containing a title, and a callback function to determine if the current page is this
+ *               page.
+ */
+function get_pages() {
+
+	$pages_args = array(
+		'post_status' => array( 'pending', 'draft', 'future', 'publish' ),
+	);
+
+	$pages_args = apply_filters( 'content_visibility_get_pages_args', $pages_args );
+
+	$pages = \get_pages( $pages_args );
+
+	if ( false === $pages || empty( $pages ) ) {
+		return array();
+	}
+
+	$pages_data = array();
+
+	foreach ( $pages as $id => $page ) {
+
+		$page_id         = absint( $page->ID );
+		$sanitized_title = sanitize_text_field( $page->post_title );
+
+		$title = ( empty( $sanitized_title ) ) ? __( '[This page has no title]', 'content-visibility' ) : $sanitized_title;
+
+		$pages_data[ $page_id ] = array(
+			'label'    => $title,
+			'id'       => $page_id,
+			'callback' => array( 'is_page', array( $page_id ) ),
+			'notes'    => '',
+		);
+	}
+
+	return $pages_data;
+
+}//end get_pages()
+
+/**
+ * An array of posts with their associated callback function which determines if the current page is of this type.
+ *
+ * @since 0.1.7
+ * @return array associative array containining a list of posts. Keys are the ID for the post. Values
+ *               are an array containing a title, and a callback function to determine if the current page is this
+ *               page.
+ */
+function get_posts() {
+
+	$posts_args = array(
+		'post_status' => array( 'pending', 'draft', 'future', 'publish' ),
+		'numberposts' => -1,
+	);
+
+	$posts_args = apply_filters( 'content_visibility_get_posts_args', $posts_args );
+
+	$posts = \get_posts( $posts_args );
+
+	if ( false === $posts || empty( $posts ) ) {
+		return array();
+	}
+
+	$posts_data = array();
+
+	foreach ( $posts as $id => $post ) {
+
+		$post_id         = absint( $post->ID );
+		$sanitized_title = sanitize_text_field( $post->post_title );
+
+		$title = ( empty( $sanitized_title ) ) ? __( '[This post has no title]', 'content-visibility' ) : $sanitized_title;
+
+		$posts_data[ $post_id ] = array(
+			'label'    => $title,
+			'id'       => $post_id,
+			'callback' => array( 'is_post', array( $post_id ) ),
+			'notes'    => '',
+		);
+	}
+
+	return $posts_data;
+
+}//end get_posts()
