@@ -30,42 +30,55 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function rule_logic_special_page( $rule_value, $block_visibility, $block ) {
 
-	// If no pages are listed, this rule keeps the block.
-	if ( empty( $rule_value ) || empty( $rule_value['pages'] ) || ! is_array( $rule_value['pages'] ) ) {
-		return true;
-	}
+	// $rule_value is an array that contains a list of the different types of special pages, i.e. specialPages, pages, posts etc.
 
-	$special_pages = $rule_value['pages'];
-
-	$special_page_rules = \RichardTape\ContentVisibility\get_special_pages();
-
-	// If ANY of the special page rules match for this block then we should do what is set in $block_visibility. This variable
-	// keeps a record of whether any rule matches. We default to false, but if we find a rule that matches it, it's set to true
-	// (and we also stop looking at other rules).
+	// The logic here is if ANY of the items in ANY of the specialPages returns true, then this block should be kept.
 	$matches_any_special_page_rule = false;
 
-	/**
-	* This may not be the most efficient way to do this. We should likely store the result from each callback into an array
-	* so that we're only testing each conditional tag once per PAGE rather than potentially repeating them for each block ON the page.
-	*/
-	foreach ( $special_pages as $id => $special_page ) {
+	foreach ( $rule_value as $rule => $value ) {
 
-		// What 'type' of special page is this rule? i.e. 'search' or 'any page' etc.
-		$special_page_type = $special_page['value'];
+		// Don't need to load our content if this block doesn't have rules for this type of special page.
+		if ( empty( $rule_value[ $rule ] ) ) {
+			continue;
+		}
 
-		// Which callback function are we testing for this block? This will be an array with the 0th item being the callback function
-		// and the other item being an array of arguments for the callback function.
-		$callback_function_for_this_page_type = $special_page_rules[ $special_page_type ]['callback'][0];
-		$arguments_for_callback_function      = ( isset( $special_page_rules[ $special_page_type ]['callback'][1] ) && is_array( $special_page_rules[ $special_page_type ]['callback'][1] ) ) ? $special_page_rules[ $special_page_type ]['callback'][1] : array();
+		// Each of the specialPage types (specialPages, pages, posts, etc.) have their own function to determine
+		// whether this specific block on this specific URL is in the list selected by the user.
+		switch ( $rule ) {
 
-		$value_from_callback = (bool) ( is_callable( $callback_function_for_this_page_type ) ) ? rest_sanitize_boolean( call_user_func_array( $callback_function_for_this_page_type, $arguments_for_callback_function ) ) : false;
+			case 'specialPages':
+				// If we have already returned true from any of these switch statements, bail, as we don't need to do more tests.
+				if ( true === $matches_any_special_page_rule ) {
+					break;
+				}
 
-		if ( true === $value_from_callback ) {
-			$matches_any_special_page_rule = true;
-			break;
+				$matches_any_special_page_rule = (bool) rule_logic_special_page_special_pages( $rule_value[ $rule ], $block );
+				break;
+
+			case 'pages':
+				// If we have already returned true from any of these switch statements, bail, as we don't need to do more tests.
+				if ( true === $matches_any_special_page_rule ) {
+					break;
+				}
+
+				$matches_any_special_page_rule = (bool) rule_logic_special_page_pages( $rule_value[ $rule ], $block );
+				break;
+
+			case 'posts':
+				// If we have already returned true from any of these switch statements, bail, as we don't need to do more tests.
+				if ( true === $matches_any_special_page_rule ) {
+					break;
+				}
+
+				$matches_any_special_page_rule = (bool) rule_logic_special_page_posts( $rule_value[ $rule ], $block );
+				break;
+
+			default:
+				break;
 		}
 	}
 
+	// if $matches_any_special_page_rule is true then the current URL has been matched with this block's specialPages somewhere.
 	switch ( $block_visibility ) {
 		case 'shown':
 			return $matches_any_special_page_rule;
@@ -74,3 +87,130 @@ function rule_logic_special_page( $rule_value, $block_visibility, $block ) {
 	}
 
 }//end rule_logic_special_page()
+
+/**
+ * Determine if the current URL is in the passed specialPages (in $rule_value_selections).
+ *
+ * @param array $rule_value_selections The specific selections for this block for this type of specialPage.
+ * @param array $block The current block being evaluated.
+ *
+ * @return bool True If the current URL is found in $rule_value_selections. False otherwise.
+ */
+function rule_logic_special_page_special_pages( $rule_value_selections, $block ) {
+
+	// If there's no rules, then this URL is not in this block selection.
+	if ( empty( $rule_value_selections ) ) {
+		return false;
+	}
+
+	// if ANY of the pages selected in $rule_value_selections are this page, then this function returns true immediately.
+	// So default to false here and if we get past this foreach statement, we return true.
+	$this_url_is_in_passed_selections = false;
+
+	// Special pages (such as 404, search, date archive etc.) are stored here.
+	$special_page_rules = \RichardTape\ContentVisibility\get_special_pages();
+
+	foreach ( $rule_value_selections as $id => $page ) {
+
+		if ( ! isset( $page['value'] ) ) {
+			continue;
+		}
+
+		// This is a key for one of the sub-arrays found in $special_page_rules and within that sub-array will be the
+		// appropriate callback function to determine if this block's settings match the current URL.
+		$special_page_type = esc_attr( $page['value'] );
+
+		$callback_function_for_this_page_type = $special_page_rules[ $special_page_type ]['callback'][0];
+		$arguments_for_callback_function      = ( isset( $special_page_rules[ $special_page_type ]['callback'][1] ) && is_array( $special_page_rules[ $special_page_type ]['callback'][1] ) ) ? $special_page_rules[ $special_page_type ]['callback'][1] : array();
+
+		$value_from_callback = (bool) ( is_callable( $callback_function_for_this_page_type ) ) ? rest_sanitize_boolean( call_user_func_array( $callback_function_for_this_page_type, $arguments_for_callback_function ) ) : false;
+
+		if ( true === $value_from_callback ) {
+			$this_url_is_in_passed_selections = true;
+			break;
+		}
+	}
+
+	return $this_url_is_in_passed_selections;
+
+}//end rule_logic_special_page_special_pages()
+
+
+/**
+ * Determine if the current URL is in the passed specialPages (in $rule_value_selections).
+ * $rule_value_selections is an array of arrays. Each subarray has a 'value' key which is the pageID selected for this block.
+ *
+ * @param array $rule_value_selections The specific selections for this block for this type of specialPage.
+ * @param array $block The current block being evaluated.
+ *
+ * @return bool True If the current URL is found in $rule_value_selections. False otherwise.
+ */
+function rule_logic_special_page_pages( $rule_value_selections, $block ) {
+
+	// If there's no rules, then this URL is not in this block selection.
+	if ( empty( $rule_value_selections ) ) {
+		return false;
+	}
+
+	// if ANY of the pages selected in $rule_value_selections are this page, then this function returns true immediately.
+	// So default to false here and if we get past this foreach statement, we return true.
+	$this_url_is_in_passed_selections = false;
+
+	foreach ( $rule_value_selections as $id => $page ) {
+
+		if ( ! isset( $page['value'] ) ) {
+			continue;
+		}
+
+		$page_id = absint( $page['value'] );
+
+		if ( is_page( $page_id ) ) {
+			return true;
+		}
+	}
+
+	return $this_url_is_in_passed_selections;
+
+}//end rule_logic_special_page_pages()
+
+
+/**
+ * Callbackfunction for special page.
+ *
+ * @param array $rule_value_selections The specific selections for this block for this type of specialPage.
+ * @param array $block The current block being evaluated.
+ *
+ * @return bool True If the current URL is found in $rule_value_selections. False otherwise.
+ */
+function rule_logic_special_page_posts( $rule_value_selections, $block ) {
+
+	// If there's no rules, then this URL is not in this block selection.
+	if ( empty( $rule_value_selections ) ) {
+		return false;
+	}
+
+	// if ANY of the pages selected in $rule_value_selections are this page, then this function returns true immediately.
+	// So default to false here and if we get past this foreach statement, we return true.
+	$this_url_is_in_passed_selections = false;
+
+	foreach ( $rule_value_selections as $id => $page ) {
+
+		if ( ! isset( $page['value'] ) ) {
+			continue;
+		}
+
+		$post_id = absint( $page['value'] );
+
+		if ( is_single( $post_id ) ) {
+			return true;
+		}
+	}
+
+	return $this_url_is_in_passed_selections;
+
+}//end rule_logic_special_page_posts()
+
+
+function rule_logic_special_page_generic( $rule_value_selections, $callback ) {
+
+}//end rule_logic_special_page_generic()

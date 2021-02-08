@@ -1,0 +1,13 @@
+/*
+    Widgets are weird. They have their own rules. And no generic filter. It's a bit of a Wild West as plugins can do
+    whatever they want. And, as The Block Editor now treats widgets as blocks (and vice versa), for Back Compat, (which
+    is the right thing to do) we get little foibles like this.
+
+    Widgets can be hidden using Content Visibility rules. However, unfortunately, the container for the widget that is
+    being hidden, doesn't appear to be *consistently* manipulatable. So, if the widget container is empty, we need to
+    hide it. Loading an entire file for one selector makes me pull a funny face (which is why I've made the file
+    as easy to not load as I can with a filter).
+*/
+.widget.widget_block:empty {
+	display: none;
+}

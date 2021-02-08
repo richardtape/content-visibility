@@ -36,7 +36,37 @@ function plugins_loaded__bv_loader() {
 	$bv_public = new \RichardTape\ContentVisibility\Public_Rules();
 	$bv_public->init();
 
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\wp_enqueue_scripts__load_public_css' );
+
 }//end plugins_loaded__bv_loader()
+
+/**
+ * Load the public css file.
+ *
+ * @since 0.1.7
+ * @return void
+ */
+function wp_enqueue_scripts__load_public_css() {
+
+	/**
+	 * Filter whether to load the public rules CSS file or not.
+	 *
+	 * At least as of right now, this file is literally for one line of CSS and theme authors may want to include it
+	 * in their own theme to prevent loading a whole file just for one little rule.
+	 *
+	 * @since 0.1.7
+	 *
+	 * @param bool  $load_public_css Should this file be loaded. Enqueued only if boolean true.
+	 */
+	$load_public_css = (bool) apply_filters( 'content_visibility_load_public_css', true );
+
+	if ( true !== $load_public_css ) {
+		return;
+	}
+
+	wp_enqueue_style( 'content-visibility-public', plugins_url( 'includes/public/content-visibility-public.css', dirname( __FILE__ ) ) );
+
+}//end wp_enqueue_scripts__load_public_css()
 
 /**
  * An array of special pages; things like the 404, a search results page, a date archive etc. with their

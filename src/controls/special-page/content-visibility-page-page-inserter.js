@@ -24,6 +24,14 @@ const PagePageInserter = withState( {
     const type = 'pages';
 
     /**
+     * Helps with the content of the inserter button.
+     */
+    const niceName = {
+        singular: __( 'Page', 'content-visibility' ),
+        plural: __( 'Pages', 'content-visibility' ),
+    }
+
+    /**
      * Toggle the visible state. Detemines whether the popup is open or not.
      */
     const toggleVisible = () => {
@@ -34,7 +42,7 @@ const PagePageInserter = withState( {
         <div className="content-visibility-special-page-inserter">
             <Icon icon="networking" iconSize="12" />
             <Button isSecondary isSmall isLink onClick={ toggleVisible } className={ specialPagesInsertButtonClass( props, type ) }>
-                { specialPagesInsertText( props, type, __( 'Select specific pages', 'content-visibility' ) ) }
+                { specialPagesInsertText( props, type, __( 'Select specific pages', 'content-visibility' ), niceName ) }
                 { isVisible && (
                     <Popover position="middle left" className="content-visibility-special-page-help-instructions-popover" onClick={keepPopupOpen}>
 

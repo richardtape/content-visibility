@@ -3839,6 +3839,14 @@ var PagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
 
   var type = 'pages';
   /**
+   * Helps with the content of the inserter button.
+   */
+
+  var niceName = {
+    singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Page', 'content-visibility'),
+    plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Pages', 'content-visibility')
+  };
+  /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
 
@@ -3861,7 +3869,7 @@ var PagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
     isLink: true,
     onClick: toggleVisible,
     className: Object(_helpers_special_pages_insert_button_class__WEBPACK_IMPORTED_MODULE_7__["default"])(props, type)
-  }, Object(_helpers_special_page_insert_text__WEBPACK_IMPORTED_MODULE_6__["default"])(props, type, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Select specific pages', 'content-visibility')), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
+  }, Object(_helpers_special_page_insert_text__WEBPACK_IMPORTED_MODULE_6__["default"])(props, type, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Select specific pages', 'content-visibility'), niceName), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
     position: "middle left",
     className: "content-visibility-special-page-help-instructions-popover",
     onClick: _helpers_keep_popup_open__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -3940,6 +3948,14 @@ var PostPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
 
   var type = 'posts';
   /**
+   * Helps with the content of the inserter button.
+   */
+
+  var niceName = {
+    singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Post', 'content-visibility'),
+    plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Posts', 'content-visibility')
+  };
+  /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
 
@@ -3962,7 +3978,7 @@ var PostPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
     isLink: true,
     onClick: toggleVisible,
     className: Object(_helpers_special_pages_insert_button_class__WEBPACK_IMPORTED_MODULE_7__["default"])(props, type)
-  }, Object(_helpers_special_page_insert_text__WEBPACK_IMPORTED_MODULE_6__["default"])(props, type, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Select specific posts', 'content-visibility')), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
+  }, Object(_helpers_special_page_insert_text__WEBPACK_IMPORTED_MODULE_6__["default"])(props, type, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Select specific posts', 'content-visibility'), niceName), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
     position: "middle left",
     className: "content-visibility-special-page-help-instructions-popover",
     onClick: _helpers_keep_popup_open__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -4115,6 +4131,14 @@ var SpecialPagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
 
   var type = 'specialPages';
   /**
+   * Helps with the content of the inserter button.
+   */
+
+  var niceName = {
+    singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Special Page', 'content-visibility'),
+    plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Special Pages', 'content-visibility')
+  };
+  /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
 
@@ -4137,7 +4161,7 @@ var SpecialPagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
     isLink: true,
     onClick: toggleVisible,
     className: Object(_helpers_special_pages_insert_button_class__WEBPACK_IMPORTED_MODULE_7__["default"])(props, type)
-  }, Object(_helpers_special_page_insert_text__WEBPACK_IMPORTED_MODULE_6__["default"])(props, type, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Select special pages', 'content-visibility')), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
+  }, Object(_helpers_special_page_insert_text__WEBPACK_IMPORTED_MODULE_6__["default"])(props, type, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Select special pages', 'content-visibility'), niceName), isVisible && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
     position: "middle left",
     className: "content-visibility-special-page-help-instructions-popover",
     onClick: _helpers_keep_popup_open__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -4612,39 +4636,27 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Determine the text for the button which opens the popup for the special pages inserter. By default, if there are
  * no special pages selected, it will be 'Select special pages'. However, if there are special pages set, it will
- * list those pages, comma separated.
+ * say how many.
  *
- * @param {object} props the props for this current iteration of the inserter.
- * @return {string} the text to be used for the button.
+ * @param object props the props for this current iteration of the inserter.
+ * @param string type the key in the object data store for specialPages
+ * @param string defaultVal the original, default, text for the button (which is shown we no special pages are selected)
+ * @param object niceName the text-friendly versions of the type of special page. i.e. "Special Pages" as opposed to 'special-page'.
+ *                        object contains a singular and plural property.
+ * @return string the text to be used for the button.
  */
 
-var specialPagesInsertText = function specialPagesInsertText(props, type, defaultVal) {
+var specialPagesInsertText = function specialPagesInsertText(props, type, defaultVal, niceName) {
   // if nothing is set, return a prompt to select special pages.
   if (props.attributes.contentVisibilityRules.specialPage[type] === undefined || props.attributes.contentVisibilityRules.specialPage[type].length === 0) {
     return defaultVal;
   }
 
-  var specialPages = props.attributes.contentVisibilityRules.specialPage[type]; // if this value is non-empty it is an array of objects. We want the label property from each of those objects.
-
-  var labels = [];
-  specialPages.forEach(function (element) {
-    labels.push(element.label);
-  });
-
-  var insertText = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('This block will be ', 'content-visibility') + props.attributes.contentVisibility + Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(' on: ', 'content-visibility'); // If we have more than (magic number) 3 items we only list the first 3 and then "...and others"
-
-
-  var excerptCount = 2; // this is horrible and I am ashamed.
-
-  if (labels.length <= excerptCount) {
-    insertText += labels.join(', ');
-  } else {
-    var otherOrOthers = excerptCount + 1 === labels.length ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(' other', 'content-visibility') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(' others', 'content-visibility');
-    var firstN = labels.slice(0, excerptCount);
-    var lastN = labels.length - excerptCount;
-    insertText += firstN.join(', ') + Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(', and ', 'content-visibility') + lastN + otherOrOthers;
-  }
-
+  var shownOrHidden = props.attributes.contentVisibility;
+  var specialPages = props.attributes.contentVisibilityRules.specialPage[type];
+  var specialPagesCount = specialPages.length;
+  var niceType = specialPagesCount === 1 ? niceName.singular : niceName.plural;
+  var insertText = shownOrHidden + Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(' on ') + specialPagesCount + ' ' + niceType;
   return insertText;
 };
 
