@@ -28,7 +28,6 @@ Do you use columns and put other blocks in them? Content Visibility allows you t
 ## Coming Soon
 
  - [ ] A way to set replacement content when a block is hidden
- - [ ] Ensure this works with the new 'widgets' screen (controls appear but functionality is currently blocked by [this gutenberg bug](https://github.com/WordPress/gutenberg/issues/27173))
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
  - [ ] Geolocation: Show this block only to users whose connection is in France

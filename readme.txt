@@ -3,8 +3,8 @@ Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
 Tags: block, content, visibility
 Requires at least: 5.0
-Tested up to: 5.6
-Stable tag: 0.1.6
+Tested up to: 5.6.1
+Stable tag: 0.1.7
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -31,14 +31,18 @@ Use Reusable Blocks? No problem, Content Visibility handles those too.
 
 Do you use columns and put other blocks in them? Content Visibility allows you to control both the 'nested' blocks (such as a paragraph block in a column block) or the 'parent' block themselves (perhaps hide an entire column for users who aren't signed in?). Other examples of nested blocks are the Group Block or if you use an accordion or tabs block; all work!
 
+## Widgets
+
+Since version 0.1.7 you are now able to control the visibility of your widgets. As long as you have version 9.9 or above of the [Gutenberg plugin](https://wordpress.org/plugins/gutenberg/) you are able to use content visibility on all of your widgets, just like you can with all of your blocks in the content editor. Limit display of your widgets on specific URLs on your site. Want to show a specific text block to only people who are signed in and ONLY on search results? You got it.
+
 ## Coming Soon
 
  - [ ] A way to set replacement content when a block is hidden
- - [ ] Ensure this works with the new 'widgets' screen (controls appear but functionality is currently blocked by [this gutenberg bug](https://github.com/WordPress/gutenberg/issues/27173))
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
  - [ ] Geolocation: Show this block only to users whose connection is in France
  - [ ] Specific Users: Only show a block when a specific user is signed in
+ - [ ] Specific 3rd-party plugin integrations. Show a block when someone has purchased something from your WooCommerce store. Or when someone has submitted a specific Gravity Form.
  - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/content-visibility/issues/new)
 
 ## Development
@@ -49,7 +53,7 @@ Development is mostly done on [github](https://github.com/richardtape/content-vi
 
 = What's with the logo? =
 
-It's a chameleon. A cool little creature which can change the way it appears - to make itself more or less visible. Seemed appropriate!
+It's a chameleon. A cool little creature which can change the way it appears - to make itself more or less visible. Seemed appropriate! Also, your suspicions are correct; a designer, I am not.
 
 = Got a question? =
 
@@ -59,6 +63,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.1.7 =
+* Added content visibility to the block-editor based widgets screen currently only available with the Gutenberg plugin. Enables you to select which posts, pages, or special types of content (such as the 404 error, a search results page, a date archive etc.) where each widget will be shown or hidden.
 
 = 0.1.6 =
 * Fixed some minor UI niggles.
