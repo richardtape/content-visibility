@@ -32,6 +32,15 @@ function rule_logic_special_page( $rule_value, $block_visibility, $block ) {
 
 	// $rule_value is an array that contains a list of the different types of special pages, i.e. specialPages, pages, posts etc.
 
+	// Test if all of the rules are empty.
+	$rules_copy = $rule_value;
+	$empty_test = array_filter( $rules_copy );
+
+	// If all of the specialPage rules are empty, return true to allow other rules to determine visibility.
+	if ( empty( $empty_test ) ) {
+		return true;
+	}
+
 	// The logic here is if ANY of the items in ANY of the specialPages returns true, then this block should be kept.
 	$matches_any_special_page_rule = false;
 

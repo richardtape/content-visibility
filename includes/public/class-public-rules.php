@@ -201,11 +201,6 @@ class Public_Rules {
 		// would prohibit this block from being shown.
 		foreach ( $block_rules as $rule_type => $rule_value ) {
 
-			// Skip if we don't have a registered ruleset or callback for this rule type.
-			if ( ! in_array( $rule_type, array_keys( $rules_and_callbacks ), true ) ) {
-				continue;
-			}
-
 			// If the return of the callback is 'true' then the block is to be kept.
 			$keep_block = call_user_func( $rules_and_callbacks[ $rule_type ], $rule_value, $block_visibility, $block );
 

@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: block, content, visibility
 Requires at least: 5.0
 Tested up to: 5.6.1
-Stable tag: 0.1.7
+Stable tag: 0.1.8
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -63,6 +63,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.1.8 =
+* Fixed a bug where setting no special pages may ignore other rules. Not cool.
 
 = 0.1.7 =
 * Added content visibility to the block-editor based widgets screen currently only available with the Gutenberg plugin. Enables you to select which posts, pages, or special types of content (such as the 404 error, a search results page, a date archive etc.) where each widget will be shown or hidden.
