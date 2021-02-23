@@ -1,9 +1,9 @@
 === Content Visibility ===
 Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
-Tags: block, content, visibility
+Tags: block, content, visibility, content-visibility
 Requires at least: 5.0
-Tested up to: 5.6.1
+Tested up to: 5.6.2
 Stable tag: 0.1.8
 Requires PHP: 7.0
 License: GPLv2 or later
