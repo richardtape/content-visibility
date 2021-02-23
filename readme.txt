@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: block, content, visibility, content-visibility
 Requires at least: 5.0
 Tested up to: 5.6.2
-Stable tag: 0.1.8
+Stable tag: 0.2.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ Decide when, where, and to whom your blocks are visible.
 
 == Description ==
 
-Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for [**role-based**](https://github.com/richardtape/content-visibility-user-role) visibility and [**time-based**](https://github.com/richardtape/content-visibility-date-and-time) visibility.
+Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for [**role-based**](https://github.com/richardtape/content-visibility-user-role) visibility and [**time-based**](https://wordpress.org/plugins/content-visibility-date-and-time/) visibility.
 
 ## Individual Block Controls
 
