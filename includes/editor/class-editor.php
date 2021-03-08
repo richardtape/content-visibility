@@ -76,7 +76,7 @@ class Editor {
 		$screens = array(
 			'post',
 			'page',
-			'appearance_page_gutenberg-widgets',
+			$this->get_widget_screen_id(),
 		);
 
 		$other_post_types = $this->get_non_builtin_post_types_that_use_block_editor();
@@ -131,11 +131,12 @@ class Editor {
 			$content_visibility_args['local'] = true;
 		}
 
-		$content_visibility_args['specialPages'] = \RichardTape\ContentVisibility\get_special_pages();
-
-		$content_visibility_args['pages'] = \RichardTape\ContentVisibility\get_pages();
-
-		$content_visibility_args['posts'] = \RichardTape\ContentVisibility\get_posts();
+		// Only add the special pages, posts, and pages, on the Widgets screen.
+		if ( 'appearance_page_gutenberg-widgets' === get_current_screen()->id ) {
+			$content_visibility_args['specialPages'] = \RichardTape\ContentVisibility\get_special_pages();
+			$content_visibility_args['pages']        = \RichardTape\ContentVisibility\get_pages();
+			$content_visibility_args['posts']        = \RichardTape\ContentVisibility\get_posts();
+		}
 
 		wp_localize_script( 'content-visibility', 'ContentVisibility', $content_visibility_args );
 
@@ -144,6 +145,34 @@ class Editor {
 		wp_enqueue_style( 'content-visibility-panel', plugins_url( 'build/index.css', dirname( dirname( __FILE__ ) ) ) );
 
 	}//end enqueue_editor_assets()
+
+
+	/**
+	 * Fetch public, non-built-in post types that are using the block editor.
+	 *
+	 * @since 0.2.0
+	 * @return boolean true if the current screen is the block editorified widgets screen. False otherwise.
+	 */
+	public function on_widgets_screen() {
+
+		return (bool) ( $this->get_widget_screen_id() === get_current_screen()->id );
+
+	}//end on_widgets_screen()
+
+
+	/**
+	 * The Screen ID of the block editor widgets screen. When it's part of the Gutenberg plugin it will
+	 * be appearance_page_gutenberg-widgets but when the new widgets screen gets merged into WordPress core
+	 * this may be something different.
+	 *
+	 * @since 0.2.0
+	 * @return string The screen ID of the block editor widgets screen.
+	 */
+	public function get_widget_screen_id() {
+
+		return 'appearance_page_gutenberg-widgets';
+
+	}//end get_widget_screen_id()
 
 	/**
 	 * Fetch public, non-built-in post types that are using the block editor.
