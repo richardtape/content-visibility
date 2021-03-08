@@ -1,10 +1,10 @@
 === Content Visibility ===
 Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
-Tags: block, content, visibility, contentvisibility
+Tags: block, content, visibility, contentvisibility, show, hide
 Requires at least: 5.0
 Tested up to: 5.6.2
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -64,9 +64,11 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 
 == Changelog ==
 
+= 0.2.1 =
+* Fixed bug where data that is only intended to be loaded on the block editor widgets screen was being loaded on all block editor screens. Props @jeremyfelt
+
 = 0.2.0 =
 * Added dashboard and settings classes ready for add-ons which require settings.
-* Fixed bug where data that is only intended to be loaded on the block editor widgets screen was being loaded on all block editor screens. Props @jeremyfelt
 
 = 0.1.8 =
 * Fixed a bug where setting no special pages may ignore other rules. Not cool.

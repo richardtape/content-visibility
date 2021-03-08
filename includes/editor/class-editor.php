@@ -150,7 +150,7 @@ class Editor {
 	/**
 	 * Fetch public, non-built-in post types that are using the block editor.
 	 *
-	 * @since 0.2.0
+	 * @since 0.2.1
 	 * @return boolean true if the current screen is the block editorified widgets screen. False otherwise.
 	 */
 	public function on_widgets_screen() {
@@ -165,7 +165,7 @@ class Editor {
 	 * be appearance_page_gutenberg-widgets but when the new widgets screen gets merged into WordPress core
 	 * this may be something different.
 	 *
-	 * @since 0.2.0
+	 * @since 0.2.1
 	 * @return string The screen ID of the block editor widgets screen.
 	 */
 	public function get_widget_screen_id() {
