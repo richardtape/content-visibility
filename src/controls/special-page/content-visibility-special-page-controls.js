@@ -34,6 +34,7 @@ export const ContentVisibilitySpecialPageControls = withState( {
  * @return {Object} A Fill component wrapping the ContentVisibilitySpecialPageControls component.
  */
 function ContentVisibilitySpecialPageFill() {
+
     return (
         <Fill name="content-visibility-extra-controls">
             {

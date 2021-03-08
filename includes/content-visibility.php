@@ -23,14 +23,22 @@ function plugins_loaded__bv_loader() {
 
 	if ( is_admin() ) {
 
+		// Load our editor assets which are the main bulk of this plugin.
 		require_once plugin_dir_path( __FILE__ ) . 'editor/class-editor.php';
 
 		$bv_editor = new \RichardTape\ContentVisibility\Editor();
 		$bv_editor->init();
 
+		// Load our dashboard class, this handles things like niceties on the plugins page, plugin settings etc.
+		require_once plugin_dir_path( __FILE__ ) . 'dashboard/class-dashboard.php';
+
+		$cv_dashboard = new \RichardTape\ContentVisibility\Dashboard();
+		$cv_dashboard->init();
+
 		return;
 	}
 
+	// We're not in the admin so we load the public side of things which is the content rules parsing for the most part.
 	require_once plugin_dir_path( __FILE__ ) . 'public/class-public-rules.php';
 
 	$bv_public = new \RichardTape\ContentVisibility\Public_Rules();
