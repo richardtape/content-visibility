@@ -76,6 +76,7 @@ class Editor {
 		$screens = array(
 			'post',
 			'page',
+			'wp_block',
 			$this->get_widget_screen_id(),
 		);
 
