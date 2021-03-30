@@ -3228,7 +3228,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var contentVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["createHigherOrderComponent"])(function (BlockEdit) {
   return function (props) {
-    if (!Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_9__["default"])(props.name) || !props.isSelected) {
+    if (!Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_9__["default"])(props.name)) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props);
     } // Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
     // Normally this would be props.attributes.contentVisibilityRules for anything registered in core, or in JS. However, as it's
