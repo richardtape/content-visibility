@@ -3,8 +3,8 @@ Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
 Tags: block, content, visibility, contentvisibility, show, hide
 Requires at least: 5.0
-Tested up to: 5.6.2
-Stable tag: 0.2.1
+Tested up to: 5.7.0
+Stable tag: 0.2.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -63,6 +63,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.2.2 =
+* Content Visibility controls now appear when you select multiple blocks.
 
 = 0.2.1 =
 * Fixed bug where data that is only intended to be loaded on the block editor widgets screen was being loaded on all block editor screens. Props @jeremyfelt
