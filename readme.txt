@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: block, content, visibility, contentvisibility, show, hide
 Requires at least: 5.0
 Tested up to: 5.7.0
-Stable tag: 0.2.3
+Stable tag: 0.2.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,11 +13,13 @@ Decide when, where, and to whom your blocks are visible.
 
 == Description ==
 
-Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for [**role-based**](https://github.com/richardtape/content-visibility-user-role) visibility and [**time-based**](https://wordpress.org/plugins/content-visibility-date-and-time/) visibility.
+Your Content. Your Rules. Decide who sees what and when. No setup or complex settings. Write content, decide who should see it, and press publish.
+
+Content Visibility provides a set of controls to say whether each discrete piece of content (or 'block' in WordPress parlance) should be shown to users who are signed in to your site or not. Additional add-ons provide controls for [**role-based**](https://github.com/richardtape/content-visibility-user-role) visibility, [**time-based**](https://wordpress.org/plugins/content-visibility-date-and-time/) visibility, and [**location-based**](https://wordpress.org/plugins/content-visibility-geolocation/) visibility. You can also show or hide blocks to folks using [RSS](https://wordpress.org/plugins/content-visibility-rss-feed/) Readers.
 
 ## Individual Block Controls
 
-Every individual block on all posts and pages on your site can have their own controls. Mix and match the visibility of blocks on a single page. Need some blocks to show to everyone and a few to only be available to your site's subscribers? No problem. Only want a message to appear on Christmas Day? You got it. Only want those who are signed in to your site to see certain pieces of content? Easy peasy.
+Every individual block on all posts and pages (and custom post types) on your site can have their own controls. Mix and match the visibility of blocks on a single page. Need some blocks to show to everyone and a few to only be available to your site's subscribers? No problem. Only want a message to appear on Christmas Day? You got it. Only want those who are signed in to your site to see certain pieces of content? Easy peasy.
 
 ## At a glance
 
@@ -40,7 +42,7 @@ Since version 0.1.7 you are now able to control the visibility of your widgets. 
  - [ ] A way to set replacement content when a block is hidden
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
- - [ ] Geolocation: Show this block only to users whose connection is in France
+ - [x] [Geolocation](https://wordpress.org/plugins/content-visibility-geolocation/): Show this block only to users whose connection is in France.
  - [ ] Specific Users: Only show a block when a specific user is signed in
  - [ ] Specific 3rd-party plugin integrations. Show a block when someone has purchased something from your WooCommerce store. Or when someone has submitted a specific Gravity Form.
  - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/content-visibility/issues/new)
@@ -63,6 +65,10 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.2.4 =
+* WordPress 5.7.0 compatibility.
+* Nothing really to see here. Fixed an issue with the build script which prevented 0.2.3 from being available in the plugins repo.
 
 = 0.2.3 =
 * Content Visibility controls now show on the reusable blocks edit screen in addition to when you insert a reusable block.

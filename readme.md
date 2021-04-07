@@ -30,7 +30,7 @@ Do you use columns and put other blocks in them? Content Visibility allows you t
  - [ ] A way to set replacement content when a block is hidden
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
- - [ ] Geolocation: Show this block only to users whose connection is in France
+ - [x] [Geolocation](https://wordpress.org/plugins/content-visibility-geolocation/): Show this block only to users whose connection is in France.
  - [ ] Specific Users: Only show a block when a specific user is signed in
  - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/content-visibility/issues/new)
 
