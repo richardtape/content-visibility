@@ -8,11 +8,13 @@ export const ContentVisibilityUserAuthenticationPanelBodyControl = withState( {
     option: '',
 } )( ( { option, setState, props } ) => {
 
+    let hasRulesClass = ( props.attributes.contentVisibilityRules && props.attributes.contentVisibilityRules.userAuthenticated && props.attributes.contentVisibilityRules.userAuthenticated !== '' ) ? ' has-active-rules' : '';
+
     return (
         <PanelBody
             title={ __( 'User Authentication', 'content-visibility' ) }
             initialOpen={ false }
-            className="content-visibility-control-panel content-visibility-user-authenticated-controls"
+            className={"content-visibility-control-panel content-visibility-user-authenticated-controls" + hasRulesClass}
         >
             <PanelRow>
                 <ContentVisibilityUserAuthenticationRadioControl props={ props } />

@@ -1,6 +1,6 @@
 {
   "name": "content-visibility",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Decide when, where, and to whom your content blocks are visible.",
   "main": "build/index.js",
   "scripts": {

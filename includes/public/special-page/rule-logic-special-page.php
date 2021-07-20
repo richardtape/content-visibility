@@ -82,6 +82,24 @@ function rule_logic_special_page( $rule_value, $block_visibility, $block ) {
 				$matches_any_special_page_rule = (bool) rule_logic_special_page_posts( $rule_value[ $rule ], $block );
 				break;
 
+			case 'categories':
+				// If we have already returned true from any of these switch statements, bail, as we don't need to do more tests.
+				if ( true === $matches_any_special_page_rule ) {
+					break;
+				}
+
+				$matches_any_special_page_rule = (bool) rule_logic_special_page_categories( $rule_value[ $rule ], $block );
+				break;
+
+			case 'tags':
+				// If we have already returned true from any of these switch statements, bail, as we don't need to do more tests.
+				if ( true === $matches_any_special_page_rule ) {
+					break;
+				}
+
+				$matches_any_special_page_rule = (bool) rule_logic_special_page_tags( $rule_value[ $rule ], $block );
+				break;
+
 			default:
 				break;
 		}
@@ -219,6 +237,81 @@ function rule_logic_special_page_posts( $rule_value_selections, $block ) {
 
 }//end rule_logic_special_page_posts()
 
+
+/**
+ * Callbackfunction for special page categories.
+ * Test if the current post being shown is in the chosen category list.
+ *
+ * @param array $rule_value_selections The specific selections for this block for this type of specialPage.
+ * @param array $block The current block being evaluated.
+ *
+ * @return bool True If the current URL is found in $rule_value_selections. False otherwise.
+ */
+function rule_logic_special_page_categories( $rule_value_selections, $block ) {
+
+	// If there's no rules, then this URL is not in this block selection.
+	if ( empty( $rule_value_selections ) ) {
+		return false;
+	}
+
+	// if ANY of the pages selected in $rule_value_selections are this page, then this function returns true immediately.
+	// So default to false here and if we get past this foreach statement, we return true.
+	$this_url_is_in_passed_selections = false;
+
+	foreach ( $rule_value_selections as $id => $page ) {
+
+		if ( ! isset( $page['value'] ) ) {
+			continue;
+		}
+
+		$category_id = absint( $page['value'] );
+
+		if ( in_category( $category_id ) ) {
+			return true;
+		}
+	}
+
+	return $this_url_is_in_passed_selections;
+
+}//end rule_logic_special_page_categories()
+
+
+/**
+ * Callbackfunction for special page tags.
+ * Test if the current post being shown is in the chosen tags list.
+ *
+ * @param array $rule_value_selections The specific selections for this block for this type of specialPage.
+ * @param array $block The current block being evaluated.
+ *
+ * @return bool True If the current URL is found in $rule_value_selections. False otherwise.
+ */
+function rule_logic_special_page_tags( $rule_value_selections, $block ) {
+
+	// If there's no rules, then this URL is not in this block selection.
+	if ( empty( $rule_value_selections ) ) {
+		return false;
+	}
+
+	// if ANY of the pages selected in $rule_value_selections are this page, then this function returns true immediately.
+	// So default to false here and if we get past this foreach statement, we return true.
+	$this_url_is_in_passed_selections = false;
+
+	foreach ( $rule_value_selections as $id => $page ) {
+
+		if ( ! isset( $page['value'] ) ) {
+			continue;
+		}
+
+		$tag_id = absint( $page['value'] );
+
+		if ( has_tag( $tag_id ) ) {
+			return true;
+		}
+	}
+
+	return $this_url_is_in_passed_selections;
+
+}//end rule_logic_special_page_tags()
 
 function rule_logic_special_page_generic( $rule_value_selections, $callback ) {
 

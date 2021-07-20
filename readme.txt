@@ -1,10 +1,10 @@
 === Content Visibility ===
 Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
-Tags: block, content, visibility, contentvisibility, show, hide
+Tags: contentvisibility, block, content, visibility, show, hide
 Requires at least: 5.0
-Tested up to: 5.7.0
-Stable tag: 0.2.4
+Tested up to: 5.8.0
+Stable tag: 0.2.5
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -37,6 +37,8 @@ Do you use columns and put other blocks in them? Content Visibility allows you t
 
 Since version 0.1.7 you are now able to control the visibility of your widgets. As long as you have version 9.9 or above of the [Gutenberg plugin](https://wordpress.org/plugins/gutenberg/) you are able to use content visibility on all of your widgets, just like you can with all of your blocks in the content editor. Limit display of your widgets on specific URLs on your site. Want to show a specific text block to only people who are signed in and ONLY on search results? You got it.
 
+Version 0.2.5 adds the ability to show or hide your widgets on posts that are in specific category or tags.
+
 ## Coming Soon
 
  - [ ] A way to set replacement content when a block is hidden
@@ -65,6 +67,10 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.2.5 =
+* WordPress 5.8.0 compatibility.
+* Added Category and Tag controls for widgets screen. So now you can you say "show this widget (block) when the post being shown has this tag" or maybe "hide this block when the post being shown is in this category". Thanks to Karl Anderson in the support forum for making this request.
 
 = 0.2.4 =
 * WordPress 5.7.0 compatibility.

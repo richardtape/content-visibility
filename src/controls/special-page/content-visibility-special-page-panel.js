@@ -6,22 +6,30 @@ import { addFilter } from '@wordpress/hooks';
 import SpecialPagePageInserter from './content-visibility-special-page-page-inserter';
 import PagePageInserter from './content-visibility-page-page-inserter';
 import PostPageInserter from './content-visibility-post-page-inserter';
+import CategoryPageInserter from './content-visibility-special-page-category-inserter';
+import TagPageInserter from './content-visibility-special-page-tag-inserter';
+
+import hasRules from '../../helpers/has-rules';
 
 export const ContentVisibilitySpecialPagePanelBodyControl = withState( {
     option: [],
 } )( ( { option, setState, props } ) => {
 
+    let hasRulesClass = ( hasRules( props, 'specialPage' ) ) ? ' has-active-rules' : '';
+
     return (
         <PanelBody
             title={ __( 'Special Page', 'content-visibility' ) }
             initialOpen={ false }
-            className="content-visibility-control-panel block-visibility-special-page-controls"
+            className={"content-visibility-control-panel block-visibility-special-page-controls" + hasRulesClass }
         >
 
             <PanelRow className="content-visibility-page-inserter-panel-row">
                 <SpecialPagePageInserter props={ props } />
                 <PagePageInserter props={ props } />
                 <PostPageInserter props={ props } />
+                <CategoryPageInserter props={ props } />
+                <TagPageInserter props={ props } />
             </PanelRow>
 
             { props.attributes.contentVisibility && (
@@ -43,7 +51,9 @@ function registerSpecialPageVisibilityRule( defaultRules ) {
     defaultRules.specialPage = {
         pages: [],
         specialPages: [],
-        posts: []
+        posts: [],
+        categories: [],
+        tags: []
     };
 
     return defaultRules;

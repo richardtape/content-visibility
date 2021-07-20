@@ -247,3 +247,91 @@ function get_posts() {
 	return $posts_data;
 
 }//end get_posts()
+
+
+/**
+ * An array of categories with their associated callback function which determines if the current post is in this particular category.
+ *
+ * @since 0.2.5
+ * @return array associative array containing a list of categories. Keys are the ID of the term.
+ */
+function get_categories() {
+
+	$categories_args = array(
+		'hide_empty' => false,
+		'orderby'    => 'name',
+		'order'      => 'ASC',
+	);
+
+	$categories_args = apply_filters( 'content_visibility_get_categories_args', $categories_args );
+
+	$categories = \get_categories( $categories_args );
+
+	if ( false === $categories || empty( $categories ) ) {
+		return array();
+	}
+
+	$categories_data = array();
+
+	foreach ( $categories as $id => $category ) {
+
+		$category_id     = absint( $category->term_id );
+		$sanitized_title = sanitize_text_field( $category->name );
+
+		$title = ( empty( $sanitized_title ) ) ? __( '[This category has no title]', 'content-visibility' ) : $sanitized_title;
+
+		$categories_data[ $category_id ] = array(
+			'label'    => $title,
+			'id'       => $category_id,
+			'callback' => array( 'in_category', array( $category_id ) ),
+			'notes'    => '',
+		);
+	}
+
+	return $categories_data;
+
+}//end get_categories()
+
+
+/**
+ * An array of tags with their associated callback function which determines if the current post is in this particular tag.
+ *
+ * @since 0.2.5
+ * @return array associative array containing a list of tags. Keys are the ID of the term.
+ */
+function get_tags() {
+
+	$tags_args = array(
+		'hide_empty' => false,
+		'orderby'    => 'name',
+		'order'      => 'ASC',
+	);
+
+	$tags_args = apply_filters( 'content_visibility_get_tags_args', $tags_args );
+
+	$tags = \get_tags( $tags_args );
+
+	if ( false === $tags || empty( $tags ) ) {
+		return array();
+	}
+
+	$tags_data = array();
+
+	foreach ( $tags as $id => $tag ) {
+
+		$tag_id     = absint( $tag->term_id );
+		$sanitized_title = sanitize_text_field( $tag->name );
+
+		$title = ( empty( $sanitized_title ) ) ? __( '[This tag has no title]', 'content-visibility' ) : $sanitized_title;
+
+		$tags_data[ $tag_id ] = array(
+			'label'    => $title,
+			'id'       => $tag_id,
+			'callback' => array( 'has_tag', array( $tag_id ) ),
+			'notes'    => '',
+		);
+	}
+
+	return $tags_data;
+
+}//end get_tags()

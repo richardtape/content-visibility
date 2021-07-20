@@ -121,6 +121,7 @@ class Editor {
 				'wp-plugins',
 				'wp-edit-post',
 				'wp-dom-ready',
+				'wp-rich-text',
 			),
 			filemtime( plugin_dir_path( dirname( __DIR__ ) ) . 'build/index.js' ),
 			false
@@ -137,6 +138,8 @@ class Editor {
 			$content_visibility_args['specialPages'] = \RichardTape\ContentVisibility\get_special_pages();
 			$content_visibility_args['pages']        = \RichardTape\ContentVisibility\get_pages();
 			$content_visibility_args['posts']        = \RichardTape\ContentVisibility\get_posts();
+			$content_visibility_args['categories']   = \RichardTape\ContentVisibility\get_categories();
+			$content_visibility_args['tags']         = \RichardTape\ContentVisibility\get_tags();
 		}
 
 		wp_localize_script( 'content-visibility', 'ContentVisibility', $content_visibility_args );

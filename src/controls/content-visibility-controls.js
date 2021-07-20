@@ -1,9 +1,11 @@
-import { PanelBody, PanelRow, Slot } from '@wordpress/components';
+import { PanelBody, PanelRow, Slot, Fill } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
 import { addFilter, applyFilters } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/blockEditor';
 import { __ } from '@wordpress/i18n';
+import { registerPlugin } from '@wordpress/plugins';
+import { PluginBlockSettingsMenuItem } from '@wordpress/edit-post';
 
 import assign from 'lodash/assign';
 
@@ -52,7 +54,7 @@ export const contentVisibilityControls = createHigherOrderComponent((BlockEdit) 
     };
 }, 'contentVisibilityControls');
 
-addFilter('editor.BlockEdit', 'content-visibility/content-visibility-controls', contentVisibilityControls);
+addFilter( 'editor.BlockEdit', 'content-visibility/content-visibility-controls', contentVisibilityControls );
 
 /**
  * Filters registered block settings, extending attributes with our custom data.
@@ -106,5 +108,26 @@ export function addContentVisibilityRulesPropOnSave(extraProps, blockType, attri
 
 }// end addContentVisibilityRulesPropOnSave()
 
-addFilter('blocks.registerBlockType', 'content-visibility/addContentVisibilityRulesAttribute', addContentVisibilityRulesAttribute);
-addFilter('blocks.getSaveContent.extraProps', 'content-visibility/addContentVisibilityRulesPropOnSave', addContentVisibilityRulesPropOnSave);
+addFilter( 'blocks.registerBlockType', 'content-visibility/addContentVisibilityRulesAttribute', addContentVisibilityRulesAttribute );
+addFilter( 'blocks.getSaveContent.extraProps', 'content-visibility/addContentVisibilityRulesPropOnSave', addContentVisibilityRulesPropOnSave );
+
+
+
+/* -------------- 
+
+const ContentVisibilityPluginBlockSettingsMenuItem = () => (
+    <PluginBlockSettingsMenuItem
+        allowedBlocks={ [ 'core/paragraph' ] }
+        icon="smiley"
+        label="Menu item text"
+        onClick={ () => {
+            console.log( [wp.data.select( 'core/block-editor' ).getSelectedBlock()] );
+        } }
+    />
+);
+ 
+registerPlugin( 'block-settings-menu-group-test', {
+    render: ContentVisibilityPluginBlockSettingsMenuItem,
+} );
+
+-------------- */
