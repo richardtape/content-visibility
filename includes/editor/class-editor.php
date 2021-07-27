@@ -110,19 +110,25 @@ class Editor {
 		 */
 		do_action( 'content_visibility_enqueue_editor_assets' );
 
+		$prereqs = array(
+			'wp-blocks',
+			'wp-i18n',
+			'wp-element',
+			'wp-plugins',
+			'wp-dom-ready',
+		);
+
+		// The 5.8 widgets screen requires a special editor?! Feelsbadman.
+		if ( $this->on_widgets_screen() ) {
+			$prereqs[] = 'wp-edit-widgets';
+		} else {
+			$prereqs[] = 'wp-editor';
+		}
+
 		wp_register_script(
 			'content-visibility',
 			plugins_url( '/build/index.js', dirname( dirname( __FILE__ ) ) ),
-			array(
-				'wp-blocks',
-				'wp-i18n',
-				'wp-element',
-				'wp-editor',
-				'wp-plugins',
-				'wp-edit-post',
-				'wp-dom-ready',
-				'wp-rich-text',
-			),
+			$prereqs,
 			filemtime( plugin_dir_path( dirname( __DIR__ ) ) . 'build/index.js' ),
 			false
 		);
@@ -174,6 +180,12 @@ class Editor {
 	 */
 	public function get_widget_screen_id() {
 
+		// Widgets screen shipped with WP 5.8. So if we're on or above 5.8 then we sheck for that screen.
+		if ( version_compare( $GLOBALS['wp_version'], '5.8', '>=' ) ) {
+			return 'widgets';
+		}
+
+		// Ensure this is still available with Gutenberg plugin widgets screen before 5.8.
 		return 'appearance_page_gutenberg-widgets';
 
 	}//end get_widget_screen_id()

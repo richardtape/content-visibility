@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: contentvisibility, block, content, visibility, show, hide
 Requires at least: 5.0
 Tested up to: 5.8.0
-Stable tag: 0.2.5
+Stable tag: 0.2.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -45,7 +45,7 @@ Version 0.2.5 adds the ability to show or hide your widgets on posts that are in
  - [ ] REST API exploration. Should be fine for non-authenticated requests, but need to dive deeper for auth'd requests
  - [ ] Non-trivial dates. Think things like "Every Wednesday between 3pm and 4pm" or "First two weeks in November"
  - [x] [Geolocation](https://wordpress.org/plugins/content-visibility-geolocation/): Show this block only to users whose connection is in France.
- - [ ] Specific Users: Only show a block when a specific user is signed in
+ - [x] [Specific Users](https://wordpress.org/plugins/content-visibility-specific-users/): Show or hide a block to one or more specific users.
  - [ ] Specific 3rd-party plugin integrations. Show a block when someone has purchased something from your WooCommerce store. Or when someone has submitted a specific Gravity Form.
  - [ ] Do you have any feature requests? [Let me know!](https://github.com/richardtape/content-visibility/issues/new)
 
@@ -67,6 +67,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.2.6 =
+* Fixed issue where the block controls didn't appear on the WordPress 5.8 widgets screen.
 
 = 0.2.5 =
 * WordPress 5.8.0 compatibility.
