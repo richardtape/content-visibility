@@ -50,7 +50,7 @@ function ContentVisibilitySpecialPageFill() {
 }
 
 // Only load the Widgets-related controls on the widgets screen or we're local, due to Widgets Screen bug.
-if ( 'appearance_page_gutenberg-widgets' === ContentVisibility.screen || '1' === ContentVisibility.local ) {
+if ( 'appearance_page_gutenberg-widgets' === ContentVisibility.screen || 'widgets' === ContentVisibility.screen || '1' === ContentVisibility.local ) {
     // Add our component to the Slot provided by BlockVisibilityControls
     registerPlugin( 'content-visibility-04-special-page-fill', { render: ContentVisibilitySpecialPageFill } );
 }

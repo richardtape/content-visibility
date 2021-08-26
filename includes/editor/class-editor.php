@@ -140,7 +140,7 @@ class Editor {
 		}
 
 		// Only add the special pages, posts, and pages, on the Widgets screen.
-		if ( 'appearance_page_gutenberg-widgets' === get_current_screen()->id ) {
+		if ( $this->get_widget_screen_id() === get_current_screen()->id ) {
 			$content_visibility_args['specialPages'] = \RichardTape\ContentVisibility\get_special_pages();
 			$content_visibility_args['pages']        = \RichardTape\ContentVisibility\get_pages();
 			$content_visibility_args['posts']        = \RichardTape\ContentVisibility\get_posts();

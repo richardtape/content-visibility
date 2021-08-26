@@ -4,7 +4,7 @@ Donate link: https://girlswhocode.com/
 Tags: contentvisibility, block, content, visibility, show, hide
 Requires at least: 5.0
 Tested up to: 5.8.0
-Stable tag: 0.2.6
+Stable tag: 0.2.7
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -67,6 +67,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.2.7 =
+* Fixed an issue where in some cases the block controls for widgets still weren't appearing on the new 5.8 widgets screen.
 
 = 0.2.6 =
 * Fixed issue where the block controls didn't appear on the WordPress 5.8 widgets screen.

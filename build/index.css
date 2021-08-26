@@ -1,2 +1,301 @@
-.content-visibility-controls .content-visibility-extra-controls{display:block}.content-visibility-controls .content-visibility-rules-enabled .components-toggle-control{margin:1rem 0}.content-visibility-controls .components-base-control__label{max-width:none;margin-top:1em}.content-visibility-controls .components-radio-control__option{width:50%;margin:0.5em 0 0;display:inline-block}.content-visibility-controls .content-visibility-user-role-control .components-radio-control__option{width:100%}.content-visibility-control-panel.content-visibility-user-authenticated-controls .components-panel__row{display:block}.content-visibility-user-authenticated-control{width:100%;display:block;float:none;clear:both}.content-visibility-displayed-control .components-base-control.components-radio-control{margin-bottom:0 !important}.content-visibility-displayed-control .components-base-control.components-radio-control .components-base-control__field{margin-bottom:0}.content-visibility-displayed-control .components-base-control__field .components-radio-control__option:last-of-type{text-align:right}.content-visibility-controls.is-opened .content-visibility-control-panel{border:1px solid #e2e4e7;margin-bottom:1em;background:#fcfcfc;width:100%}.content-visibility-controls.is-opened .content-visibility-control-panel.is-opened .components-panel__body-toggle{border-bottom:1px solid #e2e4e7}.content-visibility-controls-container.hide-controls{opacity:0.2}.components-disabled{opacity:0.5}.content-visibility-user-authenticated-controls .components-panel__row .content-visibility-user-authenticated-control{margin-bottom:0}.content-visibility-user-role-controls .components-panel__row ul{margin-bottom:0}.content-visibility-user-role-controls .components-panel__row ul .components-base-control{margin-bottom:5px}.content-visibility-user-role-controls .components-panel__row ul .components-base-control:last-of-type{margin-bottom:0}.wp-admin .wp-block.content-visibility-rules-enabled-shown:after{display:block;height:24px;width:24px;margin-left:105%;margin-top:1%;opacity:0.25;box-shadow:none !important;content:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>') !important}.wp-admin .wp-block.content-visibility-rules-enabled-hidden:after{display:block;height:24px;width:24px;margin-left:105%;margin-top:1%;opacity:0.25;box-shadow:none !important;content:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>') !important}.content-visibility-controls-container .content-visibility-help-text{margin:1rem 0 0;font-size:12px;font-style:normal;color:#757575;clear:both;float:none;width:100%}.content-visibility-multi-select{width:100%;margin:1rem 0 0 0}.content-visibility-multi-select .panel-content{overflow-x:hidden}.content-visibility-multi-select-item{width:100%}.content-visibility-multi-select .select-panel label{max-width:none;margin-right:0;padding:0.7rem 0.7rem 0}.content-visibility-multi-select .select-panel label:hover,.content-visibility-multi-select .select-panel label:focus,.content-visibility-multi-select .select-panel label.selected{background:transparent}.content-visibility-multi-select .select-panel ul{padding:0.7rem 0}.content-visibility-multi-select input[type="checkbox"]{margin-right:0.5rem}.item-renderer.content-visibility-multi-select-item>span{height:20px;display:inline-block}.content-visibility-multi-select .select-panel>div{margin-top:0.25rem;padding:0 0.25rem}.content-visibility-multi-select .content-visibility-multi-select-item .dashicon{opacity:0.5}.components-button.is-secondary.content-visibility-special-page-inserter-toggle{white-space:break-spaces;max-width:85%;min-width:190px;font-size:12px;line-height:1.6;box-shadow:none}.components-button.is-secondary.content-visibility-special-page-inserter-toggle.has-items{text-decoration:none;line-height:1.6;text-transform:capitalize}.components-button.content-visibility-submit-special-pages{margin-top:1rem;margin-bottom:1rem}.content-visibility-control-panel.has-active-rules h2 button::after{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300a32a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check-circle'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'%3E%3C/path%3E%3Cpolyline points='22 4 12 14.01 9 11.01'%3E%3C/polyline%3E%3C/svg%3E");display:inline-block;height:12px;width:12px;margin-left:0.5rem;line-height:1}.content-visibility-help-text .content-visibility-special-page-help-instructions-toggle.is-small{font-size:12px;margin-top:1rem}.content-visibility-special-page-help-instructions-popover .components-popover__content{padding:1rem;width:23rem;height:30rem !important}.content-visibility-control-panel .special-page-help-instructions-button{text-align:right;margin-top:1rem;margin-bottom:0}.content-visibility-control-panel .special-page-help-instructions-button .content-visibility-special-page-help-instructions-toggle{margin-left:0;margin-right:0;padding-left:3px}.content-visibility-control-panel .special-page-help-instructions-button .dashicon{position:relative;top:3px;color:#007cba}.content-visibility-submit-special-pages-button-container{text-align:right;margin-top:0}.content-visibility-special-page-help-instructions-popover span{color:black;font-weight:600}.content-visibility-close-popover{position:absolute;top:-2rem;right:-1rem}.components-panel__row.content-visibility-page-inserter-panel-row{flex-direction:column}.content-visibility-special-page-inserter{margin-top:1rem}.content-visibility-special-page-inserter .dashicon{position:relative;top:4px;opacity:0.6}
+/*
+* Styles for the Content Visibility WordPress plugin by Rich Tape.
+*
+* This file provides the core styling for the main Content Visibility Plugin. We mostly
+* use native WordPress control components, and rely on their styling to make this plugin
+* feel native to WordPress. However, there are some tweaks needed as we're using components
+* in ways that WordPress doesn't use yet - and hence doesn't provide styling affordances for.
+*/
+/*
+    Ensure our slots for add-ons are block.
+*/
+.content-visibility-controls .content-visibility-extra-controls {
+  display: block; }
 
+/*
+    Give the Rules Enabled toggle a little more breathing room.
+*/
+.content-visibility-controls .content-visibility-rules-enabled .components-toggle-control {
+  margin: 1rem 0; }
+
+/*
+    Make the Show/Hidden radio buttons sit next to each other...
+*/
+.content-visibility-controls .components-base-control__label {
+  max-width: none;
+  margin-top: 1em; }
+
+.content-visibility-controls .components-radio-control__option {
+  width: 50%;
+  margin: 0.5em 0 0;
+  display: inline-block; }
+
+/*
+    ...But not for User Roles
+*/
+.content-visibility-controls .content-visibility-user-role-control .components-radio-control__option {
+  width: 100%; }
+
+/*
+    User Auth controls, with the help text, look weird due to flex.
+*/
+.content-visibility-control-panel.content-visibility-user-authenticated-controls .components-panel__row {
+  display: block; }
+
+.content-visibility-user-authenticated-control {
+  width: 100%;
+  display: block;
+  float: none;
+  clear: both; }
+
+/*
+    Make the shown/not shown control stand out a little
+*/
+.content-visibility-displayed-control .components-base-control.components-radio-control {
+  margin-bottom: 0 !important; }
+
+.content-visibility-displayed-control .components-base-control.components-radio-control .components-base-control__field {
+  margin-bottom: 0; }
+
+.content-visibility-displayed-control .components-base-control__field .components-radio-control__option:last-of-type {
+  text-align: right; }
+
+/*
+    Styling for the rule panels
+*/
+.content-visibility-controls.is-opened .content-visibility-control-panel {
+  border: 1px solid #e2e4e7;
+  margin-bottom: 1em;
+  background: #fcfcfc;
+  width: 100%; }
+
+.content-visibility-controls.is-opened .content-visibility-control-panel.is-opened .components-panel__body-toggle {
+  border-bottom: 1px solid #e2e4e7; }
+
+/*
+    When the rules are disabled (default) we lower opacity of controls
+*/
+.content-visibility-controls-container.hide-controls {
+  opacity: 0.2; }
+
+.components-disabled {
+  opacity: 0.5; }
+
+/*
+    Tidy up margins for user auth
+*/
+.content-visibility-user-authenticated-controls .components-panel__row .content-visibility-user-authenticated-control {
+  margin-bottom: 0; }
+
+/*
+    User roles have a massive margin, reduce that
+*/
+.content-visibility-user-role-controls .components-panel__row ul {
+  margin-bottom: 0; }
+
+.content-visibility-user-role-controls .components-panel__row ul .components-base-control {
+  margin-bottom: 5px; }
+
+.content-visibility-user-role-controls .components-panel__row ul .components-base-control:last-of-type {
+  margin-bottom: 0; }
+
+/*
+    When a block has rules enabled, we style it to show it has rules. Looks a bit weird that we have two
+    rules almost identical. But the BlockListBlock component only accepts one className so this is how it has to be.
+    Different icons used for 'shown' or 'hidden' rules.
+*/
+.wp-admin .wp-block.content-visibility-rules-enabled-shown:after {
+  display: block;
+  height: 24px;
+  width: 24px;
+  margin-left: 105%;
+  margin-top: 1%;
+  opacity: 0.25;
+  box-shadow: none !important;
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>') !important; }
+
+.wp-admin .wp-block.content-visibility-rules-enabled-hidden:after {
+  display: block;
+  height: 24px;
+  width: 24px;
+  margin-left: 105%;
+  margin-top: 1%;
+  opacity: 0.25;
+  box-shadow: none !important;
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>') !important; }
+
+/*
+    Help text generic styling. This is to make it look like a WordPress hint.
+*/
+.content-visibility-controls-container .content-visibility-help-text {
+  margin: 1rem 0 0;
+  font-size: 12px;
+  font-style: normal;
+  color: #757575;
+  clear: both;
+  float: none;
+  width: 100%; }
+
+/*
+    Multi-select component
+    ----------------------    
+*/
+.content-visibility-multi-select {
+  width: 100%;
+  margin: 1rem 0 0 0; }
+
+/*
+    Remove horizontal scrolling, artifact of weird padding on main component.
+*/
+.content-visibility-multi-select .panel-content {
+  overflow-x: hidden; }
+
+/*
+    Ensure each of the items fill the dropdown and have space to make more readable.
+*/
+.content-visibility-multi-select-item {
+  width: 100%; }
+
+.content-visibility-multi-select .select-panel label {
+  max-width: none;
+  margin-right: 0;
+  padding: 0.7rem 0.7rem 0; }
+
+/*
+    Don't need background colour change on hover, not WordPress-y.
+*/
+.content-visibility-multi-select .select-panel label:hover,
+.content-visibility-multi-select .select-panel label:focus,
+.content-visibility-multi-select .select-panel label.selected {
+  background: transparent; }
+
+/*
+    Give ourselves some breathing room with the main list items. Leaves the 'select all' standing alone at the top.
+*/
+.content-visibility-multi-select .select-panel ul {
+  padding: 0.7rem 0; }
+
+.content-visibility-multi-select input[type="checkbox"] {
+  margin-right: 0.5rem; }
+
+/*
+    Make each item a bit more uniform, ensures horiz alignment with icons.
+*/
+.item-renderer.content-visibility-multi-select-item > span {
+  height: 20px;
+  display: inline-block; }
+
+/*
+    Give the search input some breathing room.
+*/
+.content-visibility-multi-select .select-panel > div {
+  margin-top: 0.25rem;
+  padding: 0 0.25rem; }
+
+/*
+    Make the icons a little less harsh
+*/
+.content-visibility-multi-select .content-visibility-multi-select-item .dashicon {
+  opacity: 0.5; }
+
+/*
+    Popover content toggle buttons. Make sure they can handle long values as someone may
+    select multiple options. Give max-width to ensure the button's icon is inline.
+    min-width ensures the initial button's value doesn't wrap (i.e. when it's short)
+*/
+.components-button.is-secondary.content-visibility-special-page-inserter-toggle {
+  white-space: break-spaces;
+  max-width: 85%;
+  min-width: 190px;
+  font-size: 12px;
+  line-height: 1.6;
+  box-shadow: none; }
+
+/*
+    If someone has selected special pages, then we make it less like a link.
+*/
+.components-button.is-secondary.content-visibility-special-page-inserter-toggle.has-items {
+  text-decoration: none;
+  line-height: 1.6;
+  text-transform: capitalize; }
+
+/*
+    The 'Set Selected' button
+*/
+.components-button.content-visibility-submit-special-pages {
+  margin-top: 1rem;
+  margin-bottom: 1rem; }
+
+/*
+    When a specific rule is set, we add a little indicator so folks can see which types of rules are set at a glance.
+*/
+.content-visibility-control-panel.has-active-rules h2 button::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300a32a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check-circle'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'%3E%3C/path%3E%3Cpolyline points='22 4 12 14.01 9 11.01'%3E%3C/polyline%3E%3C/svg%3E");
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin-left: 0.5rem;
+  line-height: 1; }
+
+/*
+    Special Page Help Toggle
+*/
+.content-visibility-help-text .content-visibility-special-page-help-instructions-toggle.is-small {
+  font-size: 12px;
+  margin-top: 1rem; }
+
+.content-visibility-special-page-help-instructions-popover .components-popover__content {
+  padding: 1rem;
+  width: 23rem;
+  height: 30rem !important; }
+
+.content-visibility-control-panel .special-page-help-instructions-button {
+  text-align: right;
+  margin-top: 1rem;
+  margin-bottom: 0; }
+
+.content-visibility-control-panel .special-page-help-instructions-button .content-visibility-special-page-help-instructions-toggle {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 3px; }
+
+.content-visibility-control-panel .special-page-help-instructions-button .dashicon {
+  position: relative;
+  top: 3px;
+  color: #007cba; }
+
+.content-visibility-submit-special-pages-button-container {
+  text-align: right;
+  margin-top: 0; }
+
+/*
+    Special Page Help Popover
+*/
+.content-visibility-special-page-help-instructions-popover span {
+  color: black;
+  font-weight: 600; }
+
+/* Special Page Close Button */
+.content-visibility-close-popover {
+  position: absolute;
+  top: -2rem;
+  right: -1rem; }
+
+/*
+    Special Page Panel
+*/
+/* Make sure each inserter is its own row */
+.components-panel__row.content-visibility-page-inserter-panel-row {
+  flex-direction: column; }
+
+.content-visibility-special-page-inserter {
+  margin-top: 1rem; }
+
+/* Align the icon for each inserter a little neater */
+.content-visibility-special-page-inserter .dashicon {
+  position: relative;
+  top: 4px;
+  opacity: 0.6; }
+
+
+/*# sourceMappingURL=index.css.map*/
