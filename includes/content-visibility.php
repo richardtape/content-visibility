@@ -14,6 +14,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\plugins_loaded__bv_loader' );
 
+// An issue has been reported that any blocks registered with PHP and renders to the
+// editor using the ServerSideRender component will fail due to validation error from rest API endpoint.
+// 
+// This is due to the default attributes were originally added on the client side only. And the server does not know they are/should exist.
+// 
+// The solution is to make sure that any blocks registered through PHP does also have the required attributes on the server side by override the block attributes
+// when blocks are registered with PHP. The WordPress core blocks are excluded.
+add_filter( 'register_block_type_args', __NAMESPACE__ . '\\add_block_default_attributes', 10, 2 );
+
+/**
+ * Fires when new blocks are registered
+ * 
+ * @param array $args an array of block settings
+ * @param string $name the name of the block
+ * 
+ * @return array $args an array of modified block settings
+ *
+ * @since 0.2.8
+ */
+function add_block_default_attributes( $args, $name ) {
+	
+	if( str_starts_with( $name, 'core/' ) ) {
+		return $args;
+	}
+
+	$args['attributes']['contentVisibilityRules'] = array(
+		'type' => 'object',
+		'default' => array(
+			'contentVisibilityRulesEnabled' => false,
+			'userAuthenticated' => '',
+		)
+	);
+
+	return $args;
+}//end add_block_default_attributes()
+
 /**
  * Load the required bits and pieces for Content Visibility.
  *

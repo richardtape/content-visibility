@@ -68,6 +68,9 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 
 == Changelog ==
 
+= 0.2.8 =
+* Fixed an issue where blocks registered with PHP throwing error when rendering it with ServerSideRender components in the editor.
+
 = 0.2.7 =
 * Fixed an issue where in some cases the block controls for widgets still weren't appearing on the new 5.8 widgets screen.
 
