@@ -34,10 +34,6 @@ add_filter( 'register_block_type_args', __NAMESPACE__ . '\\add_block_default_att
  * @since 0.2.8
  */
 function add_block_default_attributes( $args, $name ) {
-	
-	if( str_starts_with( $name, 'core/' ) ) {
-		return $args;
-	}
 
 	$args['attributes']['contentVisibilityRules'] = array(
 		'type' => 'object',
