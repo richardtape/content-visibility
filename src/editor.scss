@@ -69,10 +69,6 @@
     margin-bottom: 0;
 }
 
-.content-visibility-displayed-control .components-base-control__field .components-radio-control__option:last-of-type {
-    text-align: right;
-}
-
 /*
     Styling for the rule panels
 */
@@ -82,6 +78,17 @@
     background: #fcfcfc;
     width: 100%;
 }
+
+/*
+    It seems WP changed to capitalize labels, and that looks weird for us, so
+    we'll normalize that.
+*/
+.content-visibility-controls.is-opened .content-visibility-control-panel label {
+    text-transform: none;
+    font-weight: normal;
+    font-size: 1em;
+}
+
 
 .content-visibility-controls.is-opened .content-visibility-control-panel.is-opened .components-panel__body-toggle {
     border-bottom: 1px solid #e2e4e7;
@@ -131,9 +138,10 @@
     display: block;
     height: 24px;
     width: 24px;
-    margin-left: 105%;
-    margin-top: 1%;
-    opacity: 0.25;
+    position: absolute;
+    top: 0;
+    right: -2em;
+    opacity: 0.2;
     box-shadow: none !important;
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>') !important;
 }
@@ -142,9 +150,10 @@
     display: block;
     height: 24px;
     width: 24px;
-    margin-left: 105%;
-    margin-top: 1%;
-    opacity: 0.25;
+    position: absolute;
+    top: 0;
+    right: -2em;
+    opacity: 0.2;
     box-shadow: none !important;
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>') !important;
 }
@@ -153,7 +162,7 @@
     Help text generic styling. This is to make it look like a WordPress hint.
 */
 .content-visibility-controls-container .content-visibility-help-text {
-    margin: 1rem 0 0;
+    margin: 1rem 0 0 !important;
     font-size: 12px;
     font-style: normal;
     color: rgb(117, 117, 117);
@@ -169,6 +178,14 @@
 .content-visibility-multi-select {
     width: 100%;
     margin: 1rem 0 0 0;
+    border: 1px solid #ccc;
+    padding: 0.25em 0.5em;
+    background: white;
+}
+
+.content-visibility-multi-select .dropdown-content {
+    background: white;
+    z-index: 999;
 }
 
 /*
@@ -327,8 +344,8 @@
 /* Special Page Close Button */
 .content-visibility-close-popover {
     position: absolute;
-    top: -2rem;
-    right: -1rem;
+    top: 0;
+    right: 0;
 }
 
 /*

@@ -175,9 +175,11 @@
   !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
   \***************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ "./node_modules/@babel/runtime/helpers/toPropertyKey.js");
 function _defineProperty(obj, key, value) {
+  key = toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -188,11 +190,9 @@ function _defineProperty(obj, key, value) {
   } else {
     obj[key] = value;
   }
-
   return obj;
 }
-
-module.exports = _defineProperty;
+module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -204,24 +204,59 @@ module.exports = _defineProperty;
 /***/ (function(module, exports) {
 
 function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
+  module.exports = _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
-
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
       }
     }
-
     return target;
-  };
-
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
   return _extends.apply(this, arguments);
 }
+module.exports = _extends, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
-module.exports = _extends;
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toPrimitive.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toPrimitive.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"];
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toPropertyKey.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toPropertyKey.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"];
+var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "./node_modules/@babel/runtime/helpers/toPrimitive.js");
+function _toPropertyKey(arg) {
+  var key = toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -235,39 +270,32 @@ module.exports = _extends;
 function _typeof(obj) {
   "@babel/helpers - typeof";
 
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
 }
-
-module.exports = _typeof;
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
-/***/ "./node_modules/goober/dist/goober.module.js":
-/*!***************************************************!*\
-  !*** ./node_modules/goober/dist/goober.module.js ***!
-  \***************************************************/
+/***/ "./node_modules/goober/dist/goober.esm.js":
+/*!************************************************!*\
+  !*** ./node_modules/goober/dist/goober.esm.js ***!
+  \************************************************/
 /*! exports provided: css, extractCss, glob, keyframes, setup, styled */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return i; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return u; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractCss", function() { return r; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "glob", function() { return d; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyframes", function() { return g; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setup", function() { return b; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styled", function() { return h; });
-let e={data:""},t=t=>{try{let e=t?t.querySelector("#_goober"):self._goober;return e||(e=(t||document.head).appendChild(document.createElement("style")),e.innerHTML=" ",e.id="_goober"),e.firstChild}catch(e){}return t||e},r=e=>{let r=t(e),a=r.data;return r.data="",a},a=/(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi,l=/\/\*[\s\S]*?\*\/|\s{2,}|\n/gm,o=(e,t)=>{let r,a="",l="",n="";for(let c in e){let s=e[c];"object"==typeof s?(r=t?t.replace(/([^,])+/g,e=>c.replace(/([^,])+/g,t=>/&/g.test(t)?t.replace(/&/g,e):e?e+" "+t:t)):c,l+="@"==c[0]?"f"==c[1]?o(s,c):c+"{"+o(s,"k"==c[1]?"":t)+"}":o(s,r)):"@"==c[0]&&"i"==c[1]?a=c+" "+s+";":n+=o.p?o.p(c.replace(/[A-Z]/g,"-$&").toLowerCase(),s):c.replace(/[A-Z]/g,"-$&").toLowerCase()+":"+s+";"}return n[0]?(r=t?t+"{"+n+"}":n,a+r+l):a+l},n={},c=e=>{let t="";for(let r in e)t+=r+("object"==typeof e[r]?c(e[r]):e[r]);return t},s=(e,t,r,s,p)=>{let i="object"==typeof e?c(e):e,u=n[i]||(n[i]="go"+i.split("").reduce((e,t)=>101*e+t.charCodeAt(0)>>>0,11));if(!n[u]){let t="object"==typeof e?e:(e=>{let t,r=[{}];for(;t=a.exec(e.replace(l,""));)t[4]&&r.shift(),t[3]?r.unshift(r[0][t[3]]=r[0][t[3]]||{}):t[4]||(r[0][t[1]]=t[2]);return r[0]})(e);n[u]=o(p?{["@keyframes "+u]:t}:t,r?"":"."+u)}return((e,t,r)=>{-1==t.data.indexOf(e)&&(t.data=r?e+t.data:t.data+e)})(n[u],t,s),u},p=(e,t,r)=>e.reduce((e,a,l)=>{let n=t[l];if(n&&n.call){let e=n(r),t=e&&e.props&&e.props.className||/^go/.test(e)&&e;n=t?"."+t:e&&"object"==typeof e?e.props?"":o(e,""):e}return e+a+(null==n?"":n)},"");function i(e){let r=this||{},a=e.call?e(r.p):e;return s(a.unshift?a.raw?p(a,[].slice.call(arguments,1),r.p):a.reduce((e,t)=>t?Object.assign(e,t.call?t(r.p):t):e,{}):a,t(r.target),r.g,r.o,r.k)}let u,f,d=i.bind({g:1}),g=i.bind({k:1});function b(e,t,r){o.p=t,u=e,f=r}function h(e,t){let r=this||{};return function(){let a=arguments;function l(o,n){let c=Object.assign({},o),s=c.className||l.className;return r.p=Object.assign({theme:f&&f()},c),r.o=/ *go\d+/g.test(s),c.className=i.apply(r,a)+(s?" "+s:""),t&&(c.ref=n),u(c.as||e,c)}return t?t(l):l}}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "glob", function() { return b; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyframes", function() { return h; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setup", function() { return m; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styled", function() { return j; });
+let e={data:""},t=t=>"object"==typeof window?((t?t.querySelector("#_goober"):window._goober)||Object.assign((t||document.head).appendChild(document.createElement("style")),{innerHTML:" ",id:"_goober"})).firstChild:t||e,r=e=>{let r=t(e),l=r.data;return r.data="",l},l=/(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g,a=/\/\*[^]*?\*\/|  +/g,n=/\n+/g,o=(e,t)=>{let r="",l="",a="";for(let n in e){let c=e[n];"@"==n[0]?"i"==n[1]?r=n+" "+c+";":l+="f"==n[1]?o(c,n):n+"{"+o(c,"k"==n[1]?"":t)+"}":"object"==typeof c?l+=o(c,t?t.replace(/([^,])+/g,e=>n.replace(/(^:.*)|([^,])+/g,t=>/&/.test(t)?t.replace(/&/g,e):e?e+" "+t:t)):n):null!=c&&(n=/^--/.test(n)?n:n.replace(/[A-Z]/g,"-$&").toLowerCase(),a+=o.p?o.p(n,c):n+":"+c+";")}return r+(t&&a?t+"{"+a+"}":a)+l},c={},s=e=>{if("object"==typeof e){let t="";for(let r in e)t+=r+s(e[r]);return t}return e},i=(e,t,r,i,p)=>{let u=s(e),d=c[u]||(c[u]=(e=>{let t=0,r=11;for(;t<e.length;)r=101*r+e.charCodeAt(t++)>>>0;return"go"+r})(u));if(!c[d]){let t=u!==e?e:(e=>{let t,r,o=[{}];for(;t=l.exec(e.replace(a,""));)t[4]?o.shift():t[3]?(r=t[3].replace(n," ").trim(),o.unshift(o[0][r]=o[0][r]||{})):o[0][t[1]]=t[2].replace(n," ").trim();return o[0]})(e);c[d]=o(p?{["@keyframes "+d]:t}:t,r?"":"."+d)}let f=r&&c.g?c.g:null;return r&&(c.g=c[d]),((e,t,r,l)=>{l?t.data=t.data.replace(l,e):-1===t.data.indexOf(e)&&(t.data=r?e+t.data:t.data+e)})(c[d],t,i,f),d},p=(e,t,r)=>e.reduce((e,l,a)=>{let n=t[a];if(n&&n.call){let e=n(r),t=e&&e.props&&e.props.className||/^go/.test(e)&&e;n=t?"."+t:e&&"object"==typeof e?e.props?"":o(e,""):!1===e?"":e}return e+l+(null==n?"":n)},"");function u(e){let r=this||{},l=e.call?e(r.p):e;return i(l.unshift?l.raw?p(l,[].slice.call(arguments,1),r.p):l.reduce((e,t)=>Object.assign(e,t&&t.call?t(r.p):t),{}):l,t(r.target),r.g,r.o,r.k)}let d,f,g,b=u.bind({g:1}),h=u.bind({k:1});function m(e,t,r,l){o.p=t,d=e,f=r,g=l}function j(e,t){let r=this||{};return function(){let l=arguments;function a(n,o){let c=Object.assign({},n),s=c.className||a.className;r.p=Object.assign({theme:f&&f()},c),r.o=/ *go\d+/.test(s),c.className=u.apply(r,l)+(s?" "+s:""),t&&(c.ref=o);let i=e;return e[0]&&(i=c.as||e,delete c.as),g&&i[0]&&g(c),d(i,c)}return t?t(a):a}}
 
 
 /***/ }),
@@ -2173,21 +2201,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dropdown", function() { return Dropdown; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectItem", function() { return SelectItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectPanel", function() { return SelectPanel; });
-/* harmony import */ var goober__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! goober */ "./node_modules/goober/dist/goober.module.js");
+/* harmony import */ var goober__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! goober */ "./node_modules/goober/dist/goober.esm.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
-var debounce = function debounce(func, wait) {
-  var timeout;
-  return function () {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+const defaultStrings = {
+  allItemsAreSelected: "All items are selected.",
+  clearSearch: "Clear Search",
+  clearSelected: "Clear Selected",
+  noOptions: "No options",
+  search: "Search",
+  selectAll: "Select All",
+  selectSomeItems: "Select..."
+};
+const defaultProps = {
+  value: [],
+  focusSearchOnOpen: true,
+  hasSelectAll: true,
+  className: "multi-select",
+  debounceDuration: 200,
+  options: []
+};
+const MultiSelectContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createContext({});
+const MultiSelectProvider = ({
+  props,
+  children
+}) => {
+  const t = key => {
+    var _props$overrideString;
 
+    return ((_props$overrideString = props.overrideStrings) == null ? void 0 : _props$overrideString[key]) || defaultStrings[key];
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(MultiSelectContext.Provider, {
+    value: {
+      t,
+      ...defaultProps,
+      ...props
+    }
+  }, children);
+};
+const useMultiSelect = () => react__WEBPACK_IMPORTED_MODULE_1___default.a.useContext(MultiSelectContext);
+
+/**
+ * combines classNames in a friendly way
+ *
+ * @param {*} classes
+ */
+const cn = (...classes) => classes.join(" ");
+
+/**
+ * similar to `useEffect` but gets triggered only when value changes
+ * @param fn executable function on dependency updates
+ * @param inputs dependency array
+ */
+
+function useDidUpdateEffect(fn, inputs) {
+  const didMountRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(false);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    if (didMountRef.current) fn();else didMountRef.current = true;
+  }, inputs);
+}
+
+const debounce = (func, wait) => {
+  let timeout;
+  return function (...args) {
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
+    timeout = setTimeout(() => {
       func.apply(null, args);
     }, wait);
   };
@@ -2212,30 +2294,21 @@ function filterOptions(options, filter, substitutions) {
     return options;
   }
 
-  var cleanFilter = cleanUpText(filter, substitutions);
+  const cleanFilter = cleanUpText(filter, substitutions);
   return options // Filter out undefined or null Options.
-  .filter(function (_ref) {
-    var label = _ref.label,
-        value = _ref.value;
-    return label != null && value != null;
-  }) // Create a {score, Option} pair for each Option based on its label's
+  .filter(({
+    label,
+    value
+  }) => label != null && value != null) // Create a {score, Option} pair for each Option based on its label's
   // similarity to the filter text.
-  .map(function (option) {
-    return {
-      option: option,
-      score: typeaheadSimilarity(cleanUpText(option.label, substitutions), cleanFilter)
-    };
-  }) // Only include matches of the entire substring, with a slight
+  .map(option => ({
+    option: option,
+    score: typeaheadSimilarity(cleanUpText(option.label, substitutions), cleanFilter)
+  })) // Only include matches of the entire substring, with a slight
   // affordance for transposition or extra characters.
-  .filter(function (pair) {
-    return pair.score >= cleanFilter.length - 2;
-  }) // Sort 'em by order of their score.
-  .sort(function (a, b) {
-    return b.score - a.score;
-  }) // …and grab the original Options back from their pairs.
-  .map(function (pair) {
-    return pair.option;
-  });
+  .filter(pair => pair.score >= cleanFilter.length - 2) // Sort 'em by order of their score.
+  .sort((a, b) => b.score - a.score) // …and grab the original Options back from their pairs.
+  .map(pair => pair.option);
 }
 /**
  * Scores the similarity between two strings by returning the length of the
@@ -2253,9 +2326,9 @@ function filterOptions(options, filter, substitutions) {
  */
 
 function typeaheadSimilarity(a, b) {
-  var aLength = a.length;
-  var bLength = b.length;
-  var table = [];
+  const aLength = a.length;
+  const bLength = b.length;
+  const table = [];
 
   if (!aLength || !bLength) {
     return 0;
@@ -2263,9 +2336,7 @@ function typeaheadSimilarity(a, b) {
 
 
   if (aLength < bLength) {
-    var _ref2 = [b, a];
-    a = _ref2[0];
-    b = _ref2[1];
+    [a, b] = [b, a];
   } // Early exit if `a` includes `b`; these will be scored higher than any
   // other options with the same `b` (filter string), with a preference for
   // shorter `a` strings (option labels).
@@ -2285,18 +2356,18 @@ function typeaheadSimilarity(a, b) {
   //
 
 
-  for (var x = 0; x <= aLength; ++x) {
+  for (let x = 0; x <= aLength; ++x) {
     table[x] = [0];
   }
 
-  for (var y = 0; y <= bLength; ++y) {
+  for (let y = 0; y <= bLength; ++y) {
     table[0][y] = 0;
   } // Populate the rest of the table with a dynamic programming algorithm.
 
 
-  for (var _x = 1; _x <= aLength; ++_x) {
-    for (var _y = 1; _y <= bLength; ++_y) {
-      table[_x][_y] = a[_x - 1] === b[_y - 1] ? 1 + table[_x - 1][_y - 1] : Math.max(table[_x][_y - 1], table[_x - 1][_y]);
+  for (let x = 1; x <= aLength; ++x) {
+    for (let y = 1; y <= bLength; ++y) {
+      table[x][y] = a[x - 1] === b[y - 1] ? 1 + table[x - 1][y - 1] : Math.max(table[x][y - 1], table[x - 1][y]);
     }
   }
 
@@ -2329,50 +2400,36 @@ function cleanUpText(input, substitutions) {
     return input;
   }
 
-  var safeSubstitutions = substitutions; // For Flow.
+  const safeSubstitutions = substitutions; // For Flow.
   // Replace all strings in `safeSubstitutions` with their standardized
   // counterparts.
 
-  return Object.keys(safeSubstitutions).reduce(function (output, substitution) {
-    var unsubbed = new RegExp(substitution, "g");
+  return Object.keys(safeSubstitutions).reduce((output, substitution) => {
+    const unsubbed = new RegExp(substitution, "g");
     return output.replace(unsubbed, safeSubstitutions[substitution]);
   }, input);
 }
 
-var strings = {
-  selectSomeItems: "Select...",
-  allItemsAreSelected: "All items are selected.",
-  selectAll: "Select All",
-  search: "Search",
-  clearSearch: "Clear Search",
-  clearSelected: "Clear Selected"
-};
-function getString(key, overrideStrings) {
-  return (overrideStrings == null ? void 0 : overrideStrings[key]) || strings[key];
-}
+const Cross = () => react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+  width: "24",
+  height: "24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  className: "dropdown-search-clear-icon gray"
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("line", {
+  x1: "18",
+  y1: "6",
+  x2: "6",
+  y2: "18"
+}), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("line", {
+  x1: "6",
+  y1: "6",
+  x2: "18",
+  y2: "18"
+}));
 
-var Cross = function Cross() {
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    width: "24",
-    height: "24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    className: "dropdown-search-clear-icon gray"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("line", {
-    x1: "18",
-    y1: "6",
-    x2: "6",
-    y2: "18"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("line", {
-    x1: "6",
-    y1: "6",
-    x2: "18",
-    y2: "18"
-  }));
-};
-
-var DefaultRenderer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const DefaultRenderer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   "& input,& span": {
     verticalAlign: "middle",
     margin: 0
@@ -2386,26 +2443,25 @@ var DefaultRenderer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["c
   }
 });
 
-var DefaultItemRenderer = function DefaultItemRenderer(_ref) {
-  var checked = _ref.checked,
-      option = _ref.option,
-      onClick = _ref.onClick,
-      disabled = _ref.disabled;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: DefaultRenderer + " item-renderer " + (disabled && "disabled")
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    type: "checkbox",
-    onChange: onClick,
-    checked: checked,
-    tabIndex: -1,
-    disabled: disabled
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, option.label));
-};
+const DefaultItemRenderer = ({
+  checked,
+  option,
+  onClick,
+  disabled
+}) => react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  className: cn(DefaultRenderer, "item-renderer", disabled && "disabled")
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  type: "checkbox",
+  onChange: onClick,
+  checked: checked,
+  tabIndex: -1,
+  disabled: disabled
+}), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, option.label));
 
 /**
  * This component represents an individual item in the multi-select drop-down
  */
-var ItemContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const ItemContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   boxSizing: "border-box",
   cursor: "pointer",
   display: "block",
@@ -2419,37 +2475,37 @@ var ItemContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css
   }
 });
 
-var SelectItem = function SelectItem(_ref) {
-  var _ref$itemRenderer = _ref.itemRenderer,
-      ItemRenderer = _ref$itemRenderer === void 0 ? DefaultItemRenderer : _ref$itemRenderer,
-      option = _ref.option,
-      checked = _ref.checked,
-      focused = _ref.focused,
-      tabIndex = _ref.tabIndex,
-      disabled = _ref.disabled,
-      onSelectionChanged = _ref.onSelectionChanged,
-      onClick = _ref.onClick;
-  var itemRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+const SelectItem = ({
+  itemRenderer: ItemRenderer = DefaultItemRenderer,
+  option,
+  checked,
+  focused,
+  tabIndex,
+  disabled,
+  onSelectionChanged,
+  onClick
+}) => {
+  const itemRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     updateFocus(); // eslint-disable-next-line
-  }, [focused]);
+  }, [checked, focused]);
 
-  var toggleChecked = function toggleChecked() {
+  const toggleChecked = () => {
     onSelectionChanged(!checked);
   };
 
-  var handleClick = function handleClick(e) {
+  const handleClick = e => {
     toggleChecked();
     onClick(e);
   };
 
-  var updateFocus = function updateFocus() {
+  const updateFocus = () => {
     if (focused && !disabled && itemRef) {
       itemRef.current.focus();
     }
   };
 
-  var handleKeyDown = function handleKeyDown(e) {
+  const handleKeyDown = e => {
     switch (e.which) {
       case 13: // Enter
 
@@ -2466,7 +2522,7 @@ var SelectItem = function SelectItem(_ref) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
-    className: ItemContainer + " select-item " + (checked && "selected"),
+    className: cn(ItemContainer, "select-item", checked && "selected"),
     role: "option",
     "aria-selected": checked,
     tabIndex: tabIndex,
@@ -2483,7 +2539,7 @@ var SelectItem = function SelectItem(_ref) {
 /**
  * This component represents an unadorned list of SelectItem (s).
  */
-var SelectListUl = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const SelectListUl = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   margin: 0,
   paddingLeft: 0,
   li: {
@@ -2491,46 +2547,41 @@ var SelectListUl = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"
     margin: 0
   }
 });
-var skipIndex = 2;
+const skipIndex = 2;
 
-var SelectList = function SelectList(_ref) {
-  var value = _ref.value,
-      onChange = _ref.onChange,
-      disabled = _ref.disabled,
-      ItemRenderer = _ref.ItemRenderer,
-      options = _ref.options,
-      focusIndex = _ref.focusIndex,
-      _onClick = _ref.onClick;
+const SelectList = ({
+  options,
+  focusIndex,
+  onClick
+}) => {
+  const {
+    disabled,
+    value,
+    onChange,
+    ItemRenderer
+  } = useMultiSelect();
 
-  var handleSelectionChanged = function handleSelectionChanged(option, checked) {
+  const handleSelectionChanged = (option, checked) => {
     if (disabled) {
       return;
     }
 
-    onChange(checked ? [].concat(value, [option]) : value.filter(function (o) {
-      return o.value !== option.value;
-    }));
+    onChange(checked ? [...value, option] : value.filter(o => o.value !== option.value));
   };
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
     className: SelectListUl
-  }, options.map(function (o, i) {
-    var tabIndex = i + skipIndex;
+  }, options.map((o, i) => {
+    const tabIndex = i + skipIndex;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-      key: o.hasOwnProperty("key") ? o.key : i
+      key: (o == null ? void 0 : o.key) || i
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectItem, {
       focused: focusIndex === tabIndex,
       tabIndex: tabIndex,
       option: o,
-      onSelectionChanged: function onSelectionChanged(c) {
-        return handleSelectionChanged(o, c);
-      },
-      checked: value.find(function (s) {
-        return s.value === o.value;
-      }) ? true : false,
-      onClick: function onClick(e) {
-        return _onClick(e, tabIndex);
-      },
+      onSelectionChanged: c => handleSelectionChanged(o, c),
+      checked: value.find(s => s.value === o.value) ? true : false,
+      onClick: e => onClick(e, tabIndex),
       itemRenderer: ItemRenderer,
       disabled: o.disabled || disabled
     }));
@@ -2549,7 +2600,7 @@ var FocusType;
   FocusType[FocusType["NONE"] = 1] = "NONE";
 })(FocusType || (FocusType = {}));
 
-var SelectSearchContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const SelectSearchContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   width: "100%",
   position: "relative",
   borderBottom: "1px solid var(--rmsc-border)",
@@ -2561,7 +2612,7 @@ var SelectSearchContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_
     border: 0
   }
 });
-var SearchClearButton = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const SearchClearButton = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   cursor: "pointer",
   position: "absolute",
   top: 0,
@@ -2574,85 +2625,73 @@ var SearchClearButton = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__[
     display: "none"
   }
 });
-var SelectPanel = function SelectPanel(props) {
-  var onChange = props.onChange,
-      options = props.options,
-      value = props.value,
-      customFilterOptions = props.filterOptions,
-      selectAllLabel = props.selectAllLabel,
-      ItemRenderer = props.ItemRenderer,
-      disabled = props.disabled,
-      disableSearch = props.disableSearch,
-      focusSearchOnOpen = props.focusSearchOnOpen,
-      hasSelectAll = props.hasSelectAll,
-      overrideStrings = props.overrideStrings,
-      ClearIcon = props.ClearIcon,
-      debounceDuration = props.debounceDuration;
+const NoOptions = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+  padding: "var(--rmsc-p)",
+  textAlign: "center",
+  color: "var(--rmsc-gray)"
+});
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
-      searchText = _useState[0],
-      setSearchText = _useState[1];
-
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
-      searchTextForFilter = _useState2[0],
-      setSearchTextForFilter = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(focusSearchOnOpen && !disableSearch ? FocusType.SEARCH : FocusType.NONE),
-      focusIndex = _useState3[0],
-      setFocusIndex = _useState3[1];
-
-  var debouncedSearch = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(debounce(function (query) {
-    return setSearchTextForFilter(query);
-  }, debounceDuration), []);
-  var selectAllOption = {
-    label: selectAllLabel || getString("selectAll", overrideStrings),
+const SelectPanel = () => {
+  const {
+    t,
+    onChange,
+    options,
+    value,
+    filterOptions: customFilterOptions,
+    selectAllLabel,
+    ItemRenderer,
+    disabled,
+    disableSearch,
+    focusSearchOnOpen,
+    hasSelectAll,
+    ClearIcon,
+    debounceDuration
+  } = useMultiSelect();
+  const searchInputRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
+  const [searchText, setSearchText] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])("");
+  const [filteredOptions, setFilteredOptions] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(options);
+  const [searchTextForFilter, setSearchTextForFilter] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])("");
+  const [focusIndex, setFocusIndex] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(focusSearchOnOpen && !disableSearch ? FocusType.SEARCH : FocusType.NONE);
+  const debouncedSearch = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(debounce(query => setSearchTextForFilter(query), debounceDuration), []);
+  const selectAllOption = {
+    label: selectAllLabel || t("selectAll"),
     value: ""
   };
 
-  var selectAllValues = function selectAllValues(checked) {
-    var filteredValues = filteredOptions().filter(function (o) {
-      return !o.disabled;
-    }).map(function (o) {
-      return o.value;
-    });
+  const selectAllValues = checked => {
+    const filteredValues = filteredOptions.filter(o => !o.disabled).map(o => o.value);
 
     if (checked) {
-      var selectedValues = value.map(function (o) {
-        return o.value;
-      });
-      var finalSelectedValues = [].concat(selectedValues, filteredValues);
-      return options.filter(function (_ref) {
-        var value = _ref.value;
-        return finalSelectedValues.includes(value);
-      });
+      const selectedValues = value.map(o => o.value);
+      const finalSelectedValues = [...selectedValues, ...filteredValues];
+      return filteredOptions.filter(o => finalSelectedValues.includes(o.value));
     }
 
-    return value.filter(function (o) {
-      return !filteredValues.includes(o.value);
-    });
+    return value.filter(o => !filteredValues.includes(o.value));
   };
 
-  var selectAllChanged = function selectAllChanged(checked) {
-    var newOptions = selectAllValues(checked);
+  const selectAllChanged = checked => {
+    const newOptions = selectAllValues(checked);
     onChange(newOptions);
   };
 
-  var handleSearchChange = function handleSearchChange(e) {
+  const handleSearchChange = e => {
     debouncedSearch(e.target.value);
     setSearchText(e.target.value);
     setFocusIndex(FocusType.SEARCH);
   };
 
-  var handleClear = function handleClear() {
+  const handleClear = () => {
+    var _searchInputRef$curre;
+
     setSearchTextForFilter("");
     setSearchText("");
+    searchInputRef == null ? void 0 : (_searchInputRef$curre = searchInputRef.current) == null ? void 0 : _searchInputRef$curre.focus();
   };
 
-  var handleItemClicked = function handleItemClicked(index) {
-    return setFocusIndex(index);
-  };
+  const handleItemClicked = index => setFocusIndex(index);
 
-  var handleKeyDown = function handleKeyDown(e) {
+  const handleKeyDown = e => {
     switch (e.which) {
       case 38:
         // Up Arrow
@@ -2680,34 +2719,26 @@ var SelectPanel = function SelectPanel(props) {
     e.preventDefault();
   };
 
-  var handleSearchFocus = function handleSearchFocus() {
+  const handleSearchFocus = () => {
     setFocusIndex(FocusType.SEARCH);
   };
 
-  var filteredOptions = function filteredOptions() {
-    return customFilterOptions ? customFilterOptions(options, searchTextForFilter) : filterOptions(options, searchTextForFilter);
-  };
+  const getFilteredOptions = async () => customFilterOptions ? await customFilterOptions(options, searchTextForFilter) : filterOptions(options, searchTextForFilter);
 
-  var updateFocus = function updateFocus(offset) {
-    var newFocus = focusIndex + offset;
+  const updateFocus = offset => {
+    let newFocus = focusIndex + offset;
     newFocus = Math.max(1, newFocus);
     newFocus = Math.min(newFocus, options.length + 1);
     setFocusIndex(newFocus);
   };
 
-  var _useMemo = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(function () {
-    var filteredOptionsList = filteredOptions().filter(function (o) {
-      return !o.disabled;
-    });
-    return [filteredOptionsList.every(function (o) {
-      return value.findIndex(function (v) {
-        return v.value === o.value;
-      }) !== -1;
-    }), filteredOptionsList.length !== 0]; // eslint-disable-next-line
-  }, [searchText, value]),
-      isAllOptionSelected = _useMemo[0],
-      hasSelectableOptions = _useMemo[1];
-
+  const [isAllOptionSelected, hasSelectableOptions] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(() => {
+    const filteredOptionsList = filteredOptions.filter(o => !o.disabled);
+    return [filteredOptionsList.every(o => value.findIndex(v => v.value === o.value) !== -1), filteredOptionsList.length !== 0]; // eslint-disable-next-line
+  }, [filteredOptions, value]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    getFilteredOptions().then(setFilteredOptions);
+  }, [searchTextForFilter, options]);
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "select-panel",
     role: "listbox",
@@ -2716,58 +2747,70 @@ var SelectPanel = function SelectPanel(props) {
     className: SelectSearchContainer
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     autoFocus: focusSearchOnOpen,
-    placeholder: getString("search", overrideStrings),
+    placeholder: t("search"),
     type: "text",
-    "aria-describedby": getString("search", overrideStrings),
-    onKeyDown: function onKeyDown(e) {
-      return e.stopPropagation();
-    },
+    "aria-describedby": t("search"),
+    onKeyDown: e => e.stopPropagation(),
     onChange: handleSearchChange,
     onFocus: handleSearchFocus,
-    value: searchText
+    value: searchText,
+    ref: searchInputRef
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
-    className: SearchClearButton + " search-clear-button",
+    className: cn(SearchClearButton, "search-clear-button"),
     hidden: !searchText,
     onClick: handleClear,
-    "aria-label": getString("clearSearch", overrideStrings)
+    "aria-label": t("clearSearch")
   }, ClearIcon || react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Cross, null))), hasSelectAll && hasSelectableOptions && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectItem, {
     focused: focusIndex === 1,
     tabIndex: 1,
     checked: isAllOptionSelected,
     option: selectAllOption,
     onSelectionChanged: selectAllChanged,
-    onClick: function onClick() {
-      return handleItemClicked(0);
-    },
+    onClick: () => handleItemClicked(1),
     itemRenderer: ItemRenderer,
     disabled: disabled
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectList, Object.assign({}, props, {
-    options: filteredOptions(),
+  }), filteredOptions.length ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectList, {
+    options: filteredOptions,
     focusIndex: focusIndex,
-    onClick: function onClick(_e, index) {
-      return handleItemClicked(index);
-    },
-    ItemRenderer: ItemRenderer,
-    disabled: disabled
-  })));
+    onClick: (_e, index) => handleItemClicked(index)
+  }) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: cn(NoOptions, "no-options")
+  }, t("noOptions")));
 };
 
-function Arrow(_ref) {
-  var expanded = _ref.expanded;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    width: "24",
-    height: "24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    className: "dropdown-heading-dropdown-arrow gray"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    d: expanded ? "M18 15 12 9 6 15" : "M6 9L12 15 18 9"
-  }));
-}
+const Arrow = ({
+  expanded
+}) => react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+  width: "24",
+  height: "24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  className: "dropdown-heading-dropdown-arrow gray"
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+  d: expanded ? "M18 15 12 9 6 15" : "M6 9L12 15 18 9"
+}));
 
-var Spinner = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const DropdownHeader = () => {
+  const {
+    t,
+    value,
+    options,
+    valueRenderer
+  } = useMultiSelect();
+  const noneSelected = value.length === 0;
+  const allSelected = value.length === options.length;
+  const customText = valueRenderer && valueRenderer(value, options);
+
+  const getSelectedText = () => value.map(s => s.label).join(", ");
+
+  return noneSelected ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "gray"
+  }, customText || t("selectSomeItems")) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, customText || (allSelected ? t("allItemsAreSelected") : getSelectedText()));
+};
+
+const Spinner = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   animation: "rotate 2s linear infinite",
   "& .path": {
     stroke: "var(--rmsc-border)",
@@ -2795,39 +2838,36 @@ var Spinner = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
     }
   }
 });
-
-function Loading(_ref) {
-  var _ref$size = _ref.size,
-      size = _ref$size === void 0 ? 24 : _ref$size;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    style: {
-      width: size,
-      marginRight: "0.2rem"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+const Loading = ({
+  size = 24
+}) => react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  style: {
     width: size,
-    height: size,
-    className: Spinner,
-    viewBox: "0 0 50 50",
-    style: {
-      display: "inline",
-      verticalAlign: "middle"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("circle", {
-    cx: "25",
-    cy: "25",
-    r: "20",
-    fill: "none",
-    className: "path"
-  })));
-}
+    marginRight: "0.2rem"
+  }
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+  width: size,
+  height: size,
+  className: Spinner,
+  viewBox: "0 0 50 50",
+  style: {
+    display: "inline",
+    verticalAlign: "middle"
+  }
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("circle", {
+  cx: "25",
+  cy: "25",
+  r: "20",
+  fill: "none",
+  className: "path"
+})));
 
 /**
  * A generic dropdown component.  It takes the children of the component
  * and hosts it in the component.  When the component is selected, it
  * drops-down the contentComponent and applies the contentProps.
  */
-var PanelContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const PanelContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   position: "absolute",
   zIndex: 1,
   top: "100%",
@@ -2841,7 +2881,7 @@ var PanelContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["cs
     boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 11px rgba(0, 0, 0, 0.1)"
   }
 });
-var DropdownContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const DropdownContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   position: "relative",
   outline: 0,
   backgroundColor: "var(--rmsc-bg)",
@@ -2852,7 +2892,7 @@ var DropdownContainer = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__[
     borderColor: "var(--rmsc-main)"
   }
 });
-var DropdownHeading = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const DropdownHeading = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   position: "relative",
   padding: "0 var(--rmsc-p)",
   display: "flex",
@@ -2868,7 +2908,7 @@ var DropdownHeading = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["c
     flex: 1
   }
 });
-var ClearSelectedButton = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const ClearSelectedButton = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   cursor: "pointer",
   background: "none",
   border: 0,
@@ -2876,47 +2916,37 @@ var ClearSelectedButton = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0_
   display: "flex"
 });
 
-var Dropdown = function Dropdown(_ref) {
-  var children = _ref.children,
-      ContentComponent = _ref.contentComponent,
-      contentProps = _ref.contentProps,
-      isLoading = _ref.isLoading,
-      disabled = _ref.disabled,
-      shouldToggleOnHover = _ref.shouldToggleOnHover,
-      labelledBy = _ref.labelledBy,
-      onMenuToggle = _ref.onMenuToggle,
-      ArrowRenderer = _ref.ArrowRenderer,
-      ClearSelectedIcon = _ref.ClearSelectedIcon,
-      defaultIsOpen = _ref.defaultIsOpen,
-      isOpen = _ref.isOpen;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
-      isInternalExpand = _useState[0],
-      setIsInternalExpand = _useState[1];
-
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(defaultIsOpen),
-      expanded = _useState2[0],
-      setExpanded = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      hasFocus = _useState3[0],
-      setHasFocus = _useState3[1];
-
-  var FinalArrow = ArrowRenderer || Arrow;
-  var wrapper = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
-  /* eslint-disable react-hooks/exhaustive-deps */
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+const Dropdown = () => {
+  const {
+    t,
+    onMenuToggle,
+    ArrowRenderer,
+    shouldToggleOnHover,
+    isLoading,
+    disabled,
+    onChange,
+    labelledBy,
+    value,
+    isOpen,
+    defaultIsOpen,
+    ClearSelectedIcon
+  } = useMultiSelect();
+  const [isInternalExpand, setIsInternalExpand] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true);
+  const [expanded, setExpanded] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(defaultIsOpen);
+  const [hasFocus, setHasFocus] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
+  const FinalArrow = ArrowRenderer || Arrow;
+  const wrapper = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
+  useDidUpdateEffect(() => {
     onMenuToggle && onMenuToggle(expanded);
   }, [expanded]);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     if (defaultIsOpen === undefined && typeof isOpen === "boolean") {
       setIsInternalExpand(false);
       setExpanded(isOpen);
     }
   }, [isOpen]);
 
-  var handleKeyDown = function handleKeyDown(e) {
+  const handleKeyDown = e => {
     var _wrapper$current;
 
     if (isInternalExpand) {
@@ -2946,42 +2976,36 @@ var Dropdown = function Dropdown(_ref) {
     e.preventDefault();
   };
 
-  var handleHover = function handleHover(iexpanded) {
+  const handleHover = iexpanded => {
     isInternalExpand && shouldToggleOnHover && setExpanded(iexpanded);
   };
 
-  var handleFocus = function handleFocus() {
-    return !hasFocus && setHasFocus(true);
-  };
+  const handleFocus = () => !hasFocus && setHasFocus(true);
 
-  var handleBlur = function handleBlur(e) {
+  const handleBlur = e => {
     if (!e.currentTarget.contains(e.relatedTarget) && isInternalExpand) {
       setHasFocus(false);
       setExpanded(false);
     }
   };
 
-  var handleMouseEnter = function handleMouseEnter() {
-    return handleHover(true);
-  };
+  const handleMouseEnter = () => handleHover(true);
 
-  var handleMouseLeave = function handleMouseLeave() {
-    return handleHover(false);
-  };
+  const handleMouseLeave = () => handleHover(false);
 
-  var toggleExpanded = function toggleExpanded() {
+  const toggleExpanded = () => {
     isInternalExpand && setExpanded(isLoading || disabled ? false : !expanded);
   };
 
-  var handleClearSelected = function handleClearSelected(e) {
+  const handleClearSelected = e => {
     e.stopPropagation();
-    contentProps["onChange"]([]);
+    onChange([]);
     isInternalExpand && setExpanded(false);
   };
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     tabIndex: 0,
-    className: DropdownContainer + " dropdown-container",
+    className: cn(DropdownContainer, "dropdown-container"),
     "aria-labelledby": labelledBy,
     "aria-expanded": expanded,
     "aria-readonly": true,
@@ -2993,45 +3017,26 @@ var Dropdown = function Dropdown(_ref) {
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: DropdownHeading + " dropdown-heading",
+    className: cn(DropdownHeading, "dropdown-heading"),
     onClick: toggleExpanded
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "dropdown-heading-value"
-  }, children), isLoading && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Loading, null), contentProps["value"].length > 0 && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(DropdownHeader, null)), isLoading && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Loading, null), value.length > 0 && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
-    className: ClearSelectedButton + " clear-selected-button",
+    className: cn(ClearSelectedButton, "clear-selected-button"),
     onClick: handleClearSelected,
-    "aria-label": getString("clearSelected", contentProps["overrideStrings"])
+    disabled: disabled,
+    "aria-label": t("clearSelected")
   }, ClearSelectedIcon || react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Cross, null)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FinalArrow, {
     expanded: expanded
   })), expanded && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: PanelContainer + " dropdown-content"
+    className: cn(PanelContainer, "dropdown-content")
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "panel-content"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ContentComponent, Object.assign({}, contentProps)))));
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectPanel, null))));
 };
 
-var DropdownHeader = function DropdownHeader(_ref) {
-  var value = _ref.value,
-      options = _ref.options,
-      valueRenderer = _ref.valueRenderer,
-      overrideStrings = _ref.overrideStrings;
-  var noneSelected = value.length === 0;
-  var allSelected = value.length === options.length;
-  var customText = valueRenderer && valueRenderer(value, options);
-
-  var getSelectedText = function getSelectedText() {
-    return value.map(function (s) {
-      return s.label;
-    }).join(", ");
-  };
-
-  return noneSelected ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "gray"
-  }, customText || getString("selectSomeItems", overrideStrings)) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, customText || (allSelected ? getString("allItemsAreSelected", overrideStrings) : getSelectedText()));
-};
-
-var MultiSelectBox = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
+const MultiSelectBox = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["css"])({
   "--rmscMain": "#4285f4",
   "--rmscHover": "#f1f3f5",
   "--rmscSelected": "#e2e6ea",
@@ -3050,70 +3055,11 @@ var MultiSelectBox = /*#__PURE__*/Object(goober__WEBPACK_IMPORTED_MODULE_0__["cs
   }
 });
 
-var MultiSelect = function MultiSelect(_ref) {
-  var _ref$focusSearchOnOpe = _ref.focusSearchOnOpen,
-      focusSearchOnOpen = _ref$focusSearchOnOpe === void 0 ? true : _ref$focusSearchOnOpe,
-      _ref$hasSelectAll = _ref.hasSelectAll,
-      hasSelectAll = _ref$hasSelectAll === void 0 ? true : _ref$hasSelectAll,
-      shouldToggleOnHover = _ref.shouldToggleOnHover,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? "multi-select" : _ref$className,
-      options = _ref.options,
-      value = _ref.value,
-      valueRenderer = _ref.valueRenderer,
-      overrideStrings = _ref.overrideStrings,
-      onChange = _ref.onChange,
-      disabled = _ref.disabled,
-      ItemRenderer = _ref.ItemRenderer,
-      ArrowRenderer = _ref.ArrowRenderer,
-      selectAllLabel = _ref.selectAllLabel,
-      isLoading = _ref.isLoading,
-      disableSearch = _ref.disableSearch,
-      filterOptions = _ref.filterOptions,
-      labelledBy = _ref.labelledBy,
-      onMenuToggle = _ref.onMenuToggle,
-      ClearIcon = _ref.ClearIcon,
-      _ref$debounceDuration = _ref.debounceDuration,
-      debounceDuration = _ref$debounceDuration === void 0 ? 300 : _ref$debounceDuration,
-      ClearSelectedIcon = _ref.ClearSelectedIcon,
-      defaultIsOpen = _ref.defaultIsOpen,
-      isOpen = _ref.isOpen;
-  var nvalue = value || [];
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: MultiSelectBox + " " + className
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Dropdown, {
-    isLoading: isLoading,
-    contentComponent: SelectPanel,
-    shouldToggleOnHover: shouldToggleOnHover,
-    contentProps: {
-      ItemRenderer: ItemRenderer,
-      options: options,
-      value: nvalue,
-      hasSelectAll: hasSelectAll,
-      selectAllLabel: selectAllLabel,
-      onChange: onChange,
-      disabled: disabled,
-      disableSearch: disableSearch,
-      focusSearchOnOpen: focusSearchOnOpen,
-      filterOptions: filterOptions,
-      overrideStrings: overrideStrings,
-      ClearIcon: ClearIcon,
-      debounceDuration: debounceDuration
-    },
-    disabled: disabled,
-    labelledBy: labelledBy,
-    onMenuToggle: onMenuToggle,
-    ArrowRenderer: ArrowRenderer,
-    ClearSelectedIcon: ClearSelectedIcon,
-    defaultIsOpen: defaultIsOpen,
-    isOpen: isOpen
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(DropdownHeader, {
-    value: nvalue,
-    options: options,
-    valueRenderer: valueRenderer,
-    overrideStrings: overrideStrings
-  })));
-};
+const MultiSelect = props => react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(MultiSelectProvider, {
+  props: props
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  className: cn(MultiSelectBox, props.className || "multi-select")
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Dropdown, null)));
 
 /* harmony default export */ __webpack_exports__["default"] = (MultiSelect);
 
@@ -3236,12 +3182,12 @@ var contentVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODU
   return function (props) {
     if (!Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_11__["default"])(props.name)) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props);
-    } // Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
+    }
+
+    // Add a class to the div contining the rules so we can show/hide them when they are enabled/disabled.
     // Normally this would be props.attributes.contentVisibilityRules for anything registered in core, or in JS. However, as it's
     // possible to register attributes in PHP _alone_ we need to look at props.block.attributes.contentVisibilityRules -- both
     // get updated when a block is updated.
-
-
     var showControls = props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled ? 'show-controls' : 'hide-controls';
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_blockEditor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
       title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Visibility', 'content-visibility'),
@@ -3264,6 +3210,7 @@ var contentVisibilityControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODU
   };
 }, 'contentVisibilityControls');
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('editor.BlockEdit', 'content-visibility/content-visibility-controls', contentVisibilityControls);
+
 /**
  * Filters registered block settings, extending attributes with our custom data.
  *
@@ -3271,7 +3218,6 @@ Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('editor.Block
  *
  * @return {Object} Filtered block settings.
  */
-
 function addContentVisibilityRulesAttribute(settings) {
   // If this is a valid block
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_11__["default"])(settings.name)) {
@@ -3279,8 +3225,9 @@ function addContentVisibilityRulesAttribute(settings) {
     var defaultRules = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["applyFilters"])('contentVisibility.defaultContentVisibilityRules', {
       contentVisibilityRulesEnabled: false,
       userAuthenticated: ''
-    }); // Use Lodash's assign to gracefully handle if attributes are undefined
+    });
 
+    // Use Lodash's assign to gracefully handle if attributes are undefined
     settings.attributes = lodash_assign__WEBPACK_IMPORTED_MODULE_8___default()(settings.attributes, {
       contentVisibilityRules: {
         type: 'object',
@@ -3288,7 +3235,6 @@ function addContentVisibilityRulesAttribute(settings) {
       }
     });
   }
-
   return settings;
 } // end addContentVisibilityRulesAttribute()
 
@@ -3302,18 +3248,17 @@ function addContentVisibilityRulesAttribute(settings) {
  *
  * @return {Object} Filtered props applied to save element.
  */
-
 function addContentVisibilityRulesPropOnSave(extraProps, blockType, attributes) {
   // If the current block is valid, add our prop.
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_11__["default"])(blockType.name)) {
     extraProps.contentVisibilityRules = attributes.contentVisibilityRules;
   }
-
   return extraProps;
 } // end addContentVisibilityRulesPropOnSave()
 
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('blocks.registerBlockType', 'content-visibility/addContentVisibilityRulesAttribute', addContentVisibilityRulesAttribute);
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__["addFilter"])('blocks.getSaveContent.extraProps', 'content-visibility/addContentVisibilityRulesPropOnSave', addContentVisibilityRulesPropOnSave);
+
 /* -------------- 
 
 const ContentVisibilityPluginBlockSettingsMenuItem = () => (
@@ -3373,20 +3318,19 @@ var ContentVisibilityDisplayedControl = Object(_wordpress_compose__WEBPACK_IMPOR
   option: ''
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   var rulesEnabled = props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled;
-
   if (!rulesEnabled) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Disabled"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_shown_or_hidden_content_visibility_shown_hidden_control__WEBPACK_IMPORTED_MODULE_6__["ContentVisibilityShownHiddenControl"], {
       props: props
     }));
   }
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_shown_or_hidden_content_visibility_shown_hidden_control__WEBPACK_IMPORTED_MODULE_6__["ContentVisibilityShownHiddenControl"], {
     props: props
   });
 });
+
 /**
  * Filters registered block settings, extending attributes with our custom data.
  *
@@ -3394,7 +3338,6 @@ var ContentVisibilityDisplayedControl = Object(_wordpress_compose__WEBPACK_IMPOR
  *
  * @return {Object} Filtered block settings.
  */
-
 function addContentVisibilityAttribute(settings) {
   // If this is a valid block
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__["default"])(settings.name)) {
@@ -3405,7 +3348,6 @@ function addContentVisibilityAttribute(settings) {
       }
     });
   }
-
   return settings;
 } // end addContentVisibilityAttribute()
 
@@ -3419,13 +3361,11 @@ function addContentVisibilityAttribute(settings) {
  *
  * @return {Object} Filtered props applied to save element.
  */
-
 function addBlockVisibilityPropOnSave(extraProps, blockType, attributes) {
   // If the current block is valid, add our prop.
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_7__["default"])(blockType.name)) {
     extraProps.contentVisibility = attributes.contentVisibility;
   }
-
   return extraProps;
 } // end addBlockVisibilityPropOnSave()
 
@@ -3466,11 +3406,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
@@ -3481,23 +3418,24 @@ var ContentVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_
   rulesEnabled: false
 })(function (_ref) {
   var rulesEnabled = _ref.rulesEnabled,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
     label: props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Rules Enabled', 'content-visibility') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Rules Disabled', 'content-visibility'),
     checked: props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled || rulesEnabled,
     onChange: function onChange(rulesEnabled) {
       return setState(function (state) {
         var newBVRules = _objectSpread({}, props.attributes.contentVisibilityRules);
-
         newBVRules.contentVisibilityRulesEnabled = rulesEnabled;
         props.setAttributes({
           contentVisibilityRules: newBVRules
-        }); // Fire an action so we can see what's happened in other controls. This can be useful,
+        });
+
+        // Fire an action so we can see what's happened in other controls. This can be useful,
         // for example when setting rules for roles - pointless if a user isn't signed in.
+        Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["doAction"])('contentVisibility.onChange.contentVisibilityRulesEnabled', 'content-visibility/onChange', rulesEnabled, props);
 
-        Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["doAction"])('contentVisibility.onChange.contentVisibilityRulesEnabled', 'content-visibility/onChange', rulesEnabled, props); // Sets the state
-
+        // Sets the state
         return {
           rulesEnabled: !state.rulesEnabled
         };
@@ -3505,6 +3443,7 @@ var ContentVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_
     }
   });
 });
+
 /**
  * Filters registered block settings, extending attributes with our custom data.
  *
@@ -3512,7 +3451,6 @@ var ContentVisibilityRulesEnabled = Object(_wordpress_compose__WEBPACK_IMPORTED_
  *
  * @return {Object} Filtered block settings.
  */
-
 function addContentVisibilityRulesEnabledAttribute(settings) {
   // If this is a valid block
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_8__["default"])(settings.name)) {
@@ -3523,7 +3461,6 @@ function addContentVisibilityRulesEnabledAttribute(settings) {
       }
     });
   }
-
   return settings;
 } // end addContentVisibilityRulesEnabledAttribute()
 
@@ -3537,13 +3474,11 @@ function addContentVisibilityRulesEnabledAttribute(settings) {
  *
  * @return {Object} Filtered props applied to save element.
  */
-
 function addContentVisibilityRulesEnabledPropOnSave(extraProps, blockType, attributes) {
   // If the current block is valid, add our prop.
   if (Object(_helpers_is_valid_blocktype__WEBPACK_IMPORTED_MODULE_8__["default"])(blockType.name)) {
     extraProps.contentVisibilityRulesEnabled = attributes.contentVisibilityRulesEnabled;
   }
-
   return extraProps;
 } // end addContentVisibilityRulesEnabledPropOnSave()
 
@@ -3554,13 +3489,11 @@ function addContentVisibilityRulesEnabledPropOnSave(extraProps, blockType, attri
  *
  * @return {Object} The block with a custom class name added if the block has rules enabled. The unmodified block otherwise.
  */
-
 var withCustomClassName = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["createHigherOrderComponent"])(function (BlockListBlock) {
   return function (props) {
     if (!props.attributes.contentVisibility || !props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, props);
     }
-
     var iconClassName = 'content-visibility-rules-enabled-' + props.attributes.contentVisibility;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(BlockListBlock, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
       className: iconClassName
@@ -3604,28 +3537,26 @@ var ContentVisibilityUserAuthenticationControl = Object(_wordpress_compose__WEBP
   option: ''
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   var rulesEnabled = props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled;
   var contentVisibility = props.attributes.hasOwnProperty('contentVisibility');
-
   if (!rulesEnabled || !contentVisibility) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Disabled"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_user_authentication_user_authentication_panel_body_control__WEBPACK_IMPORTED_MODULE_5__["ContentVisibilityUserAuthenticationPanelBodyControl"], {
       props: props
     }));
   }
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_user_authentication_user_authentication_panel_body_control__WEBPACK_IMPORTED_MODULE_5__["ContentVisibilityUserAuthenticationPanelBodyControl"], {
     props: props
   });
 });
+
 /**
  * Render the <ContentVisibilityUserAuthenticationControl> component by adding
  * it to the block-visibility-extra-controls Fill.
  *
  * @return {Object} A Fill component wrapping the ContentVisibilityUserAuthenticationControl component.
  */
-
 function BlockVisibilityUserAuthenitcationFill() {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Fill"], {
     name: "content-visibility-extra-controls"
@@ -3634,9 +3565,9 @@ function BlockVisibilityUserAuthenitcationFill() {
       props: fillProps
     });
   });
-} // Add our component to the Slot provided by BlockVisibilityControls
+}
 
-
+// Add our component to the Slot provided by BlockVisibilityControls
 Object(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__["registerPlugin"])('content-visibility-01-user-authentication-fill', {
   render: BlockVisibilityUserAuthenitcationFill
 });
@@ -3662,10 +3593,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
 
 
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
@@ -3707,12 +3636,11 @@ var ContentVisibilityMultiSelect = Object(_wordpress_compose__WEBPACK_IMPORTED_M
   option: []
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props,
-      data = _ref.data,
-      labelledBy = _ref.labelledBy,
-      type = _ref.type;
-
+    setState = _ref.setState,
+    props = _ref.props,
+    data = _ref.data,
+    labelledBy = _ref.labelledBy,
+    type = _ref.type;
   /**
    * onChange callback for the ContentVisibilityMultiSelect component. This handles setting the props and state for
    * this instance of the component.
@@ -3730,7 +3658,6 @@ var ContentVisibilityMultiSelect = Object(_wordpress_compose__WEBPACK_IMPORTED_M
       })
     });
   };
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: "content-visibility-multi-select"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(react_multi_select_component__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -3740,9 +3667,9 @@ var ContentVisibilityMultiSelect = Object(_wordpress_compose__WEBPACK_IMPORTED_M
     labelledBy: labelledBy,
     ItemRenderer: function ItemRenderer(_ref2) {
       var checked = _ref2.checked,
-          option = _ref2.option,
-          onClick = _ref2.onClick,
-          disabled = _ref2.disabled;
+        option = _ref2.option,
+        onClick = _ref2.onClick,
+        disabled = _ref2.disabled;
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
         className: "item-renderer content-visibility-multi-select-item ".concat(disabled && "disabled")
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("input", {
@@ -3752,8 +3679,8 @@ var ContentVisibilityMultiSelect = Object(_wordpress_compose__WEBPACK_IMPORTED_M
         tabIndex: -1,
         disabled: disabled
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, option.icon || "", " ", option.label));
-    } // isOpen={ true }
-
+    }
+    // isOpen={ true }
   }));
 });
 
@@ -3785,8 +3712,8 @@ var ContentVisibilityShownHiddenControl = Object(_wordpress_compose__WEBPACK_IMP
   option: ''
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Shown or Hidden', 'content-visibility-user-role'),
     initialOpen: true,
@@ -3850,30 +3777,29 @@ var PagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
   isVisible: false
 })(function (_ref) {
   var isVisible = _ref.isVisible,
-      setState = _ref.setState,
-      props = _ref.props;
-
+    setState = _ref.setState,
+    props = _ref.props;
   /**
    * Our data, passed from PHP and manipulated to be useful here in JS.
    */
   var data = Object(_helpers_get_pages__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
   /**
    * This controls the key used where the data is stored.
    */
-
   var type = 'pages';
+
   /**
    * Helps with the content of the inserter button.
    */
-
   var niceName = {
     singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Page', 'content-visibility'),
     plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Pages', 'content-visibility')
   };
+
   /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
-
   var toggleVisible = function toggleVisible() {
     setState(function (state) {
       return {
@@ -3881,7 +3807,6 @@ var PagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
       };
     });
   };
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "content-visibility-special-page-inserter"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
@@ -3959,30 +3884,29 @@ var PostPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
   isVisible: false
 })(function (_ref) {
   var isVisible = _ref.isVisible,
-      setState = _ref.setState,
-      props = _ref.props;
-
+    setState = _ref.setState,
+    props = _ref.props;
   /**
    * Our data, passed from PHP and manipulated to be useful here in JS.
    */
   var data = Object(_helpers_get_posts__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
   /**
    * This controls the key used where the data is stored.
    */
-
   var type = 'posts';
+
   /**
    * Helps with the content of the inserter button.
    */
-
   var niceName = {
     singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Post', 'content-visibility'),
     plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Posts', 'content-visibility')
   };
+
   /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
-
   var toggleVisible = function toggleVisible() {
     setState(function (state) {
       return {
@@ -3990,7 +3914,6 @@ var PostPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["w
       };
     });
   };
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "content-visibility-special-page-inserter"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
@@ -4068,30 +3991,29 @@ var CategoryPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
   isVisible: false
 })(function (_ref) {
   var isVisible = _ref.isVisible,
-      setState = _ref.setState,
-      props = _ref.props;
-
+    setState = _ref.setState,
+    props = _ref.props;
   /**
    * Our data, passed from PHP and manipulated to be useful here in JS.
    */
   var data = Object(_helpers_get_categories__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
   /**
    * This controls the key used where the data is stored.
    */
-
   var type = 'categories';
+
   /**
    * Helps with the content of the inserter button.
    */
-
   var niceName = {
     singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Category', 'content-visibility'),
     plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Categories', 'content-visibility')
   };
+
   /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
-
   var toggleVisible = function toggleVisible() {
     setState(function (state) {
       return {
@@ -4099,7 +4021,6 @@ var CategoryPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
       };
     });
   };
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "content-visibility-special-page-inserter"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
@@ -4173,28 +4094,26 @@ var ContentVisibilitySpecialPageControls = Object(_wordpress_compose__WEBPACK_IM
   option: ''
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   var rulesEnabled = props.attributes.contentVisibilityRules.contentVisibilityRulesEnabled;
   var contentVisibility = props.attributes.hasOwnProperty('contentVisibility');
-
   if (!rulesEnabled || !contentVisibility) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Disabled"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_content_visibility_special_page_panel__WEBPACK_IMPORTED_MODULE_5__["ContentVisibilitySpecialPagePanelBodyControl"], {
       props: props
     }));
   }
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_content_visibility_special_page_panel__WEBPACK_IMPORTED_MODULE_5__["ContentVisibilitySpecialPagePanelBodyControl"], {
     props: props
   });
 });
+
 /**
  * Render the <ContentVisibilitySpecialPageControls> component by adding
  * it to the block-visibility-extra-controls Fill.
  *
  * @return {Object} A Fill component wrapping the ContentVisibilitySpecialPageControls component.
  */
-
 function ContentVisibilitySpecialPageFill() {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Fill"], {
     name: "content-visibility-extra-controls"
@@ -4203,9 +4122,9 @@ function ContentVisibilitySpecialPageFill() {
       props: fillProps
     });
   });
-} // Only load the Widgets-related controls on the widgets screen or we're local, due to Widgets Screen bug.
+}
 
-
+// Only load the Widgets-related controls on the widgets screen or we're local, due to Widgets Screen bug.
 if ('appearance_page_gutenberg-widgets' === ContentVisibility.screen || 'widgets' === ContentVisibility.screen || '1' === ContentVisibility.local) {
   // Add our component to the Slot provided by BlockVisibilityControls
   Object(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__["registerPlugin"])('content-visibility-04-special-page-fill', {
@@ -4250,31 +4169,30 @@ var SpecialPagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
   isVisible: false
 })(function (_ref) {
   var isVisible = _ref.isVisible,
-      setState = _ref.setState,
-      props = _ref.props;
-
+    setState = _ref.setState,
+    props = _ref.props;
   /**
    * A list of special pages, their associated title and icon are passed in from PHP as ContentVisibility.specialPages
    * We manipulate this associative PHP array (which in turn becomes a JS object) into something usable for our dropdown.
    */
   var specialPages = Object(_helpers_get_special_pages__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
   /**
    * This controls the key used where the data is stored.
    */
-
   var type = 'specialPages';
+
   /**
    * Helps with the content of the inserter button.
    */
-
   var niceName = {
     singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Special Page', 'content-visibility'),
     plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Special Pages', 'content-visibility')
   };
+
   /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
-
   var toggleVisible = function toggleVisible() {
     setState(function (state) {
       return {
@@ -4282,7 +4200,6 @@ var SpecialPagePageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE
       };
     });
   };
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "content-visibility-special-page-inserter"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
@@ -4368,8 +4285,8 @@ var ContentVisibilitySpecialPagePanelBodyControl = Object(_wordpress_compose__WE
   option: []
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   var hasRulesClass = Object(_helpers_has_rules__WEBPACK_IMPORTED_MODULE_10__["default"])(props, 'specialPage') ? ' has-active-rules' : '';
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Special Page', 'content-visibility'),
@@ -4390,10 +4307,10 @@ var ContentVisibilitySpecialPagePanelBodyControl = Object(_wordpress_compose__WE
   })), props.attributes.contentVisibility && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "special-page-help-intro content-visibility-help-text"
   }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Select the types of content upon which this block will be ' + props.attributes.contentVisibility + '.', 'content-visibility')));
-}); // Register our visibility rule in the main rules object.
+});
 
+// Register our visibility rule in the main rules object.
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__["addFilter"])('contentVisibility.defaultContentVisibilityRules', 'content-visibility-special-page/block-visibility-rules', registerSpecialPageVisibilityRule);
-
 function registerSpecialPageVisibilityRule(defaultRules) {
   defaultRules.specialPage = {
     pages: [],
@@ -4442,30 +4359,29 @@ var TagPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["wi
   isVisible: false
 })(function (_ref) {
   var isVisible = _ref.isVisible,
-      setState = _ref.setState,
-      props = _ref.props;
-
+    setState = _ref.setState,
+    props = _ref.props;
   /**
    * Our data, passed from PHP and manipulated to be useful here in JS.
    */
   var data = Object(_helpers_get_tags__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
   /**
    * This controls the key used where the data is stored.
    */
-
   var type = 'tags';
+
   /**
    * Helps with the content of the inserter button.
    */
-
   var niceName = {
     singular: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Tag', 'content-visibility'),
     plural: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Tags', 'content-visibility')
   };
+
   /**
    * Toggle the visible state. Detemines whether the popup is open or not.
    */
-
   var toggleVisible = function toggleVisible() {
     setState(function (state) {
       return {
@@ -4473,7 +4389,6 @@ var TagPageInserter = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["wi
       };
     });
   };
-
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "content-visibility-special-page-inserter"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
@@ -4540,11 +4455,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__);
 
 
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
@@ -4553,8 +4465,8 @@ var ContentVisibilityUserAuthenticationRadioControl = Object(_wordpress_compose_
   option: ''
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RadioControl"], {
     label: "",
     help: "",
@@ -4572,15 +4484,14 @@ var ContentVisibilityUserAuthenticationRadioControl = Object(_wordpress_compose_
       setState({
         option: option
       });
-
       var newBVRules = _objectSpread({}, props.attributes.contentVisibilityRules);
-
       newBVRules.userAuthenticated = option;
       props.setAttributes({
         contentVisibilityRules: newBVRules
-      }); // Fire an action so we can see what's happened in other controls. This can be useful,
-      // for example when setting rules for roles - pointless if a user isn't signed in.
+      });
 
+      // Fire an action so we can see what's happened in other controls. This can be useful,
+      // for example when setting rules for roles - pointless if a user isn't signed in.
       Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__["doAction"])('contentVisibility.onChange.userAuthenticated', 'content-visibility/onChange', option, props);
     }
   });
@@ -4616,8 +4527,8 @@ var ContentVisibilityUserAuthenticationPanelBodyControl = Object(_wordpress_comp
   option: ''
 })(function (_ref) {
   var option = _ref.option,
-      setState = _ref.setState,
-      props = _ref.props;
+    setState = _ref.setState,
+    props = _ref.props;
   var hasRulesClass = props.attributes.contentVisibilityRules && props.attributes.contentVisibilityRules.userAuthenticated && props.attributes.contentVisibilityRules.userAuthenticated !== '' ? ' has-active-rules' : '';
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('User Authentication', 'content-visibility'),
@@ -4655,15 +4566,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
+
 /**
  * PHP sends through a list of all the categories on the site. We massage that data to be
  * usable by our Dropdown.
  *
  */
-
 function getCategories() {
   var categories = [];
-
   if (ContentVisibility.categories.length === 0) {
     return [{
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('No categories found.', 'content-visibility'),
@@ -4671,7 +4581,6 @@ function getCategories() {
       notes: ''
     }];
   }
-
   for (var category in ContentVisibility.categories) {
     categories.push({
       label: ContentVisibility.categories[category].label,
@@ -4679,10 +4588,8 @@ function getCategories() {
       notes: ContentVisibility.categories[category].notes
     });
   }
-
   return categories;
 } // end getCategories()
-
 
 /* harmony default export */ __webpack_exports__["default"] = (getCategories);
 
@@ -4700,15 +4607,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
+
 /**
  * PHP sends through a list of all the pages on the site (in any status). We massage that data to be
  * usable by our Dropdown.
  *
  */
-
 function getPages() {
   var pages = [];
-
   if (ContentVisibility.pages.length === 0) {
     return [{
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('No pages found.', 'content-visibility'),
@@ -4716,7 +4622,6 @@ function getPages() {
       notes: ''
     }];
   }
-
   for (var page in ContentVisibility.pages) {
     pages.push({
       label: ContentVisibility.pages[page].label,
@@ -4724,10 +4629,8 @@ function getPages() {
       notes: ContentVisibility.pages[page].notes
     });
   }
-
   return pages;
 } // end getPages()
-
 
 /* harmony default export */ __webpack_exports__["default"] = (getPages);
 
@@ -4745,15 +4648,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
+
 /**
  * PHP sends through a list of all the posts on the site (in any status). We massage that data to be
  * usable by our Dropdown.
  *
  */
-
 function getPosts() {
   var posts = [];
-
   if (ContentVisibility.posts.length === 0) {
     return [{
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('No posts found.', 'content-visibility'),
@@ -4761,7 +4663,6 @@ function getPosts() {
       notes: ''
     }];
   }
-
   for (var post in ContentVisibility.posts) {
     posts.push({
       label: ContentVisibility.posts[post].label,
@@ -4769,10 +4670,8 @@ function getPosts() {
       notes: ContentVisibility.posts[post].notes
     });
   }
-
   return posts;
 } // end getPosts()
-
 
 /* harmony default export */ __webpack_exports__["default"] = (getPosts);
 
@@ -4793,15 +4692,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 
 
+
 /**
  * A list of special pages, their associated title and icon are passed in from PHP as ContentVisibility.specialPages
  * We manipulate this associative PHP array (which in turn becomes a JS object) into something usable for our dropdown.
  *
  */
-
 function getSpecialPages() {
   var specialPages = [];
-
   for (var specialPage in ContentVisibility.specialPages) {
     specialPages.push({
       label: ContentVisibility.specialPages[specialPage].label,
@@ -4813,10 +4711,8 @@ function getSpecialPages() {
       })
     });
   }
-
   return specialPages;
 } // end getSpecialPages()
-
 
 /* harmony default export */ __webpack_exports__["default"] = (getSpecialPages);
 
@@ -4834,15 +4730,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
+
 /**
  * PHP sends through a list of all the tags on the site. We massage that data to be
  * usable by our Dropdown.
  *
  */
-
 function getTags() {
   var tags = [];
-
   if (ContentVisibility.tags.length === 0) {
     return [{
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('No tags found.', 'content-visibility'),
@@ -4850,7 +4745,6 @@ function getTags() {
       notes: ''
     }];
   }
-
   for (var tag in ContentVisibility.tags) {
     tags.push({
       label: ContentVisibility.tags[tag].label,
@@ -4858,10 +4752,8 @@ function getTags() {
       notes: ContentVisibility.tags[tag].notes
     });
   }
-
   return tags;
 } // end getTags()
-
 
 /* harmony default export */ __webpack_exports__["default"] = (getTags);
 
@@ -4878,7 +4770,6 @@ function getTags() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
-
 
 /**
  * Is the passed element a child of an element that has a class of the passed parentClassName.
@@ -4899,7 +4790,6 @@ function hasParentWithClass(element, classname) {
   }
 } //end hasParentWithClass()
 
-
 /* harmony default export */ __webpack_exports__["default"] = (hasParentWithClass);
 
 /***/ }),
@@ -4916,6 +4806,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__);
 
+
 /**
  * Determine if the passed block props contain rules of the passed type.
  *
@@ -4924,44 +4815,38 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {bool} true if the passed props contain non-empty rules of the passed type. False otherwise.
  */
-
 function hasRules(props, type) {
   if (!props.attributes.contentVisibilityRules) {
     return false;
   }
-
   if (!props.attributes.contentVisibilityRules[type]) {
     return false;
-  } // Default to false. Passed through a filter later.
+  }
 
-
+  // Default to false. Passed through a filter later.
   var hasRules = false;
-
   switch (type) {
     case 'userAuthenticated':
       if (props.attributes.contentVisibilityRules[type] !== '') {
         hasRules = true;
       }
-
       break;
-
     case 'specialPage':
-      var allSpecialPageRules = props.attributes.contentVisibilityRules.specialPage; // If *any* of the special pages contains rules, then this is true. Is an array of arrays.
+      var allSpecialPageRules = props.attributes.contentVisibilityRules.specialPage;
 
-      var specialPageRulesValues = Object.values(allSpecialPageRules); // if any of the arrays in specialPageRulesValues is non-empty then we have SOME rules.
+      // If *any* of the special pages contains rules, then this is true. Is an array of arrays.
+      var specialPageRulesValues = Object.values(allSpecialPageRules);
 
+      // if any of the arrays in specialPageRulesValues is non-empty then we have SOME rules.
       hasRules = specialPageRulesValues.some(function (el) {
         return el.length > 0;
       });
       break;
-
     default:
       break;
   }
-
   return Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__["applyFilters"])('content-visibility-has-rules', hasRules, props, type);
 } // end hasRules()
-
 
 /* harmony default export */ __webpack_exports__["default"] = (hasRules);
 
@@ -4986,7 +4871,6 @@ function isValidBlockType(name) {
   return !invalidBlockTypes.includes(name);
 } // end isValidBlockType()
 
-
 /* harmony default export */ __webpack_exports__["default"] = (isValidBlockType);
 
 /***/ }),
@@ -5002,6 +4886,7 @@ function isValidBlockType(name) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _has_parent_with_class__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./has-parent-with-class */ "./src/helpers/has-parent-with-class.js");
 
+
 /**
  * The Popup component closes if it loses focus by default. For us, we want to ensure it
  * stays open until someone intentially closes it via either setting the selected items,
@@ -5010,22 +4895,18 @@ __webpack_require__.r(__webpack_exports__);
  * @param {event} event The click event.
  * @return null
  */
-
 var keepPopupOpen = function keepPopupOpen(event) {
   if (false === event) {
     return;
-  } // Determine if what has been clicked on is in the popover or not.
+  }
 
-
+  // Determine if what has been clicked on is in the popover or not.
   var eTarget = event.target;
-
   if (Object(_has_parent_with_class__WEBPACK_IMPORTED_MODULE_0__["default"])(eTarget, 'components-popover__content')) {
     event.stopPropagation();
   }
-
   return;
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (keepPopupOpen);
 
 /***/ }),
@@ -5042,6 +4923,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
+
 /**
  * Determine the text for the button which opens the popup for the special pages inserter. By default, if there are
  * no special pages selected, it will be 'Select special pages'. However, if there are special pages set, it will
@@ -5054,13 +4936,11 @@ __webpack_require__.r(__webpack_exports__);
  *                        object contains a singular and plural property.
  * @return string the text to be used for the button.
  */
-
 var specialPagesInsertText = function specialPagesInsertText(props, type, defaultVal, niceName) {
   // if nothing is set, return a prompt to select special pages.
   if (props.attributes.contentVisibilityRules.specialPage[type] === undefined || props.attributes.contentVisibilityRules.specialPage[type].length === 0) {
     return defaultVal;
   }
-
   var shownOrHidden = props.attributes.contentVisibility;
   var specialPages = props.attributes.contentVisibilityRules.specialPage[type];
   var specialPagesCount = specialPages.length;
@@ -5068,7 +4948,6 @@ var specialPagesInsertText = function specialPagesInsertText(props, type, defaul
   var insertText = shownOrHidden + Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(' on ') + specialPagesCount + ' ' + niceType;
   return insertText;
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (specialPagesInsertText);
 
 /***/ }),
@@ -5092,12 +4971,11 @@ var specialPagesInsertButtonClass = function specialPagesInsertButtonClass(props
   // If we don't have any items selected, just basic class.
   if (props.attributes.contentVisibilityRules.specialPage[type] === undefined || props.attributes.contentVisibilityRules.specialPage[type].length === 0) {
     return 'content-visibility-special-page-inserter-toggle';
-  } // We have some items selected, so we have a couple classes.
+  }
 
-
+  // We have some items selected, so we have a couple classes.
   return 'content-visibility-special-page-inserter-toggle has-items';
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (specialPagesInsertButtonClass);
 
 /***/ }),

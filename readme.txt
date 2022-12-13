@@ -3,8 +3,8 @@ Contributors: iamfriendly
 Donate link: https://girlswhocode.com/
 Tags: contentvisibility, block, content, visibility, show, hide
 Requires at least: 5.0
-Tested up to: 5.8.0
-Stable tag: 0.2.7
+Tested up to: 6.1.1
+Stable tag: 0.2.9
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -67,6 +67,12 @@ Let me know: https://github.com/richardtape/content-visibility/issues/new
 1. Showing the content visibility controls in the content editor sidebar
 
 == Changelog ==
+
+= 0.2.9 =
+* WordPress 6.1.1 compatibility.
+* Fixed the styling weirdness causing some blocks to be misaligned when they have rules set.
+* Tweaked styling of block inspector controls to fall more in line with newer WP rules.
+* Fixed styles of multi-select field for widgets.
 
 = 0.2.8 =
 * Fixed an issue where blocks registered with PHP throwing error when rendering it with ServerSideRender components in the editor.
