@@ -1,4 +1,4 @@
-import { Button, Popover, Icon, HorizontalRule, IconButton } from '@wordpress/components';
+import { Button, Popover, Icon, HorizontalRule } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import getCategories from '../../helpers/get-categories';
 import keepPopupOpen from '../../helpers/keep-popup-open';
@@ -59,7 +59,7 @@ const CategoryPageInserter = withState( {
                         <p><Icon icon="editor-help" iconSize="12" /> <strong>{ __( 'Help', 'content-visibility' ) }</strong></p>
                         <p>{ __( `Selecting one or more categories from this list will mean that this block will only be ${props.attributes.contentVisibility} when the post being viewed is in that category. If you want this block to be ${props.attributes.contentVisibility} on ALL categories, please use the 'Special Pages' option and select 'Any Category'`, 'content-visibility' ) }</p>
 
-                        <IconButton className="content-visibility-close-popover" icon="no" label={ __( 'Close', 'content-visibility' ) } onClick={ toggleVisible } />
+                        <Button className="content-visibility-close-popover" icon="no" label={ __( 'Close', 'content-visibility' ) } onClick={ toggleVisible } />
                     </Popover>
                 ) }
             </Button>

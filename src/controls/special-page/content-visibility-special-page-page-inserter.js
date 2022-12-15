@@ -1,4 +1,4 @@
-import { Button, Popover, Icon, HorizontalRule, IconButton } from '@wordpress/components';
+import { Button, Popover, Icon, HorizontalRule } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 import getSpecialPages from '../../helpers/get-special-pages';
 import keepPopupOpen from '../../helpers/keep-popup-open';
@@ -64,7 +64,7 @@ const SpecialPagePageInserter = withState( {
                             <p><span>{ specialPage.label }</span>: { specialPage.notes }</p>
                         ) ) }
 
-                        <IconButton className="content-visibility-close-popover" icon="no" label={ __( 'Close', 'content-visibility' ) } onClick={ toggleVisible } />
+                        <Button className="content-visibility-close-popover" icon="no" label={ __( 'Close', 'content-visibility' ) } onClick={ toggleVisible } />
                     </Popover>
                 ) }
             </Button>
