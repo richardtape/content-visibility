@@ -8,7 +8,7 @@ export const ContentVisibilityShownHiddenControl = withState( {
 
     return (
         <PanelBody
-            title={ __( 'Shown or Hidden', 'content-visibility-user-role' ) }
+            title={ __( 'Show or Hide', 'content-visibility-user-role' ) }
             initialOpen={ true }
             className="content-visibility-control-panel content-visibility-user-role-controls"
         >

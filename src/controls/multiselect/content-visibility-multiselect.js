@@ -1,4 +1,4 @@
-import MultiSelect from "react-multi-select-component";
+import { MultiSelect } from "react-multi-select-component";
 import { withState } from '@wordpress/compose';
 
 /**
