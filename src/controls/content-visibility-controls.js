@@ -31,7 +31,7 @@ export const contentVisibilityControls = createHigherOrderComponent((BlockEdit) 
 
     return (props) => {
 
-        if ( ! isValidBlockType( props.name ) ) {
+        if ( ! isValidBlockType( props.name ) || ! props.attributes.contentVisibilityRules ) {
             return <BlockEdit {...props} />;
         }
 
