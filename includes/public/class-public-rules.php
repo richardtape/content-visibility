@@ -36,7 +36,6 @@ class Public_Rules {
 		$this->set_rule_types_and_callbacks();
 
 		$this->add_hooks();
-
 	}//end init()
 
 
@@ -70,7 +69,6 @@ class Public_Rules {
 		$rule_types_and_callbacks = apply_filters( 'content_visibility_rule_types_and_callbacks', array() );
 
 		$this->rule_types_and_callbacks = $rule_types_and_callbacks;
-
 	}//end set_rule_types_and_callbacks()
 
 	/**
@@ -87,7 +85,6 @@ class Public_Rules {
 		$rule_types_and_callbacks['userAuthenticated'] = 'RichardTape\ContentVisibility\rule_logic_user_authenticated';
 
 		return $rule_types_and_callbacks;
-
 	}//end add_user_authenticated_callback()
 
 
@@ -105,7 +102,6 @@ class Public_Rules {
 		$rule_types_and_callbacks['specialPage'] = 'RichardTape\ContentVisibility\rule_logic_special_page';
 
 		return $rule_types_and_callbacks;
-
 	}//end add_special_pages_callback()
 
 	/**
@@ -119,7 +115,6 @@ class Public_Rules {
 		add_filter( 'pre_render_block', array( $this, 'pre_render_block__test_and_remove_block' ), 5, 2 );
 
 		add_filter( 'render_block', array( $this, 'render_block__test_and_remove_block' ), 5, 2 );
-
 	}//end add_hooks()
 
 
@@ -201,6 +196,11 @@ class Public_Rules {
 		// would prohibit this block from being shown.
 		foreach ( $block_rules as $rule_type => $rule_value ) {
 
+			if ( ! isset( $rules_and_callbacks[ $rule_type ] ) || is_null( $rules_and_callbacks[ $rule_type ] ) ) {
+				// We don't have a callback for this rule. Bail.
+				return false;
+			}
+
 			// If the return of the callback is 'true' then the block is to be kept.
 			$keep_block = call_user_func( $rules_and_callbacks[ $rule_type ], $rule_value, $block_visibility, $block );
 
@@ -211,7 +211,6 @@ class Public_Rules {
 		}
 
 		return false;
-
 	}//end this_block_should_be_removed()
 
 	/**
@@ -259,7 +258,6 @@ class Public_Rules {
 		 * @param array $parsed_block The parsed block with all its properties.
 		 */
 		return apply_filters( 'content_visibility_replace_block_content', false, $parsed_block );
-
 	}//end pre_render_block__test_and_remove_block()
 
 
@@ -304,7 +302,5 @@ class Public_Rules {
 		}
 
 		return $block_content;
-
 	}//end render_block__test_and_remove_block()
-
 }//end class
